@@ -1,10 +1,11 @@
 import React from 'react';
-import { BottomNavigation } from '@mui/material';
 
 export default function Footer() {
-  return (
-    <>
-      
-    </>
-  )
+    return (
+        <div className='container'>
+            <div className='text-center' style={{fontFamily: "Georgia"}}>
+                pythonpioneer
+            </div>
+        </div>
+    );
 }
