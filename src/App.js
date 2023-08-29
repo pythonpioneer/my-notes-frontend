@@ -9,9 +9,11 @@ function App() {
       <Navbar />
       <Notebox />
       
+      
       {/* <Footer /> */}
     </>
   );
+  // eslint-disable-next-line
 }
 
 export default App;
