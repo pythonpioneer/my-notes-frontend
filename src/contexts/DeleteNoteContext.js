@@ -34,6 +34,9 @@ export const DeleteNoteProvider = (props) => {
         })
         .then((response) => {
             console.log(response)
+            const newNotes = notes.filter(note => note._id !== id);
+            console.log(newNotes);
+            setNotes(newNotes);
         })
         .catch(err => {
             console.log(err);
