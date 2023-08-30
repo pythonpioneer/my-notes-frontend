@@ -41,7 +41,6 @@ export const FetchNoteProvider = (props) => {
     useEffect(() => {
         getNotes();
         // eslint-disable-next-line
-        console.log('in fetch effect')
     }, []);
 
     return (
