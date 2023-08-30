@@ -1,15 +1,20 @@
 import './App.css';
-import Footer from './components/footer/Footer';
 import Navbar from './components/header/Navbar';
 import Notebox from './components/body/Notebox';
+import { FetchNoteProvider } from './contexts/FetchNoteContext';
+import { DeleteNoteProvider } from './contexts/DeleteNoteContext';
 
 function App() {
   return (
     <>
       <Navbar />
-      <Notebox />
-      
-      
+      <FetchNoteProvider>
+        <DeleteNoteProvider>
+          <Notebox />
+        </DeleteNoteProvider>
+      </FetchNoteProvider>
+
+
       {/* <Footer /> */}
     </>
   );

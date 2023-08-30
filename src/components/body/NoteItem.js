@@ -1,8 +1,12 @@
 import { Grid } from '@mui/material';
 import React from 'react';
+import { useDeleteNote } from '../../contexts/DeleteNoteContext';
 
 export default function NoteItem(props) {
     let displayDateFormat = '';
+
+    // getting values using context hook for notes
+    const { deleteNote } = useDeleteNote();
 
     // if there is no note
     if (props.datetime === null) {
@@ -30,7 +34,7 @@ export default function NoteItem(props) {
                         <p className="card-text" style={{ fontSize: '0.8em', color: '#A9A9A9' }}>{props.desc}</p>
 
                         <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>{displayDateFormat}</p>
-                        {props.datetime && <i className="fa-solid fa-trash" style={{ fontSize: "1.2em", float: 'right' }}></i>}
+                        {props.datetime && <i onClick={() => {deleteNote(props._id)}} className="fa-solid fa-trash" style={{ fontSize: "1.2em", float: 'right' }}></i>}
                         {props.tag && <div className="text-center d-inline-block mx-5" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{props.tag}</div>}
                     </Grid>
 
