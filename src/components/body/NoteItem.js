@@ -2,30 +2,36 @@ import { Grid } from '@mui/material';
 import React from 'react';
 
 export default function NoteItem(props) {
+    let displayDateFormat = '';
 
-    // converting date.now() into date format
-    const timestamp = new Date(Number(props.datetime)); 
-    let date = timestamp.toDateString().split(' ');  // Thu Aug 24 2023
-    const displayDateFormat = `${date[1]} ${date[2]}, ${date[3]}, ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+    // if there is no note
+    if (props.datetime === null) {
+        displayDateFormat = new Date(Date.now()).toDateString();
+    }
+    else {
 
+        // converting date.now() into date format
+        const timestamp = new Date(Number(props.datetime));
+        let date = timestamp.toDateString().split(' ');  // Thu Aug 24 2023
+        displayDateFormat = `${date[1]} ${date[2]}, ${date[3]}, ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+    }
     return (
         <>
-
-            <Grid container className="mb-3 bg-light" style={{ width: '96%', marginLeft: '2%', marginRight: '2%', borderRadius: '10px' }}>
+            <Grid container className="mb-3 bg-light" style={{ width: '96%', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '110px' }}>
                 <Grid className="card-body">
 
                     <Grid item lg={6} className="d-inline-block mr-5" style={{ fontFamily: "Georgia", fontSize: '1em', fontStyle: 'italic', fontWeight: 'bold', marginTop: '-12px' }}>{props.title}</Grid>
-                    <i className="fa-solid fa-pen-to-square" style={{fontSize: "1.2em", paddingLeft: '5px', float: 'right'}}></i>
-                    
-                    
-                    
-                    
+                    {props.datetime && <i className="fa-solid fa-pen-to-square" style={{ fontSize: "1.2em", paddingLeft: '5px', float: 'right' }}></i>}
+
+
+
+
                     <Grid item lg={12} className="">
                         <p className="card-text" style={{ fontSize: '0.8em', color: '#A9A9A9' }}>{props.desc}</p>
 
                         <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>{displayDateFormat}</p>
-                        <i className="fa-solid fa-trash" style={{ fontSize: "1.2em", float: 'right' }}></i>
-                        <div className="text-center d-inline-block mx-5" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{props.tag}</div>
+                        {props.datetime && <i className="fa-solid fa-trash" style={{ fontSize: "1.2em", float: 'right' }}></i>}
+                        {props.tag && <div className="text-center d-inline-block mx-5" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{props.tag}</div>}
                     </Grid>
 
                 </Grid>
