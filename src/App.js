@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/header/Navbar';
 import Notebox from './components/body/Notebox';
-import { FetchNoteProvider } from './contexts/NoteContext';
+import { FetchNoteProvider } from './contexts/FetchNoteContext';
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       <FetchNoteProvider>
         <Notebox />
       </FetchNoteProvider>
-      
-      
+        
+    
       {/* <Footer /> */}
     </>
   );

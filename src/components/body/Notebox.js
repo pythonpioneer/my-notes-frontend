@@ -1,7 +1,7 @@
 import React from 'react';
 import NoteItem from './NoteItem';
 import Searchbar from './Searchbar';
-import { useFetchNote } from '../../contexts/NoteContext';
+import { useFetchNote } from '../../contexts/FetchNoteContext';
 
 export default function Notebox() {
 

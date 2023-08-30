@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { createContext, useState, useContext, useEffect} from 'react';
 
 // creating and exporting context 
-const NoteContext = createContext(null);
+const FetchNoteContext = createContext(null);
 export const useFetchNote = () => {
-    const note = useContext(NoteContext);
+    const note = useContext(FetchNoteContext);
     return note;
 };
 
@@ -30,11 +30,8 @@ export const FetchNoteProvider = (props) => {
             },
         })
         .then(async (response) => {
-            console.log('data', response['data']);
             // setNotes(note => response.data);
             setNotes(response.data);
-
-            console.log('notes', notes);
         })
         .catch(err => {
             console.log(err);
@@ -50,8 +47,8 @@ export const FetchNoteProvider = (props) => {
     return (
         
         // wrapping all childrens
-        <NoteContext.Provider value={{ notes, getNotes }}>
+        <FetchNoteContext.Provider value={{ notes, getNotes }}>
             {props.children}
-        </NoteContext.Provider>
+        </FetchNoteContext.Provider>
     );
 }
