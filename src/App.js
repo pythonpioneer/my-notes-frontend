@@ -8,11 +8,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <DeleteNoteProvider>
-        <FetchNoteProvider>
+      <FetchNoteProvider>
+        <DeleteNoteProvider>
           <Notebox />
-        </FetchNoteProvider>
-      </DeleteNoteProvider>
+        </DeleteNoteProvider>
+      </FetchNoteProvider>
 
 
       {/* <Footer /> */}

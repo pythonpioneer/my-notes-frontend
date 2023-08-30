@@ -20,12 +20,12 @@ export const FetchNoteProvider = (props) => {
     // to fetch notes from db
     const getNotes = async () => {
 
-        // making api call
+        // making api call to fetch note
         axios.get(`${host}/api/v1/notes/fetchallnotes`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json',
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlZjRiNGMwY2FhZDk4MmEyNzQxYmI4In0sImlhdCI6MTY5MzQwMzk4MH0.BMXNanTOXRue6NmILVsRwR71_zgi6PjWQ1sTCv5-zw0'
+                "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlZjRiNGMwY2FhZDk4MmEyNzQxYmI4In0sImlhdCI6MTY5MzQwMzk4MH0.BMXNanTOXRue6NmILVsRwR71_zgi6PjWQ1sTCv5-zw0`
             },
         })
         .then(async (response) => {
@@ -41,12 +41,13 @@ export const FetchNoteProvider = (props) => {
     useEffect(() => {
         getNotes();
         // eslint-disable-next-line
+        console.log('in fetch effect')
     }, []);
 
     return (
         
         // wrapping all childrens
-        <FetchNoteContext.Provider value={{ notes, getNotes }}>
+        <FetchNoteContext.Provider value={{ notes, setNotes }}>
             {props.children}
         </FetchNoteContext.Provider>
     );
