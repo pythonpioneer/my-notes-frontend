@@ -12,9 +12,8 @@ export default function Notebox() {
   return (
     <> 
       <Searchbar />
-      {console.log('ret', notes)}
       {notes?.map((element, index) => {
-          return <NoteItem key={index} title={element.title} desc={element.description} tag={element.tag} /> 
+          return <NoteItem key={index} title={element.title} desc={element.description} tag={element.tag} datetime={element.timestamp} /> 
       })}
     </> 
   )
