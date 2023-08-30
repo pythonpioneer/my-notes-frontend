@@ -14,8 +14,8 @@ export default function Searchbar() {
 
                         {/* search icon */}
                         <i className="fa-solid fa-magnifying-glass mr-4" style={{fontSize: "1.5em"}}></i>
-                        <i class="fa-solid fa-right-from-bracket mr-4" style={{fontSize: "1.5em"}}></i>
-                        <i class="fa-solid fa-rotate-right fa-flip-horizontal mr-3" style={{fontSize: "1.5em"}}></i>
+                        <i className="fa-solid fa-plus mr-4" style={{fontSize: "1.5em"}}></i>
+                        <i className="fa-solid fa-right-from-bracket mr-3" style={{fontSize: "1.5em"}}></i>
                     </form>
             </nav>
         </>
