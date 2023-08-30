@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, useEffect} from 'react';
 
 // creating and exporting context 
 const NoteContext = createContext(null);
-export const useNote = () => {
+export const useFetchNote = () => {
     const note = useContext(NoteContext);
     return note;
 };
@@ -13,7 +13,7 @@ const host = 'http://192.168.0.102:3100';
 
 
 // creating provider
-export const NoteProvider = (props) => {
+export const FetchNoteProvider = (props) => {
     
     // creating all states here to access everywhere
     let [notes, setNotes] = useState([]);

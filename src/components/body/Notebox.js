@@ -1,14 +1,14 @@
 import React from 'react';
 import NoteItem from './NoteItem';
 import Searchbar from './Searchbar';
-import { useNote } from '../../contexts/NoteContext';
+import { useFetchNote } from '../../contexts/NoteContext';
 
 export default function Notebox() {
 
   // add skelton loading bar when loading notes......(todo)
 
   // getting values using context hook for notes
-  const { notes } = useNote();
+  const { notes } = useFetchNote();
 
   return (
     <> 

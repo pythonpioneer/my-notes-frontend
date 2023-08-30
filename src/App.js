@@ -1,13 +1,15 @@
 import './App.css';
-import Footer from './components/footer/Footer';
 import Navbar from './components/header/Navbar';
 import Notebox from './components/body/Notebox';
+import { FetchNoteProvider } from './contexts/NoteContext';
 
 function App() {
   return (
     <>
       <Navbar />
-      <Notebox />
+      <FetchNoteProvider>
+        <Notebox />
+      </FetchNoteProvider>
       
       
       {/* <Footer /> */}
