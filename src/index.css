@@ -15,3 +15,17 @@ code {
 i {
   cursor: pointer;
 }
+
+textarea:focus, input:focus, input, textarea{
+  background-color:transparent;
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+i.shake {
+  animation: shake 4s infinite;
+}
+@keyframes shake {
+  /* 100%{ transform: translate(93vw, 0px); } */
+}
