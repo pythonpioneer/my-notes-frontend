@@ -33,17 +33,22 @@ export default function Editnote(props) {
 
                     <Grid container>
 
+                        {/* title */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
                             <textarea style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title"></textarea>
                         </Grid>
+
+                        {/* date */}
                         <span style={{paddingLeft: '14px', ...{fontSize: "0.8em", fontFamily: "Georgia"}}}>Thu, 31 aug 7:57 am</span>
                         
-                        <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%', borderBottom: '1px solid gray'}}>
-                            <input style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Tag" />
+                        {/* tag */}
+                        <Grid item lg={12} md={12} sm={12} xs={12} className='' style={{height: '200%'}}>
+                            <input style={{height: '2em', ...{width: '94vw', marginLeft: '12px'}, borderBottom: '1px solid gray', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Tag" />
                         </Grid>
 
+                        {/* desc */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
-                            <textarea style={{width: '100%', height: '19em', borderRadius: '6px', paddingTop: '15px', paddingLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Desc"></textarea>
+                            <textarea style={{ width: '100%', height: '19em', borderRadius: '6px', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Desc"></textarea>
                         </Grid>
                     </Grid>
                 </Box>

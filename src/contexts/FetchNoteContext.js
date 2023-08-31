@@ -8,7 +8,7 @@ export const useFetchNote = () => {
 };
 
 // to make request to api, we need host
-const host = 'http://192.168.173.226:3100';
+const host = 'http://192.168.0.102:3100';
 
 
 // creating provider
