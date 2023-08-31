@@ -22,10 +22,21 @@ textarea:focus, input:focus, input, textarea{
   border: none;
   resize: none;
 }
+i.spin:hover {
+  animation: spin 1.5s infinite linear;
+}
 
-i.shake {
-  animation: shake 4s infinite;
+@keyframes spin {
+  0%{transform: translate(0px, 0px) rotate(0deg);}
+  100%{transform: translate(0px, 0px) rotate(-360deg);}
+}
+
+i.shake:hover {
+  animation: shake 2s infinite linear;
 }
 @keyframes shake {
-  /* 100%{ transform: translate(93vw, 0px); } */
+  0%{ transform: translate(0px, 0px) rotate(0deg); } /*C*/
+  40%{ transform: translate(8px, 0px) rotate(-15deg); }/*R*/
+  80%{ transform: translate(-8px, 0px) rotate(-15deg); }/*L*/
+  100%{ transform: translate(0px, 0px) rotate(0deg); }/*C*/
 }

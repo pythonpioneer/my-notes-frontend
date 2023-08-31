@@ -28,7 +28,7 @@ export default function Editnote(props) {
                 onClose={handleClose}
             >
                 <Box sx={Object.assign(style, {})}>
-                <i onClick={handleClose} className="fa-solid fa-chevron-left" style={{ fontSize: "1.6em", padding:'12px', margin: '5px',  }}></i>
+                    <i onClick={handleClose} className="spin fa-solid fa-chevron-left" style={{ fontSize: "1.6em", padding:'12px', margin: '5px' }}></i>
                     <i className="fa-solid fa-ellipsis-vertical" style={{ fontSize: "1.6em", padding:'12px', margin: '8px', float: 'right' }}></i>
 
                     <Grid container>
@@ -48,9 +48,11 @@ export default function Editnote(props) {
 
                         {/* desc */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
-                            <textarea style={{ width: '100%', height: '19em', borderRadius: '6px', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Desc"></textarea>
+                            <textarea style={{ width: '100%', height: '54vh', borderRadius: '6px', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Desc"></textarea>
+
                         </Grid>
                     </Grid>
+                        <i className="fa-solid fa-check shake" style={{ fontSize: "2.1em", borderRadius: '48%', backgroundColor: '', marginRight: '20px', padding: '20px', float:'right' }}></i>
                 </Box>
             </Modal>
         </>
