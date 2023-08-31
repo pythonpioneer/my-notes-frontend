@@ -1,16 +1,11 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import React from 'react';
 import { Grid } from '@mui/material';
 
 // styling for modal structure
 const style = {
     position: 'absolute',
-    // top: '50%',
-    // left: '50%',
-    // transform: 'translate(-50%, -50%)',
     width: '98%',
     height: '90%',
     bgcolor: 'background.paper',
@@ -33,21 +28,24 @@ export default function Editnote(props) {
                 onClose={handleClose}
             >
                 <Box sx={Object.assign(style, {})}>
-                    <i onClick={handleClose} className="fa-solid fa-xmark" style={{ fontSize: "1.8em", padding:'12px',marginRight: '4px', float: 'right' }}></i>
+                <i onClick={handleClose} className="fa-solid fa-chevron-left" style={{ fontSize: "1.6em", padding:'12px', margin: '5px',  }}></i>
+                    <i className="fa-solid fa-ellipsis-vertical" style={{ fontSize: "1.6em", padding:'12px', margin: '8px', float: 'right' }}></i>
 
                     <Grid container>
 
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
-                            <textarea style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '5px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title"></textarea>
+                            <textarea style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title"></textarea>
                         </Grid>
-                            <span style={{paddingLeft: '14px', ...{fontSize: "0.8em", fontFamily: "Georgia"}}}>Thu, 31 aug 7:57 am</span>
+                        <span style={{paddingLeft: '14px', ...{fontSize: "0.8em", fontFamily: "Georgia"}}}>Thu, 31 aug 7:57 am</span>
+                        
+                        <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%', borderBottom: '1px solid gray'}}>
+                            <input style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Tag" />
+                        </Grid>
+
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
-                            <textarea style={{width: '100%', height: '19em', borderRadius: '6px', padding: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Desc"></textarea>
+                            <textarea style={{width: '100%', height: '19em', borderRadius: '6px', paddingTop: '15px', paddingLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Desc"></textarea>
                         </Grid>
                     </Grid>
-
-                    {/* at the end */}
-                    <i draggable className="shake fa-solid fa-angles-right" style={{ fontSize: "1.8em", padding: '18px', margin: '2px' }}></i>
                 </Box>
             </Modal>
         </>
