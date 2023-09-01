@@ -15,7 +15,7 @@ const host = 'http://192.168.0.102:3100';
 export const FetchNoteProvider = (props) => {
     
     // creating all states here to access everywhere
-    let [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState([]);
 
     // to fetch notes from db
     const getNotes = async () => {

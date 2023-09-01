@@ -1,0 +1,16 @@
+@media only screen and (max-width: 640px) {
+    #textarea-desc {
+        height: 59vh;
+    }
+}
+@media only screen and (min-width: 641px) and (max-width: 1007px) {
+    #textarea-desc {
+        height: 56vh;
+    }
+}
+@media only screen and (min-width: 1008px) {
+    #textarea-desc {
+        height: 56vh;
+    }
+}
+
