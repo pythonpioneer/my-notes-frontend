@@ -18,11 +18,9 @@ const style = {
 };
 
 export default function Editnote(props) {
-    const getInfo = useRef({
-        title: props.info.title,
-        tag: props.info.tag,
-        desc: props.info.desc
-    });
+    const getTitle = useRef(props.info.title);
+    const getTag = useRef(props.info.tag);
+    const getDesc = useRef(props.info.desc);
 
     // writing all states for editnote modal
     const handleClose = () => props.setOpenEditor(false);
@@ -31,7 +29,7 @@ export default function Editnote(props) {
     // fetching data from form field
     const getFormFieldData = (e) => {
         e.preventDefault();
-        console.log(getInfo.current);
+        // console.log(getDesc.current.value)
     }
 
     return (
@@ -48,7 +46,7 @@ export default function Editnote(props) {
 
                         {/* title */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
-                            <textarea ref={getInfo.title} id="title-field" style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title" defaultValue={props.info.title}></textarea>
+                            <textarea ref={getTitle} id="title-field" style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title" defaultValue={props.info.title}></textarea>
                         </Grid>
 
                         {/* date */}
@@ -56,12 +54,12 @@ export default function Editnote(props) {
                         
                         {/* tag */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='' style={{height: '200%'}}>
-                            <input ref={getInfo.tag} id="tag-field" style={{height: '2em', ...{width: '94vw', marginLeft: '12px'}, borderBottom: '1px solid gray', ...{fontSize: "1.1em", fontFamily: "Georgia", fontStyle: 'italic', fontWeight: '600'}}} placeholder="Tag" defaultValue={props.info.tag} />
+                            <input ref={getTag} id="tag-field" style={{height: '2em', ...{width: '94vw', marginLeft: '12px'}, borderBottom: '1px solid gray', ...{fontSize: "1.1em", fontFamily: "Georgia", fontStyle: 'italic', fontWeight: '600'}}} placeholder="Tag" defaultValue={props.info.tag} />
                         </Grid>
 
                         {/* desc */}
-                        <Grid item lg={12} md={12} sm={12} xs={12} id="textarea-desc" className='d-flex justify-content-center'>
-                            <textarea ref={getInfo.desc} id="desc-field" style={{ width: '100%', borderRadius: '6px', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia"}}} placeholder="Desc" defaultValue={props.info.desc}></textarea>
+                        <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' id="textarea-desc">
+                            <textarea ref={getDesc} id="desc-field" style={{ width: '100%', borderRadius: '6px', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia"}}} placeholder="Desc" defaultValue={props.info.desc}></textarea>
                         </Grid>
                     </Grid>
                     <div className="d-flex justify-content-end">
