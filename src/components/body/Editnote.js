@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import React, { useRef } from 'react';
 import { Grid } from '@mui/material';
+import { useUpdateNote } from '../../contexts/UpdateNoteContext';
 import './style.css';
 
 // styling for modal structure
@@ -22,14 +23,16 @@ export default function Editnote(props) {
     const getTag = useRef(props.info.tag);
     const getDesc = useRef(props.info.desc);
 
+    // fetching update note function from context
+    const { updateNote } = useUpdateNote();
+
     // writing all states for editnote modal
     const handleClose = () => props.setOpenEditor(false);
 
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
     const getFormFieldData = (e) => {
-        e.preventDefault();
-        // console.log(getDesc.current.value)
+        updateNote(props.info._id, getTitle.current.value, getDesc.current.value, getTag.current.value);
     }
 
     return (
@@ -63,7 +66,7 @@ export default function Editnote(props) {
                         </Grid>
                     </Grid>
                     <div className="d-flex justify-content-end">
-                        <i onClick={getFormFieldData} className="fa-solid fa-check shake d-flex justify-content-end" style={{ fontSize: "2.1em", borderRadius: '48%', backgroundColor: '', padding: '20px' }}></i>
+                        <i onClick={() => { getFormFieldData(); handleClose()}} className="fa-solid fa-check shake d-flex justify-content-end" style={{ fontSize: "2.1em", borderRadius: '48%', backgroundColor: '', padding: '20px' }}></i>
                     </div>
                 </Box>
             </Modal>
