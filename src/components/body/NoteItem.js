@@ -44,7 +44,7 @@ export default function NoteItem(props) {
 
                 </Grid>
             </Grid>
-            {openEditor && <Editnote openEditor={openEditor} setOpenEditor={setOpenEditor} />}
+            {openEditor && <Editnote info={{_id: props._id, title: props.title, desc: props.desc, tag: props.tag, datetime: displayDateFormat}} openEditor={openEditor} setOpenEditor={setOpenEditor} />}
         </>
     )
 }

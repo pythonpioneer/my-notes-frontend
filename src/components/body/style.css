@@ -1,0 +1,23 @@
+#textarea-desc {
+    background-color: orange;
+    height: 730px;
+}
+@media (min-width: 395px) {
+    #textarea-desc {
+        background-color: pink;
+        height: 54vh;
+    }
+}
+@media (min-width: 700px) {
+    #textarea-desc {
+        background-color: pink;
+        height: 54vh;
+    }
+}
+@media (min-width: 700px) {
+    #textarea-desc {
+        background-color: pink;
+        height: 54vh;
+    }
+}
+
