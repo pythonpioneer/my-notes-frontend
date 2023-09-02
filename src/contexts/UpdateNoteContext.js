@@ -8,7 +8,7 @@ const UpdateNoteContext = createContext(null);
 // create a custom context and export it
 export const useUpdateNote = () => {
     return useContext(UpdateNoteContext);
-}
+};
 
 // to make request to api, we need host
 const host = 'http://192.168.0.102:3100';
@@ -25,7 +25,6 @@ export const UpdateNoteProvider = (props) => {
         // to make api call with put request
         axios.put(`${host}/api/v1/notes/updatenotes/noteid=${id}`,
             JSON.stringify({ title, description, tag }), {
-            method: 'PUT',
             headers: {
                 "Content-Type": 'application/json',
                 "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlZjRiNGMwY2FhZDk4MmEyNzQxYmI4In0sImlhdCI6MTY5MzQwMzk4MH0.BMXNanTOXRue6NmILVsRwR71_zgi6PjWQ1sTCv5-zw0'
@@ -47,7 +46,7 @@ export const UpdateNoteProvider = (props) => {
             .catch(err => {
                 console.log(err);
                 console.log("check the host network")
-            })
+            });
     };
 
     return (
