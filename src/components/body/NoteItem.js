@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import React, {useState} from 'react';
 import { useDeleteNote } from '../../contexts/DeleteNoteContext';
 import Editnote from './Editnote';
+import fetchDate from '../../utility/FetchDate';
 
 export default function NoteItem(props) {
     let displayDateFormat = '';
@@ -17,14 +18,12 @@ export default function NoteItem(props) {
 
     // if there is no note
     if (props.datetime === null) {
-        displayDateFormat = new Date(Date.now()).toDateString();
+        displayDateFormat = fetchDate(Date.now());
     }
     else {
 
         // converting date.now() into date format
-        const timestamp = new Date(Number(props.datetime));
-        let date = timestamp.toDateString().split(' ');  // Thu Aug 24 2023
-        displayDateFormat = `${date[1]} ${date[2]}, ${date[3]}, ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+        displayDateFormat = fetchDate(props.datetime);
     }
     return (
         <>

@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import React, { useRef, useState } from 'react';
 import { Grid } from '@mui/material';
 import './style.css';
+import fetchDate from '../../utility/FetchDate';
 
 // styling for modal structure
 const style = {
@@ -47,7 +48,7 @@ export default function Editnote(props) {
                         </Grid>
 
                         {/* date */}
-                        <span style={{paddingLeft: '14px', ...{fontSize: "0.8em", fontFamily: "Georgia"}}}>{Date.now()}</span>
+                        <span style={{paddingLeft: '14px', ...{fontSize: "0.8em", fontFamily: "Georgia"}}}>{fetchDate(Date.now())}</span>
                         
                         {/* tag */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='' style={{height: '200%'}}>
