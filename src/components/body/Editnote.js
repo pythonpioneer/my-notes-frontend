@@ -49,7 +49,7 @@ export default function Editnote(props) {
 
                         {/* title */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{height: '200%'}}>
-                            <textarea ref={getTitle} id="title-field" style={{width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title" defaultValue={props.info.title}></textarea>
+                            <textarea ref={getTitle} id="title-field" style={{width: '100%', height: '2em', borderRadius: '6px', border: 'none', paddingTop: '10px', paddingLeft: '12px', ...{fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold'}}} placeholder="Title" defaultValue={props.info.title}></textarea>
                         </Grid>
 
                         {/* date */}
@@ -62,7 +62,7 @@ export default function Editnote(props) {
 
                         {/* desc */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' id="textarea-desc">
-                            <textarea ref={getDesc} id="desc-field" style={{ width: '100%', borderRadius: '6px', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia"}}} placeholder="Desc" defaultValue={props.info.desc}></textarea>
+                            <textarea ref={getDesc} id="desc-field" style={{ width: '100%', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '12px', ...{fontSize: "1.1em", fontFamily: "Georgia"}}} placeholder="Desc" defaultValue={props.info.desc}></textarea>
                         </Grid>
                     </Grid>
                     <div className="d-flex justify-content-end">

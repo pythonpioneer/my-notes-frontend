@@ -15,7 +15,7 @@ export default function Login() {
             <Modal className='modal-position d-flex justify-content-center'
                 open={true}
             >
-                <Box sx={Object.assign(style, {})} className='box-position'>
+                <Box sx={Object.assign(style, {})} className='box-register'>
 
                     <Grid container className='grid-container-position'>
 
