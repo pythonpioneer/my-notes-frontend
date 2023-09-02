@@ -1,3 +1,9 @@
+textarea:focus, input:focus, input, textarea{
+    background-color:transparent;
+    outline: none;
+    border: none;
+    resize: none;
+}
 @media only screen and (max-width: 640px) {
     #textarea-desc {
         height: 59vh;

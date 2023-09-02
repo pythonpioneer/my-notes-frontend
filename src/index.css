@@ -15,13 +15,6 @@ code {
 i {
   cursor: pointer;
 }
-
-textarea:focus, input:focus, input, textarea{
-  background-color:transparent;
-  outline: none;
-  border: none;
-  resize: none;
-}
 i.spin:hover {
   animation: spin 1.5s infinite linear;
 }
