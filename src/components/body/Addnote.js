@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { Grid } from '@mui/material';
 import './style.css';
 import fetchDate from '../../utility/FetchDate';
+import { useAddNote } from '../../contexts/AddNoteContext';
 
 // styling for modal structure
 const style = {
@@ -23,12 +24,17 @@ export default function Editnote(props) {
     const getTag = useRef(null);
     const getDesc = useRef(null);
 
+    // getting method from context
+    const { addNote } = useAddNote();
+
     // writing all states for addnote modal
     const handleClose = () => props.setOpenEditor(false);
 
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
-    const getFormFieldData = (e) => {}
+    const getFormFieldData = (e) => {
+        addNote(getTitle.current.value, getDesc.current.value, getTag.current.value);
+    };
 
     return (
         <>

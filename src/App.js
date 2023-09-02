@@ -4,6 +4,7 @@ import Notebox from './components/body/Notebox';
 import { FetchNoteProvider } from './contexts/FetchNoteContext';
 import { DeleteNoteProvider } from './contexts/DeleteNoteContext';
 import { UpdateNoteProvider } from './contexts/UpdateNoteContext';
+import { AddNoteProvider } from './contexts/AddNoteContext';
 
 function App() {
   return (
@@ -12,11 +13,13 @@ function App() {
 
       {/* will refactor this code */}
       <FetchNoteProvider>
-        <UpdateNoteProvider>
-          <DeleteNoteProvider>
-            <Notebox />
-          </DeleteNoteProvider>
-        </UpdateNoteProvider>
+        <AddNoteProvider>
+          <UpdateNoteProvider>
+            <DeleteNoteProvider>
+              <Notebox />
+            </DeleteNoteProvider>
+          </UpdateNoteProvider>
+        </AddNoteProvider>
       </FetchNoteProvider>
 
 
