@@ -46,7 +46,7 @@ export const FetchNoteProvider = (props) => {
     return (
         
         // wrapping all childrens
-        <FetchNoteContext.Provider value={{ notes, setNotes }}>
+        <FetchNoteContext.Provider value={{ notes, setNotes, getNotes }}>
             {props.children}
         </FetchNoteContext.Provider>
     );

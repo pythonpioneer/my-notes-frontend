@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useFetchNote } from "./FetchNoteContext";
 
 // creating a context to add note
@@ -17,7 +17,7 @@ const host = 'http://192.168.0.102:3100';
 export const AddNoteProvider = (props) => {
 
     // fetching data from context
-    const { notes, setNotes } = useFetchNote();
+    const { getNotes } = useFetchNote();
 
     // to add note 
     const addNote = (title, description, tag) => {
@@ -30,9 +30,9 @@ export const AddNoteProvider = (props) => {
                 "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlZjRiNGMwY2FhZDk4MmEyNzQxYmI4In0sImlhdCI6MTY5MzQwMzk4MH0.BMXNanTOXRue6NmILVsRwR71_zgi6PjWQ1sTCv5-zw0'
             },
         },
-        console.log("hii"))
+        )
             .then((response) => {
-                console.log("res", response);
+                getNotes();
             })
             .catch(err => {
                 console.log(err);
