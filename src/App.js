@@ -5,14 +5,16 @@ import { FetchNoteProvider } from './contexts/FetchNoteContext';
 import { DeleteNoteProvider } from './contexts/DeleteNoteContext';
 import { UpdateNoteProvider } from './contexts/UpdateNoteContext';
 import { AddNoteProvider } from './contexts/AddNoteContext';
+import Login from './components/auth/Login';
 
 function App() {
   return (
     <>
       <Navbar />
+      <Login />
 
       {/* will refactor this code */}
-      <FetchNoteProvider>
+      {/* <FetchNoteProvider>
         <AddNoteProvider>
           <UpdateNoteProvider>
             <DeleteNoteProvider>
@@ -20,7 +22,7 @@ function App() {
             </DeleteNoteProvider>
           </UpdateNoteProvider>
         </AddNoteProvider>
-      </FetchNoteProvider>
+      </FetchNoteProvider> */}
 
 
       {/* <Footer /> */}
