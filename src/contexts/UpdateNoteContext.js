@@ -17,7 +17,7 @@ const host = 'http://192.168.0.102:3100';
 export const UpdateNoteProvider = (props) => {
 
     // fetching data from context
-    const { notes, setNotes } = useFetchNote();
+    const { getNotes } = useFetchNote();
 
     // to update note
     const updateNote = (id, title, description, tag) => {
@@ -31,17 +31,7 @@ export const UpdateNoteProvider = (props) => {
             },
         })
             .then((response) => {
-
-                // find the note and update the value for frontend
-                const newNotes = notes.map((note) => {
-                    if(note._id === id){
-                        note.title = title;
-                        note.description = description;
-                        note.tag = tag;
-                    }
-                    return note;
-                });
-                setNotes(newNotes);
+                getNotes();
             })
             .catch(err => {
                 console.log(err);
