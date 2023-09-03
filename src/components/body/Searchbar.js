@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Addnote from './Addnote';
 import { AddNoteProvider } from '../../contexts/AddNoteContext';
+import { useFetchNote } from '../../contexts/FetchNoteContext';
 
 export default function Searchbar() {
 
@@ -8,6 +9,14 @@ export default function Searchbar() {
     const [openEditor, setOpenEditor] = useState(false);
     const displayEditNote = () => {
         setOpenEditor(true);
+    }
+
+    // fetching data from context
+    const { getNotes } = useFetchNote();
+
+    const logoutUser = () => {
+        localStorage.removeItem('auth-token');
+        getNotes();
     }
     return (
         <>
@@ -23,7 +32,8 @@ export default function Searchbar() {
                     {/* search icon */}
                     <i className="fa-solid fa-magnifying-glass mr-4" style={{ fontSize: "1.5em" }}></i>
                     <i onClick={displayEditNote} className="fa-solid fa-plus mr-4" style={{ fontSize: "1.5em" }}></i>
-                    <i className="fa-solid fa-right-from-bracket mr-3" style={{ fontSize: "1.5em" }}></i>
+                    
+                    <i onClick={logoutUser} className="fa-solid fa-right-from-bracket mr-3" style={{ fontSize: "1.5em" }}></i>
                 </form>
             </nav>
             {openEditor &&
