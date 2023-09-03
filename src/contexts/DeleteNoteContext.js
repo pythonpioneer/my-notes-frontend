@@ -19,7 +19,7 @@ export const DeleteNoteProvider = (props) => {
     // creating all states here to access everywhere
 
     // fetching data from context
-    const { getNotes } = useFetchNote(); 
+    const { notes, setNotes, getNotes } = useFetchNote(); 
 
     // writing onClick listner to delete notes and getting id to delete
     const deleteNote = (id) => {
@@ -33,7 +33,8 @@ export const DeleteNoteProvider = (props) => {
             }
         })
         .then((response) => {
-            getNotes();
+            const newNote = notes.filter(note => note._id !== id);
+            setNotes(newNote);
         })
         .catch(err => {
             console.log(err);
