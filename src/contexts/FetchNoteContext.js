@@ -25,7 +25,7 @@ export const FetchNoteProvider = (props) => {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json',
-                "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlZjRiNGMwY2FhZDk4MmEyNzQxYmI4In0sImlhdCI6MTY5MzQwMzk4MH0.BMXNanTOXRue6NmILVsRwR71_zgi6PjWQ1sTCv5-zw0`
+                "auth-token": localStorage.getItem('auth-token'),
             },
         })
         .then(async (response) => {
