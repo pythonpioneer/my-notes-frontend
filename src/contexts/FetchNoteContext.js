@@ -39,14 +39,15 @@ export const FetchNoteProvider = (props) => {
     }
 
     useEffect(() => {
-        getNotes();
+        if(localStorage.getItem('auth-token'))
+            getNotes();
         // eslint-disable-next-line
     }, []);
 
     return (
         
         // wrapping all childrens
-        <FetchNoteContext.Provider value={{ notes, getNotes }}>
+        <FetchNoteContext.Provider value={{ notes, setNotes, getNotes }}>
             {props.children}
         </FetchNoteContext.Provider>
     );
