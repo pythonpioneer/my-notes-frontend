@@ -17,13 +17,7 @@ function App() {
 
       {/* will refactor this code */}
       <FetchNoteProvider>
-        <AddNoteProvider>
-          <UpdateNoteProvider>
-            <DeleteNoteProvider>
-              <Notebox />
-            </DeleteNoteProvider>
-          </UpdateNoteProvider>
-        </AddNoteProvider>
+        <Notebox />
       </FetchNoteProvider>
 
 

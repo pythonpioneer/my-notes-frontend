@@ -1,7 +1,8 @@
 import NoteItem from './NoteItem';
 import Searchbar from './Searchbar';
-import { useFetchNote } from '../../contexts/FetchNoteContext';
 import React from 'react';
+import { useFetchNote } from '../../contexts/FetchNoteContext';
+import { DeleteNoteProvider } from '../../contexts/DeleteNoteContext';
 
 export default function Notebox() {
 
@@ -11,13 +12,17 @@ export default function Notebox() {
   const { notes } = useFetchNote();
 
   return (
-    <> 
+    <>
       <Searchbar />
-      {notes.length === 0 
-      ? <NoteItem key={"Internal Server Error"} title={"Info"} desc={"You haven't take a note yet, Take your First note"} tag={null} datetime={null} /> 
-      : notes?.map((element) => {
-          return <NoteItem key={element._id} title={element.title} desc={element.description} tag={element.tag} datetime={element.timestamp} _id={element._id} /> 
-      })}
+      {notes.length === 0
+        ? <DeleteNoteProvider key={"Internal Server Error"}>
+          <NoteItem title={"Info"} desc={"You haven't take a note yet, Take your First note"} tag={null} datetime={null} />
+        </DeleteNoteProvider>
+        : notes?.map((element) => {
+          return <DeleteNoteProvider key={element._id}>
+            <NoteItem title={element.title} desc={element.description} tag={element.tag} datetime={element.timestamp} _id={element._id} />
+          </DeleteNoteProvider>
+        })}
     </>
   )
 }

@@ -1,8 +1,9 @@
 import { Grid } from '@mui/material';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDeleteNote } from '../../contexts/DeleteNoteContext';
 import Editnote from './Editnote';
 import fetchDate from '../../utility/FetchDate';
+import { UpdateNoteProvider } from '../../contexts/UpdateNoteContext';
 
 export default function NoteItem(props) {
     let displayDateFormat = '';
@@ -32,7 +33,7 @@ export default function NoteItem(props) {
 
                     <Grid item lg={6} className="d-inline-block mr-5" style={{ fontFamily: "Georgia", fontSize: '1em', fontStyle: 'italic', fontWeight: 'bold', marginTop: '-12px' }}>{props.title}</Grid>
                     {props.datetime && <i className="fa-solid fa-pen-to-square" onClick={displayEditNote} style={{ fontSize: "1.2em", paddingLeft: '5px', float: 'right' }}></i>}
-                    
+
                     <Grid item lg={12} className="">
                         <p className="card-text" style={{ fontSize: '0.8em', color: '#A9A9A9' }}>{props.desc}</p>
 
@@ -43,7 +44,10 @@ export default function NoteItem(props) {
 
                 </Grid>
             </Grid>
-            {openEditor && <Editnote info={{_id: props._id, title: props.title, desc: props.desc, tag: props.tag, datetime: displayDateFormat}} openEditor={openEditor} setOpenEditor={setOpenEditor} />}
+            {openEditor && <UpdateNoteProvider>
+                <Editnote info={{ _id: props._id, title: props.title, desc: props.desc, tag: props.tag, datetime: displayDateFormat }} openEditor={openEditor} setOpenEditor={setOpenEditor} />
+            </UpdateNoteProvider>
+            }
         </>
     )
 }
