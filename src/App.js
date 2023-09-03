@@ -13,9 +13,9 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/notes" element={
+        <Route exact path={"/signup"} element={<Signup  />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/" element={
           <FetchNoteProvider>
             <Notebox />
           </FetchNoteProvider>

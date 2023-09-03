@@ -33,7 +33,7 @@ textarea:focus, input:focus, input, textarea{
         width: 240px;
         font-size: 19px;
     }
-    #password-field {
+    .password-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
@@ -76,7 +76,7 @@ textarea:focus, input:focus, input, textarea{
         width: 240px;
         font-size: 19px;
     }
-    #password-field {
+    .password-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
@@ -118,7 +118,7 @@ textarea:focus, input:focus, input, textarea{
         width: 240px;
         font-size: 19px;
     }
-    #password-field {
+    .password-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
