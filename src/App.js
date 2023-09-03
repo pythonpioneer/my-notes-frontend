@@ -4,21 +4,23 @@ import Notebox from './components/body/Notebox';
 import { FetchNoteProvider } from './contexts/FetchNoteContext';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <>
+
       <Navbar />
-      {/* <Login />
-      <Signup /> */}
 
-      {/* will refactor this code */}
-      <FetchNoteProvider>
-        <Notebox />
-      </FetchNoteProvider>
-
-
-      {/* <Footer /> */}
+      <Routes>
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/notes" element={
+          <FetchNoteProvider>
+            <Notebox />
+          </FetchNoteProvider>
+        } />
+      </Routes>
     </>
   );
   // eslint-disable-next-line
