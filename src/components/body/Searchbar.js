@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Addnote from './Addnote';
+import { AddNoteProvider } from '../../contexts/AddNoteContext';
 
 export default function Searchbar() {
 
@@ -25,7 +26,11 @@ export default function Searchbar() {
                     <i className="fa-solid fa-right-from-bracket mr-3" style={{ fontSize: "1.5em" }}></i>
                 </form>
             </nav>
-            {openEditor && <Addnote info={{title: "demo", tag: "demo", desc: "demo"}} openEditor={openEditor} setOpenEditor={setOpenEditor} />}
+            {openEditor &&
+                <AddNoteProvider>
+                    <Addnote info={{ title: "demo", tag: "demo", desc: "demo" }} openEditor={openEditor} setOpenEditor={setOpenEditor} />
+                </AddNoteProvider>
+            }
         </>
     )
 }
