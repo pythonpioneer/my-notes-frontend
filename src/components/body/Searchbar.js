@@ -19,8 +19,9 @@ export default function Searchbar() {
     }
     return (
         <>
-            <nav className="navbar d-flex justify-content-end mt-3 mb-3">
-
+            <nav className="navbar d-flex justify-content mt-3 mb-3">
+            <i className="fa-solid fa-right-left fa-rotate-90 mx-3" style={{ fontSize: "1.5em" }}></i>
+            
                 <form className="form-inline">
 
                     {/* only visible when clicked on search icon */}
