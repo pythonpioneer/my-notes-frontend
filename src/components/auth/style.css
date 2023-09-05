@@ -7,6 +7,12 @@ textarea:focus, input:focus, input, textarea{
 .account{
     text-decoration: underline;
 }
+.errors{
+    border-color: red;
+}
+.errors:hover{
+    border-color: blue;
+}
 @media only screen and (max-width: 640px) {
     .box-register {
         margin-top: 21vh;
@@ -23,12 +29,12 @@ textarea:focus, input:focus, input, textarea{
         margin-top: 24px;
         text-shadow: 2px 1px gray;
     }
-    #name-field {
+    .name-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
     }
-    #email-field {
+    .email-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
@@ -66,12 +72,12 @@ textarea:focus, input:focus, input, textarea{
         margin-top: 24px;
         text-shadow: 2px 1px gray;
     }
-    #name-field {
+    .name-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
     }
-    #email-field {
+    .email-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
@@ -108,12 +114,12 @@ textarea:focus, input:focus, input, textarea{
         margin-top: 24px;
         text-shadow: 2px 1px gray;
     }
-    #name-field {
+    .name-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;
     }
-    #email-field {
+    .email-field {
         margin-top: 20px;
         width: 240px;
         font-size: 19px;

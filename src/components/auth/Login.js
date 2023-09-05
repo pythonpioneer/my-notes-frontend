@@ -3,6 +3,7 @@ import { Grid, Box, Modal } from '@mui/material';
 import './style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useFormik } from 'formik';
 
 // styling for modal structure
 const style = {
@@ -13,6 +14,19 @@ const style = {
 
 // to make request to api, we need host
 const host = 'http://192.168.0.102:3100';
+
+// writing function to validate the login
+const validate = (values) => {
+    const errors = {};
+
+    if(!values.email) errors.email = 'Required';
+    else if(values.email.length <= 0) errors.email = 'Enter a valid Email';
+
+    if(!values.password) errors.password = 'Required';
+    else if(values.password.length < 6) errors.password = 'Enter a valid Password';
+
+    return errors;
+};
 
 export default function Login(props) {
 
@@ -34,54 +48,55 @@ export default function Login(props) {
                 "Content-Type": 'application/json',
             },
         })
-        .then((response)=>{
-            // now save the auth-token and redirect
-            // console.log(response.data['auth-token'])
-            localStorage.setItem('auth-token', response.data['auth-token']);
-            navigate("/");
-        })
-        .catch(err => {
-            alert('invalid Credential');
-            console.log(err)
-        })
+            .then((response) => {
+                // now save the auth-token and redirect
+                // console.log(response.data['auth-token'])
+                localStorage.setItem('auth-token', response.data['auth-token']);
+                navigate("/");
+            })
+            .catch(err => {
+                alert('invalid Credential');
+                console.log(err)
+            })
     }
 
-    // closing the login modal
-    const handleClose = () => {
-
-        // if user successfully loggedin then close the login modal
-        // setOpenEditor(false);
-    }
-
-    // to call login user
-    const loggingUser = () => {
-        loginUser(getEmail.current.value, getPassword.current.value);
-    };
+    // using formik for form validation
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validate,
+        onSubmit: values => {  // to login user after submission
+            loginUser(values.email, values.password);
+        },
+    });
+    console.log(formik);
 
     return (
         <>
             <Modal className='d-flex justify-content-center'
                 open={openEditor}
-                onClose={handleClose}
             >
                 <Box sx={Object.assign(style, {})} className='box-register box-login'>
 
-                    <Grid container className='grid-container-position'>
+                <form onSubmit={formik.handleSubmit} className='grid-container-position'>
+                    <Grid container className='grid-container-position' onSubmit={formik.handleSubmit}>
 
                         <div className='register-label' style={{ fontSize: "1.6em", fontFamily: "Georgia", fontWeight: 'bold' }}>Login Please</div>
 
                         {/* email */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center'>
-                            <input ref={getEmail} id="email-field" style={{ ...{ fontFamily: "Georgia" } }} placeholder="Email" />
+                            <input ref={getEmail} onChange={formik.handleChange} value={formik.values.email} id="email" name="email" type="email" className={formik.errors.email ? "errors email-field" : 'email-field'} style={{ ...{ fontFamily: "Georgia" } }} placeholder="Email" />
                         </Grid>
 
                         {/* password */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center'>
-                            <input ref={getPassword} className="password-field" type="password" style={{ ...{ fontFamily: "Georgia" } }} placeholder="Password"></input>
+                            <input ref={getPassword} onChange={formik.handleChange} value={formik.values.password} id="password" name="password" type="password" className={formik.errors.password ? "errors password-field" : "password-field"} style={{ ...{ fontFamily: "Georgia" } }} placeholder="Password"></input>
                         </Grid>
 
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center'>
-                            <button onClick={() => {loggingUser();}} id="button-field" type="button">Login</button>
+                            <button id="button-field" type="submit">Login</button>
                             {/* onClick={handleClose} */}
                         </Grid>
 
@@ -89,6 +104,7 @@ export default function Login(props) {
                         {/* <Link className='account' to="/forgot-password">Forgot Password</Link> */}
                         <Link className='account' to="/signup">Register Here!!</Link>
                     </Grid>
+                    </form>
                 </Box>
             </Modal>
         </>
