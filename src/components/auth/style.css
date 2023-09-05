@@ -7,6 +7,12 @@ textarea:focus, input:focus, input, textarea{
 .account{
     text-decoration: underline;
 }
+.errors{
+    border-color: red;
+}
+.errors:hover{
+    border-color: blue;
+}
 @media only screen and (max-width: 640px) {
     .box-register {
         margin-top: 21vh;
