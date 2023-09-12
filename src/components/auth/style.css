@@ -1,4 +1,4 @@
-textarea:focus, input:focus, input, textarea{
+/* textarea:focus, input:focus, input, textarea{
     background-color:transparent;
     outline: 0px;
     border-bottom: 1px solid black;
@@ -12,8 +12,8 @@ textarea:focus, input:focus, input, textarea{
 }
 .errors:hover{
     border-color: blue;
-}
-@media only screen and (max-width: 640px) {
+} */
+/* @media only screen and (max-width: 640px) {
     .box-register {
         margin-top: 21vh;
         height: 50vh;
@@ -138,5 +138,4 @@ textarea:focus, input:focus, input, textarea{
         padding-top: 12px;
         margin: auto;
         text-align: center;
-    }
-}
+    } }*/
