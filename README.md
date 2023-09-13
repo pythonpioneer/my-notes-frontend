@@ -64,7 +64,12 @@ This note app helps you to make notes of things you want to do or any inspiratio
 - After installation, To start the app
 
       npx nodemon index.js
+  **Note:** If the app didn't run with the given command then please explore nodemon for your machine.
   
 - It will open your browser(http://localhost:3100)
 
-**Note:** If the app didn't run with the given command then please explore nodemon for your machine.
+
+## Note
+
+The app is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
+
