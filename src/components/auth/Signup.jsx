@@ -240,7 +240,7 @@ export default function Login() {
                     boxShadow: "2px 2px #45017A",
                   }}
                 >
-                  Login
+                  Register
                 </button>
               </Grid>
 
