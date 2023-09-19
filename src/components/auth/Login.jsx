@@ -4,6 +4,7 @@ import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
+import { loginSchema } from './schema';
 
 // styling for modal structure
 const style = {
@@ -58,8 +59,9 @@ export default function Login(props) {
   }
 
   // using formik for form validation
-  const formik = useFormik({
+  const {errors, ...formik} = useFormik({
     initialValues: initialValues,
+    validationSchema: loginSchema,
 
     // form submission
     onSubmit: (values) => {
