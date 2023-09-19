@@ -66,17 +66,6 @@ export default function Login(props) {
   };
 
   // using formik for form validation
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      // to login user after submission
-      loginUser(values.email, values.password);
-    },
-  });
 
   return (
     <>
@@ -93,7 +82,7 @@ export default function Login(props) {
         open={openEditor}
       >
         <Box sx={Object.assign(style, {})} className="box-register box-login">
-          <form onSubmit={formik.handleSubmit} className="p-3">
+          <form className="p-3">
             <Grid item xs={12} mb={2}>
               <i
                 style={{ float: "right", color: "#3F3D56" }}
@@ -105,7 +94,6 @@ export default function Login(props) {
               container
               // className="grid-container-position"
               gap={3}
-              onSubmit={formik.handleSubmit}
             >
               <Grid
                 item
@@ -139,14 +127,9 @@ export default function Login(props) {
                 <Grid item xs={10}>
                   <input
                     ref={getEmail}
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
                     id="email"
                     name="email"
                     type="email"
-                    className={
-                      formik.errors.email ? "errors email-field" : "email-field"
-                    }
                     style={{
                       ...{
                         fontFamily: "Georgia",
@@ -172,16 +155,9 @@ export default function Login(props) {
                 <Grid item xs={10}>
                   <input
                     ref={getPassword}
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
                     id="password"
                     name="password"
                     type="password"
-                    className={
-                      formik.errors.password
-                        ? "errors password-field"
-                        : "password-field"
-                    }
                     style={{
                       ...{ fontFamily: "Georgia" },
                       border: "2px solid #FCD71D",
