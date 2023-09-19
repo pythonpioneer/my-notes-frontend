@@ -20,7 +20,7 @@ This note app helps you to make notes of things you want to do or any inspiratio
 
 - Clone the frontend repo
 
-      https://github.com/pythonpioneer/my-notes-frontend.git
+      git clone https://github.com/pythonpioneer/my-notes-frontend.git
 
 - Go to your project folder and install dependencies (make sure you have npm and node)
 
