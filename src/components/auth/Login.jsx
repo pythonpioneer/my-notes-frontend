@@ -16,20 +16,6 @@ const style = {
 // to make request to api, we need host
 const host = "http://192.168.0.102:3100";
 
-// writing function to validate the login
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.email) errors.email = "Required";
-  else if (values.email.length <= 0) errors.email = "Enter a valid Email";
-
-  if (!values.password) errors.password = "Required";
-  else if (values.password.length < 6)
-    errors.password = "Enter a valid Password";
-
-  return errors;
-};
-
 export default function Login(props) {
 
   // state variables
@@ -65,7 +51,23 @@ export default function Login(props) {
       });
   };
 
+  // fields to be validated
+  const initialValues = {
+    email: '',
+    password: '',
+  }
+
   // using formik for form validation
+  const formik = useFormik({
+    initialValues: initialValues,
+
+    // form submission
+    onSubmit: (values) => {
+      loginUser(values.email, values.password);
+    }
+
+  });
+
 
   return (
     <>
@@ -82,7 +84,7 @@ export default function Login(props) {
         open={openEditor}
       >
         <Box sx={Object.assign(style, {})} className="box-register box-login">
-          <form className="p-3">
+          <form className="p-3" onSubmit={formik.handleSubmit}>
             <Grid item xs={12} mb={2}>
               <i
                 style={{ float: "right", color: "#3F3D56" }}
@@ -121,9 +123,6 @@ export default function Login(props) {
                 xs={12}
                 className="d-flex justify-content-center"
               >
-                {/* <Grid item xs={5} sm={3} sx={{ fontWeight: "500" }}>
-                  Email
-                </Grid> */}
                 <Grid item xs={10}>
                   <input
                     ref={getEmail}
@@ -141,6 +140,8 @@ export default function Login(props) {
                       boxShadow: "2px 2px #FCD71D",
                     }}
                     placeholder="Enter mail"
+                    onChange={formik.handleChange}
+                    defaultValue={formik.values.email}
                   />
                 </Grid>
               </Grid>
@@ -167,6 +168,8 @@ export default function Login(props) {
                       boxShadow: "2px 2px #FCD71D",
                     }}
                     placeholder="Enter password"
+                    onChange={formik.handleChange}
+                    defaultValue={formik.values.password}
                   ></input>
                 </Grid>
               </Grid>
