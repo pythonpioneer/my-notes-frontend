@@ -77,7 +77,6 @@ export default function Login(props) {
       loginUser(values.email, values.password);
     },
   });
-  console.log(formik);
 
   return (
     <>
