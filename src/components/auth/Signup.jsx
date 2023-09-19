@@ -4,6 +4,7 @@ import "./style.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import {toast} from "react-toastify";
 
 // styling for modal structure
 const style = {
@@ -44,9 +45,10 @@ export default function Login() {
         // console.log(response.data['auth-token'])
         localStorage.setItem("auth-token", response.data["auth-token"]);
         navigate("/login");
+        toast.success("User Registered Successfully")
       })
       .catch((err) => {
-        alert("invalid Credential");
+        toast.error("invalid Credential")
         navigate("/login");
         console.log(err);
       });

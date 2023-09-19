@@ -3,6 +3,7 @@ import Addnote from './Addnote';
 import { AddNoteProvider } from '../../contexts/AddNoteContext';
 import { useFetchNote } from '../../contexts/FetchNoteContext';
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 export default function Searchbar() {
 
@@ -16,12 +17,13 @@ export default function Searchbar() {
     const logoutUser = () => {
         localStorage.removeItem('auth-token');
         navigate('/login');
+        toast.success('Logged out successfully');
     }
     return (
         <>
             <nav className="navbar d-flex justify-content mt-3 mb-3">
             <i className="fa-solid fa-right-left fa-rotate-90 mx-3" style={{ fontSize: "1.5em" }}></i>
-            
+
                 <form className="form-inline">
 
                     {/* only visible when clicked on search icon */}
@@ -32,8 +34,8 @@ export default function Searchbar() {
                     {/* search icon */}
                     <i className="fa-solid fa-magnifying-glass mr-4" style={{ fontSize: "1.5em" }}></i>
                     <i onClick={displayEditNote} className="fa-solid fa-plus mr-4" style={{ fontSize: "1.5em" }}></i>
-                    
-                    {localStorage.getItem('auth-token') 
+
+                    {localStorage.getItem('auth-token')
                     ? <i onClick={logoutUser} className="fa-solid fa-right-from-bracket mr-3" style={{ fontSize: "1.5em" }}></i>
                     : <i onClick={() => {navigate('/login');}} className="fa-solid fa-arrow-right-to-bracket mr-3" style={{ fontSize: "1.5em" }}></i>
                     }

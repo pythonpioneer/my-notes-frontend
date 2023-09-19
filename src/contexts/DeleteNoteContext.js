@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext } from "react";
 import { useFetchNote } from "./FetchNoteContext";
+import {toast} from "react-toastify";
 
 // creating and exporting context
 const DeleteNoteContext = createContext();
@@ -35,10 +36,11 @@ export const DeleteNoteProvider = (props) => {
         .then((response) => {
             const newNote = notes.filter(note => note._id !== id);
             setNotes(newNote);
+            toast.success('Note deleted successfully')
         })
         .catch(err => {
+            toast.error('Something went wrong')
             console.log(err);
-            console.log("check the host network")
         })
     };
     

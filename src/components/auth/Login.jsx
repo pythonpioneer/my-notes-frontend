@@ -4,6 +4,7 @@ import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 // styling for modal structure
 const style = {
@@ -31,7 +32,6 @@ const validate = (values) => {
 };
 
 export default function Login(props) {
-
   // state variables
   const [openEditor, setOpenEditor] = useState(true); // for modal
 
@@ -58,9 +58,10 @@ export default function Login(props) {
         // console.log(response.data['auth-token'])
         localStorage.setItem("auth-token", response.data["auth-token"]);
         navigate("/");
+        toast.success("Logged in successfully");
       })
       .catch((err) => {
-        alert("invalid Credential");
+        toast.error("Invalid Credentials");
         console.log(err);
       });
   };
@@ -98,7 +99,9 @@ export default function Login(props) {
               <i
                 style={{ float: "right", color: "#3F3D56" }}
                 className="fa-solid fa-circle-xmark fa-lg"
-                onClick = {()=> {navigate('/')}}
+                onClick={() => {
+                  navigate("/");
+                }}
               ></i>
             </Grid>
             <Grid
@@ -154,7 +157,7 @@ export default function Login(props) {
                       border: "2px solid #FCD71D",
                       borderRadius: "5px",
                       padding: "0.7em 1em",
-                      width: '100%',
+                      width: "100%",
                       boxShadow: "2px 2px #FCD71D",
                     }}
                     placeholder="Enter mail"
@@ -187,7 +190,7 @@ export default function Login(props) {
                       border: "2px solid #FCD71D",
                       borderRadius: "5px",
                       padding: "0.7em 1em",
-                      width: '100%',
+                      width: "100%",
                       boxShadow: "2px 2px #FCD71D",
                     }}
                     placeholder="Enter password"

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createContext, useContext, useEffect } from 'react';
 import { useFetchNote } from "./FetchNoteContext";
+import {toast} from "react-toastify";
 
 // creating a context to add note
 const AddNoteContext = createContext(null);
@@ -33,10 +34,11 @@ export const AddNoteProvider = (props) => {
         )
             .then((response) => {
                 getNotes();
+                toast.success('Note added successfully')
             })
             .catch(err => {
+                toast.error('Something went wrong')
                 console.log(err);
-                console.log("check the host network")
             })
     };
 
