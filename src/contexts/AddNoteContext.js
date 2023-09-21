@@ -12,7 +12,6 @@ export const useAddNote = () => {
 
 // to make request to api, we need host
 const host = process.env.REACT_APP_HOST;
-console.log(process.env.REACT_APP_HOST);
 
 // now creating a provider for all the children components
 export const AddNoteProvider = (props) => {
