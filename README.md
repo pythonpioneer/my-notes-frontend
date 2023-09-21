@@ -31,6 +31,16 @@ This note app helps you to make notes of things you want to do or any inspiratio
   npm install
   ```
 
+- Create a `.env.local file`
+  
+      touch .env.local
+
+- Create a environment variable for backend host network (or your backend-host-network)
+  
+      REACT_APP_HOST=http://localhost:3100
+
+    > copy this line and paste it inside `.env.local`
+
 - After installation, To start the app
 
       npm start
@@ -63,7 +73,7 @@ This note app helps you to make notes of things you want to do or any inspiratio
 
 - After installation, To start the app
 
-      npx nodemon index.js
+      npm start
   **Note:** If the app didn't run with the given command then please explore nodemon for your machine.
   
 - It will open your browser(http://localhost:3100)

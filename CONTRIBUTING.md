@@ -27,3 +27,4 @@
     feature/copy-to-clipboard
   
 - Make a pull request and describe the work.
+- And when making a pull request, convert your editor `default-spaces: 4`.
