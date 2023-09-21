@@ -1,141 +1,21 @@
-/* textarea:focus, input:focus, input, textarea{
-    background-color:transparent;
-    outline: 0px;
-    border-bottom: 1px solid black;
-    resize: block;
-}
-.account{
-    text-decoration: underline;
-}
-.errors{
-    border-color: red;
-}
-.errors:hover{
-    border-color: blue;
-} */
-/* @media only screen and (max-width: 640px) {
-    .box-register {
-        margin-top: 21vh;
-        height: 50vh;
-        width: 80vw;
-    }
-    .box-login {
-        margin-top: 28vh;
-        height: 38vh;
-        width: 80vw;
-    }
-    .register-label {
-        margin: auto;
-        margin-top: 24px;
-        text-shadow: 2px 1px gray;
-    }
-    .name-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .email-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .password-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    #button-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .account {
-        padding-top: 12px;
-        margin: auto;
-        text-align: center;
-    }
-
-}
-@media only screen and (min-width: 641px) and (max-width: 1007px) {
-    .box-register {
-        margin-top: 21vh;
-        height: 50vh;
-        width: 55vw;
-    }
-    .box-login {
-        margin-top: 28vh;
-        height: 30vh;
-        width: 40vw;
-    }
-    .register-label {
-        margin: auto;
-        margin-top: 24px;
-        text-shadow: 2px 1px gray;
-    }
-    .name-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .email-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .password-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    #button-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .account {
-        padding-top: 12px;
-        margin: auto;
-        text-align: center;
-    }
-}
-@media only screen and (min-width: 1008px) {
-    .box-register {
-        margin-top: 20vh;
-        height: 58vh;
-        width: 30vw;
-    }
-    .box-login {
-        margin-top: 28vh;
-        height: 42vh;
-        width: 25vw;
-    }
-    .register-label {
-        margin: auto;
-        margin-top: 24px;
-        text-shadow: 2px 1px gray;
-    }
-    .name-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .email-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .password-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    #button-field {
-        margin-top: 20px;
-        width: 240px;
-        font-size: 19px;
-    }
-    .account {
-        padding-top: 12px;
-        margin: auto;
-        text-align: center;
-    } }*/
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+d .tooltiptext {
+    visibility: visible;
+  }
+  

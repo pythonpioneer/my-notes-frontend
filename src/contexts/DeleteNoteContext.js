@@ -12,7 +12,7 @@ export const useDeleteNote = () => {
 };
 
 // to make request to api, we need host
-const host = 'http://192.168.0.102:3100';
+const host = process.env.REACT_APP_HOST;
 
 // creating provider for all the child components
 export const DeleteNoteProvider = (props) => {
