@@ -16,7 +16,7 @@ const style = {
 };
 
 // to make request to api, we need host
-const host = "http://192.168.0.102:3100";
+const host = process.env.REACT_APP_HOST;
 
 export default function Login(props) {
 
@@ -66,6 +66,7 @@ export default function Login(props) {
 
         // form submission
         onSubmit: (values) => {
+            console.log("values ", values);
             loginUser(values.email, values.password);
         }
 
