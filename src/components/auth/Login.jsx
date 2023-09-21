@@ -71,12 +71,6 @@ export default function Login(props) {
 
     });
 
-    // click to view formik errors
-    const showInfo = () => {
-
-    }
-
-
     return (
         <>
             {/* <Grid container className="" sx={{margin: 'auto'}}> */}
