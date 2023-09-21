@@ -95,11 +95,7 @@ export default function Login(props) {
                                 onClick={() => { navigate('/') }}
                             ></i>
                         </Grid>
-                        <Grid
-                            container
-                            // className="grid-container-position"
-                            gap={3}
-                        >
+                        <Grid container gap={3} >
                             <Grid
                                 item
                                 xs={12}
@@ -112,7 +108,6 @@ export default function Login(props) {
                                         fontFamily: "Roboto",
                                         fontWeight: "bold",
                                         color: "#3F3D56",
-                                        // margin: 'auto'/
                                     }}
                                 >
                                     Login To Notes
@@ -149,7 +144,7 @@ export default function Login(props) {
                                     />
 
                                     {/* adding info icons after entering any value */}
-                                    {errors.email && touched.email && 
+                                    {errors.email && touched.email &&
                                         <InfoIcon fontSize="1.2em">
                                         </InfoIcon>
                                     }
