@@ -24,11 +24,15 @@ export default function Notebox() {
         </DeleteNoteProvider>
       ) : notes?.filter(
           (note) =>
-            note.title.toLowerCase().includes(searchedText.toLowerCase()) ||
-            note.description.toLowerCase().includes(searchedText.toLowerCase())
+            note.title.includes(searchedText) ||
+            note.description.includes(searchedText)
         ).length > 0 ? (
         notes
-          ?.filter((note) => note.title.includes(searchedText))
+          ?.filter(
+            (note) =>
+              note.title.includes(searchedText) ||
+              note.description.includes(searchedText)
+          )
           .map((element) => {
             return (
               <DeleteNoteProvider key={element._id}>
