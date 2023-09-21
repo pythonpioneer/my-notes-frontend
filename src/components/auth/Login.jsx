@@ -66,7 +66,6 @@ export default function Login(props) {
 
         // form submission
         onSubmit: (values) => {
-            console.log("values ", values);
             loginUser(values.email, values.password);
         }
 
