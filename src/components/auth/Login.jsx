@@ -3,6 +3,7 @@ import { Grid, Box, Modal, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 import { loginSchema } from './schema';
 import { InfoIcon } from '../icons/InfoIcon';
 import "./style.css";
@@ -46,9 +47,10 @@ export default function Login(props) {
                 // console.log(response.data['auth-token'])
                 localStorage.setItem("auth-token", response.data["auth-token"]);
                 navigate("/");
+                toast.success("Logged in successfully");
             })
             .catch((err) => {
-                alert("invalid Credential");
+                toast.error("Invalid Credentials");
                 console.log(err);
             });
     };
