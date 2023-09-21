@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 
 // creating and exporting context using custom-hook
 const FetchNoteContext = createContext(null);
@@ -8,7 +9,7 @@ export const useFetchNote = () => {
 };
 
 // to make request to api, we need host
-const host = "http://192.168.0.102:3100";
+const host = process.env.REACT_APP_HOST;
 
 // creating provider
 export const FetchNoteProvider = (props) => {
@@ -32,8 +33,8 @@ export const FetchNoteProvider = (props) => {
         setNotes(response.data);
       })
       .catch((err) => {
+        toast.error("Something went wrong");
         console.log(err);
-        console.log("check the host network");
       });
   };
 

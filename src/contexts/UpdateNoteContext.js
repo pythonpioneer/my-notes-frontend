@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createContext, useContext } from 'react';
 import { useFetchNote } from "./FetchNoteContext";
+import {toast} from "react-toastify";
 
 // creating a context to update note
 const UpdateNoteContext = createContext(null);
@@ -11,7 +12,7 @@ export const useUpdateNote = () => {
 };
 
 // to make request to api, we need host
-const host = 'http://192.168.0.102:3100';
+const host = process.env.REACT_APP_HOST;
 
 // now creating a provider for all the children components
 export const UpdateNoteProvider = (props) => {
@@ -32,10 +33,11 @@ export const UpdateNoteProvider = (props) => {
         })
             .then((response) => {
                 getNotes();
+                toast.success('Note updated successfully')
             })
             .catch(err => {
+                toast.error('Something went wrong')
                 console.log(err);
-                console.log("check the host network")
             });
     };
 

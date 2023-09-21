@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext } from "react";
 import { useFetchNote } from "./FetchNoteContext";
+import {toast} from "react-toastify";
 
 // creating and exporting context
 const DeleteNoteContext = createContext();
@@ -11,7 +12,7 @@ export const useDeleteNote = () => {
 };
 
 // to make request to api, we need host
-const host = 'http://192.168.0.102:3100';
+const host = process.env.REACT_APP_HOST;
 
 // creating provider for all the child components
 export const DeleteNoteProvider = (props) => {
@@ -35,10 +36,11 @@ export const DeleteNoteProvider = (props) => {
         .then((response) => {
             const newNote = notes.filter(note => note._id !== id);
             setNotes(newNote);
+            toast.success('Note deleted successfully')
         })
         .catch(err => {
+            toast.error('Something went wrong')
             console.log(err);
-            console.log("check the host network")
         })
     };
     
