@@ -86,5 +86,5 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 
 ## To make Contribution
 
-To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/my-notes-frontend/blob/master/CONTRIBUTING.md). I will appreciate your efforts.
+To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/pythonpioneer/blob/main/guidelines/CONTRIBUTING.md). I will appreciate your efforts.
 
