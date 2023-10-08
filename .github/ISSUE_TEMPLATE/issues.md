@@ -9,16 +9,17 @@ assignees: ''
 
 ## Issue
 
-**Issue Type:** [Bug / Feature Request / Enhancement / Question / Documentation / Other]
+**`Issue Type:`** [Bug / Feature / Question / Documentation / Other]
 
 **Description:**
-Provide a clear and concise description of the issue or request. What problem are you experiencing, or what feature are you proposing?
+Provide a clear and concise description of the issue or request. What problem are you experiencing, or what feature are you proposing? You can add all this information step-wise.
 
-**Expected Behavior:**
+**`Expected Behavior:`**
 Describe what you expected to happen.
 
-**Actual Behavior:**
+**`Actual Behavior:`**
 Explain what is currently happening or the issue you encountered.
+
 
 ## Environment (if applicable)
 
@@ -26,6 +27,7 @@ Explain what is currently happening or the issue you encountered.
 - **Browser (if web-related):**
 - **Node.js version (if applicable):**
 - **Library/Framework version (if applicable):**
+
 
 ## Steps to Reproduce (for bugs)
 
@@ -35,9 +37,11 @@ If this is a bug report, please provide detailed steps to reproduce the issue. I
 2. Step 2
 3. ...
 
+
 ## Screenshots (if applicable)
 
 Include screenshots or images that help illustrate the issue or desired feature.
+
 
 ## Additional Information
 
@@ -50,9 +54,11 @@ Add any other relevant information about the issue. Include links to related dis
 - [ ] I am interested in working on this issue.
 - [ ] I am experiencing this issue but cannot contribute to its resolution.
 
+
 ## Related Issues (if any)
 
 List any related issues or pull requests here.
+
 
 ## Suggested Labels (if applicable)
 
