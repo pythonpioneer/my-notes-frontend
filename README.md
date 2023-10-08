@@ -84,7 +84,6 @@ This note app helps you to make notes of things you want to do or any inspiratio
 The app is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
 
 
-## To make Contribution
+## To Contribute
 
 To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/pythonpioneer/blob/main/guidelines/CONTRIBUTING.md). I will appreciate your efforts.
-
