@@ -2,6 +2,10 @@
 
 This note app helps you to make notes of things you want to do or any inspirational quotes that you want to note before you forget. You can personalize the app note using tag options. You can sort your notes based on time or based on tags and many more sorting options.
 
+## License
+
+Before you start contributing to this project, please review the [LICENSE](https://github.com/pythonpioneer/my-notes-frontend/blob/master/LICENSE) file to understand the licensing terms. By contributing to this project, you agree to abide by its terms.
+
 ## Getting Started
 
 - Open your Terminal and go to the desired working directory
