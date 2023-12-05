@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# My-Notes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This note app helps you to make notes of things you want to do or any inspirational quotes that you want to note before you forget. You can personalize the app note using tag options. You can sort your notes based on time or based on tags and many more sorting options.
 
-## Available Scripts
+## License
 
-In the project directory, you can run:
+Before you start contributing to this project, please review the [LICENSE](https://github.com/pythonpioneer/my-notes-frontend/blob/master/LICENSE) file to understand the licensing terms. By contributing to this project, you agree to abide by its terms.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Open your Terminal and go to the desired working directory
+- Make a directory
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+      mkdir notes
+  
+- Go to the notes directory
 
-### `npm test`
+      cd notes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Now, follow the frontend setup
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### FrontEnd Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Clone the frontend repo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+      git clone https://github.com/pythonpioneer/my-notes-frontend.git
 
-### `npm run eject`
+- Go to your project folder and install dependencies (make sure you have npm and node)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  ```
+  cd my-notes-frontend
+  ```
+  ```
+  npm install
+  ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Create a `.env.local file`
+  
+      touch .env.local
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Create a environment variable for backend host network (or your backend-host-network)
+  
+      REACT_APP_HOST=http://localhost:3100
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    > copy this line and paste it inside `.env.local`
 
-## Learn More
+- After installation, To start the app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+      npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- It will open your browser(http://localhost:3000)
+  
 
-### Code Splitting
+### BackEnd Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- If you are in "my-notes-frontend" then go back to the previous directory.
 
-### Analyzing the Bundle Size
+      cd ..
+  
+- If not then open the notes directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+      cd notes
 
-### Making a Progressive Web App
+- Clone the backend repo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+      git clone https://github.com/pythonpioneer/my-notes-backend.git
 
-### Advanced Configuration
+- Go to your project folder and install dependencies (make sure you have npm and node)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  ```
+  cd my-notes-backend
+  ```
+  ```
+  npm install
+  ```
 
-### Deployment
+- After installation, To start the app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+      npm start
+  **Note:** If the app didn't run with the given command then please explore nodemon for your machine.
+  
+- It will open your browser(http://localhost:3100)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Note
+
+The app is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
+
+
+## To Contribute
+
+To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/pythonpioneer/blob/main/guidelines/CONTRIBUTING.md). I will appreciate your efforts.

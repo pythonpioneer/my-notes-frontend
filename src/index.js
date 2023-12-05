@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import {ToastContainer} from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+        <ToastContainer
+            role="alert"
+            position="bottom-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            pauseOnHover={false}
+            pauseOnFocusLoss={false}
+            closeOnClick
+            draggable
+        />
+
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+i {
+  cursor: pointer;
+}
+i.spin:hover {
+  animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+  0%{transform: translate(0px, 0px) rotate(0deg);}
+  100%{transform: translate(0px, 0px) rotate(-360deg);}
+}
+
+i.shake:hover {
+  animation: shake 2s infinite linear;
+}
+@keyframes shake {
+  0%{ transform: translate(0px, 0px) rotate(0deg); } /*C*/
+  40%{ transform: translate(8px, 0px) rotate(-15deg); }/*R*/
+  80%{ transform: translate(-8px, 0px) rotate(-15deg); }/*L*/
+  100%{ transform: translate(0px, 0px) rotate(0deg); }/*C*/
+}
