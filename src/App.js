@@ -1,11 +1,13 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/header/Navbar';
 
 function App() {
   return (
     <>
-    hii
-      {/* <Navbar />
+        
+      <Navbar />
+      {/* 
 
       <Routes>
         <Route exact path={"/signup"} element={<Signup  />} />
