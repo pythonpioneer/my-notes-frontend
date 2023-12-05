@@ -4,7 +4,7 @@ export default function ToggleIcon() {
   return (
     <>
       {/* use a moon icon */}
-      <i className="fa-solid fa-sun" style={{ color: "#ffaa00" }}></i>
+      <i className="fa-solid fa-sun mt-1" style={{ color: "#ffaa00", marginRight: '1%' }}></i>
     </>
   )
 }

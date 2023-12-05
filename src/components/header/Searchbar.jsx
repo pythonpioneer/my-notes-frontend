@@ -9,9 +9,8 @@ export default function Searchbar() {
 
     return (
         <>
-            <nav className="navbar navbar-light mt-3 mb-3">
+            <nav className="navbar navbar-light mt-3 mb-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
                 <FilterIcon />
-
 
                 <div>
                     {/* only visible when clicked on search icon */}
