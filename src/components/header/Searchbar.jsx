@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Addnote from '../body/Addnote';
 import AddIcon from '../icons/AddIcon';
 import FilterIcon from '../icons/FilterIcon';
 import LogIcon from '../icons/LogIcon';
@@ -6,6 +7,13 @@ import SearchIcon from '../icons/SearchIcon';
 
 
 export default function Searchbar() {
+
+    // to open the modal editor
+    const [openEditor, setOpenEditor] = useState(false);
+
+    const displayEditor = () => {
+        setOpenEditor(true);
+    }
 
     return (
         <>
@@ -19,8 +27,10 @@ export default function Searchbar() {
                         </div>
                     */}
 
+                    {setOpenEditor && <Addnote openEditor={openEditor} setOpenEditor={setOpenEditor} />}
+
                     <SearchIcon />
-                    <AddIcon />
+                    <AddIcon onClick={displayEditor} />
                     <LogIcon token={null} />
                 </div>
             </nav>

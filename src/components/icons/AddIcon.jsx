@@ -1,11 +1,11 @@
 import React from 'react';
 
 
+export default function AddIcon(props) {
 
-export default function AddIcon() {
   return (
     <>
-      <i className="fa-solid fa-plus mr-4"></i>
+      <i className="fa-solid fa-plus mr-4" onClick={props.onClick}></i>
     </>
   )
 }
