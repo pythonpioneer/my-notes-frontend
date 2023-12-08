@@ -40,7 +40,7 @@ export default function Addnote(props) {
                 onClose={handleClose}
             >
                 <Box sx={Object.assign(style, {})}>
-                    <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }}/>
+                    <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} />
                     <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }}/>
 
                     <Grid container style={{ marginTop: '20px' }}>
