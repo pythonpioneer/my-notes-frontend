@@ -43,7 +43,7 @@ export default function Addnote(props) {
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }}/>
                     <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }}/>
 
-                    <Grid container style={{ marginTop: '10px' }}>
+                    <Grid container style={{ marginTop: '20px' }}>
 
                         {/* title */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{ height: '200%' }}>
