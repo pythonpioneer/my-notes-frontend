@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Addnote from '../body/Addnote';
 import AddIcon from '../icons/AddIcon';
 import FilterIcon from '../icons/FilterIcon';
@@ -8,10 +9,11 @@ import SearchIcon from '../icons/SearchIcon';
 
 export default function Searchbar() {
 
-    // to open the modal editor
+    // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
+    const navigate = useNavigate();
 
-    const displayEditor = () => {
+    const displayEditor = () => {  // to open the modal
         setOpenEditor(true);
     }
 
@@ -31,7 +33,7 @@ export default function Searchbar() {
 
                     <SearchIcon />
                     <AddIcon onClick={displayEditor} />
-                    <LogIcon token={null} />
+                    <LogIcon token={null} onClick={() => { navigate('/login') }}/>
                 </div>
             </nav>
         </>
