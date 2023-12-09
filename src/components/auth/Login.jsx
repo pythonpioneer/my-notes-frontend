@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { Grid, Box, Modal, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
 import { loginSchema } from './schema';
 import { InfoIcon } from '../icons/InfoIcon';
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../../services/user';
+
 
 // styling for modal structure
 const style = {
@@ -15,44 +16,16 @@ const style = {
     padding: "12px 0",
 };
 
-// to make request to api, we need host
-const host = process.env.REACT_APP_HOST;
-
 export default function Login(props) {
 
     // state variables
-    const [openEditor, setOpenEditor] = useState(true); // for modal
+    const [openEditor, ] = useState(true); // for modal
 
     // to store data from all form fields
     const getEmail = useRef(null);
     const getPassword = useRef(null);
     const navigate = useNavigate();
-
-    // to login the user
-    const loginUser = (email, password) => {
-        // to make api call
-        axios
-            .post(
-                `${host}/api/v1/auth/loginuser`,
-                JSON.stringify({ email: email, password: password }),
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-            .then((response) => {
-                // now save the auth-token and redirect
-                // console.log(response.data['auth-token'])
-                localStorage.setItem("auth-token", response.data["auth-token"]);
-                navigate("/");
-                toast.success("Logged in successfully");
-            })
-            .catch((err) => {
-                toast.error("Invalid Credentials");
-                console.log(err);
-            });
-    };
+    const dispatch = useDispatch();
 
     // fields to be validated
     const initialValues = {
@@ -65,11 +38,17 @@ export default function Login(props) {
         initialValues: initialValues,
         validationSchema: loginSchema,
 
-        // form submission
-        onSubmit: (values) => {
-            loginUser(values.email, values.password);
-        }
+        onSubmit: async (values) => {  // form submission
+            dispatch(signInUser({
+                email: values.email, 
+                password: values.password 
+            }))
+                .then(status => {  // after executing the signin action
 
+                    // if user created successfully
+                    if (status.type === 'signInUser/fulfilled') navigate('/');
+                });
+        }
     });
 
     return (
@@ -127,6 +106,7 @@ export default function Login(props) {
                                         id="email"
                                         name="email"
                                         type="email"
+                                        autoComplete="email"
                                         style={{
                                             ...{
                                                 fontFamily: "Georgia",

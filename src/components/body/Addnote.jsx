@@ -31,6 +31,7 @@ export default function Addnote(props) {
     // fetching data from form field
     const getFormFieldData = () => {
         console.log(getTitle.current.value, getDesc.current.value, getTag.current.value);
+
     };
 
     return (
