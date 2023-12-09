@@ -16,14 +16,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         loginUser: (state, action) => {  // if there is authentication token in the local storage then logged in the user
-
-            if (localStorage.getItem('auth-token')) {
-                state.isLoggedIn = true;
-            }
+            state.isLoggedIn = Boolean(localStorage?.getItem('auth-token'));
         },
         logoutUser: (state) => {  // now, remove the auth token from the local storage
             
-            if (localStorage.getItem('auth-token')) {
+            if (localStorage?.getItem('auth-token')) {
                 localStorage.clear('auth-token');
                 state.isLoggedIn = false;
             }
@@ -34,11 +31,11 @@ const userSlice = createSlice({
             .addCase(signInUser.pending, (state) => {  // during api calls
                 state.isLoading = true;
             })
-            .addCase(signInUser.fulfilled, (state, action) => {
+            .addCase(signInUser.fulfilled, (state, action) => {  // after successfull logged in 
                 state.isLoading = false;
                 userSlice.caseReducers.loginUser(state, action);  // login the user
             })
-            .addCase(signInUser.rejected, (state, action) => {
+            .addCase(signInUser.rejected, (state, action) => {  // if logging in failed
                 state.isLoading = false;
                 state.hasErrors = true;
             })

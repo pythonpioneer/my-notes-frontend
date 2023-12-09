@@ -5,8 +5,23 @@ import Searchbar from './components/header/Searchbar';
 import Notebox from './components/body/Notebox';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { loginUser } from './features/user/userSlice';
+
 
 function App() {
+
+  const dispatch = useDispatch();  // to perform actions
+
+  useEffect(()=> {
+    dispatch(loginUser());
+    console.log("in effect login")
+  }, [dispatch]);
+  
+
+
+
   return (
     <>
 
