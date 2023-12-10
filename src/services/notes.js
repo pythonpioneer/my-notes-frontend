@@ -36,7 +36,7 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
 
 // creating an action to add notes
 export const createNote = createAsyncThunk('createNote', async ({ title, desc, category }) => {
-    
+
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
 
@@ -64,4 +64,29 @@ export const createNote = createAsyncThunk('createNote', async ({ title, desc, c
             toast.error(err?.response?.data?.message || 'Failed!!');
             throw err;
         });
+});
+
+// create an action to update the existing notes
+export const updateNote = createAsyncThunk('updateNote', async ({ title, desc, category, noteId }) => {
+    // fetch the auth token from local storage
+    const token = localStorage.getItem('auth-token');
+
+    if (!token) {  // throw errors, if there is no token
+        throw new Error("Missing Token");
+    }
+
+    // data to make the api call
+    const url = `${URL}${APIPATH}notes/update?note-id=${noteId}`;
+    const payload = JSON.stringify({ title, desc, category });
+    const requestHeaders = {
+        headers: {
+            "Content-Type": "application/json",
+            "auth-token": token,
+        },
+    };
+
+    // now, make the api call to update the note
+    return axios.put(url, payload, requestHeaders)
+        .then()
+        .catch();
 });
