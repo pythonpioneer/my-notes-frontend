@@ -5,8 +5,9 @@ import { Grid } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
 import { getCurrentDate, validateForm } from '../../utility';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { createNote } from '../../services/notes';
 
 
 // styling for modal structure
@@ -23,12 +24,15 @@ const style = {
 };
 
 export default function Addnote(props) {
+
+    // to store the form fields
     const getTitle = useRef(null);
     const getTag = useRef(null);
     const getDesc = useRef(null);
 
     // to access the user login status
     const { isLoggedIn } = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
     // writing all states for addnote modal
     const handleClose = () => props.setOpenEditor(false);
@@ -36,11 +40,22 @@ export default function Addnote(props) {
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
     const handleForm = async () => {
-        validateForm({ title: getTitle.current.value, desc: getDesc.current.value, tag: getTag.current.value })
-            .then(res => {
-                console.log("res", res)
+
+        // fetch the form data
+        const formData = { title: getTitle.current.value, desc: getDesc.current.value, category: getTag.current.value };
+
+        // validate form fields
+        validateForm(formData)
+            .then(res => {  // if validation successfull
+
+                dispatch(createNote(formData))
+                    .then(status => {  // if note created successfully
+                        
+                        // close the add note editor
+                        if (status.type === 'createNote/fulfilled') handleClose();
+                    });
             })
-            .catch(err => {
+            .catch(err => {  // if we encounter any error
                 toast.info(err);
             })
     };

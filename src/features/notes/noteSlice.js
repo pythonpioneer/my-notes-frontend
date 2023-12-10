@@ -1,6 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotes } from '../../services/notes';
+import { createNote, fetchNotes } from '../../services/notes';
 
 
 // global states of the notes
@@ -21,6 +21,8 @@ const noteSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+
+            // fetching notes
             .addCase(fetchNotes.pending , (state) => {
                 state.isLoading = true;
             })
@@ -30,6 +32,20 @@ const noteSlice = createSlice({
                 state.notes = action.payload.notes;
             })
             .addCase(fetchNotes.rejected , (state, action) => {  // we will handle errors later
+                state.isLoading = false;
+                state.hasErrors = true;
+            })
+
+            // adding notes
+            .addCase(createNote.pending , (state) => {
+                state.isLoading = true;
+            })
+            .addCase(createNote.fulfilled , (state, action) => {
+                state.isLoading = false;
+                state.hasErrors = false;
+                state.notes = [action.payload.notes, ...state.notes]; 
+            })
+            .addCase(createNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })

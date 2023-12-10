@@ -31,7 +31,7 @@ export function getCurrentDate(timestamp) {
 * 1 <= tag.length <= 20
 * 1 <= desc.length <= 1000
 */
-export const validateForm = ({ title, desc, tag }) => {
+export const validateForm = ({ title, desc, category }) => {
 
     return new Promise((resolve, reject) => {  // returning a promise after validation
         
@@ -42,8 +42,8 @@ export const validateForm = ({ title, desc, tag }) => {
         if (desc.length < 1) reject('Invalid Description!');
         if (desc.length > 1000) reject("Description can't exceed 1000 Characters.");
 
-        if (tag.length < 1) reject('Invalid Category!');
-        if (tag.length > 100) reject("Category can't exceed 20 Characters.");
+        if (category.length < 1) reject('Invalid Category!');
+        if (category.length > 100) reject("Category can't exceed 20 Characters.");
         
         // if no field failed validation
         resolve("All fields are valid");
