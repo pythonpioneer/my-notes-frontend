@@ -44,7 +44,7 @@ export default function Searchbar() {
                         </div>
                     */}
 
-                    {setOpenEditor && <Addnote openEditor={openEditor} setOpenEditor={setOpenEditor} />}
+                    {openEditor && <Addnote openEditor={openEditor} setOpenEditor={setOpenEditor} />}
 
                     <SearchIcon />
                     <AddIcon onclick={displayEditor} />
