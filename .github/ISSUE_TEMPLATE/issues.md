@@ -9,7 +9,9 @@ assignees: ''
 
 ## Issue
 
-**`Issue Type:`** [Bug / Feature / Question / Documentation / Other]
+**Issue Type:** `[Bug / Feature / Question / Documentation / Other]`
+
+**Issue Category:** `[Backend / Frontend]`
 
 **`Issue Desc:`**
 Describe the issue.
