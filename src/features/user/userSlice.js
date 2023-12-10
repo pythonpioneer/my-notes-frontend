@@ -36,6 +36,7 @@ const userSlice = createSlice({
             })
             .addCase(signInUser.fulfilled, (state, action) => {  // after successfull logged in 
                 state.isLoading = false;
+                state.hasErrors = false;
                 userSlice.caseReducers.loginUser(state, action);  // login the user
             })
             .addCase(signInUser.rejected, (state, action) => {  // if logging in failed
