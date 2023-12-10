@@ -34,7 +34,7 @@ export default function Searchbar() {
 
     return (
         <>
-            <nav className="navbar navbar-light mt-3 mb-3 sticky-top" style={{ marginLeft: '1%', marginRight: '1%', backgroundColor: 'white', height: '60px' }}>
+            <nav className="navbar navbar-light mt-1 mb-3 sticky-top" style={{ marginLeft: '1%', marginRight: '1%', backgroundColor: 'white', height: '70px' }}>
                 <FilterIcon />
 
                 <div>
