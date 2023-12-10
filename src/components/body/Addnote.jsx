@@ -30,10 +30,10 @@ export default function Addnote(props) {
 
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
-    const getFormFieldData = () => {
-        console.log(getTitle.current.value, getDesc.current.value, getTag.current.value);
+    // const getFormFieldData = () => {
+    //     console.log(getTitle.current.value, getDesc.current.value, getTag.current.value);
 
-    };
+    // };
 
     return (
         <>

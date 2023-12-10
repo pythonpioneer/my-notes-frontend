@@ -1,6 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotes } from '../../services/notes'
+import { fetchNotes } from '../../services/notes';
 
 
 // global states of the notes
@@ -15,29 +15,27 @@ const noteSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
-        setNotes: (state, action) => {
-            // state.notes = action.notes
+        removeNotes: (state) => {
+            state.notes = [];  // here we are removing all notes
         }
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchNotes.pending , (state, action) => {
+            .addCase(fetchNotes.pending , (state) => {
                 state.isLoading = true;
-                console.log("pen")
             })
             .addCase(fetchNotes.fulfilled , (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
-                console.log("ful")
+                state.notes = action.payload.notes;
             })
-            .addCase(fetchNotes.rejected , (state, action) => {
+            .addCase(fetchNotes.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
-                console.log("rej")
             })
     }
 });
 
 // now, export all the reducers and actions
-export const { setNotes } = noteSlice.actions;
+export const { removeNotes } = noteSlice.actions;
 export default noteSlice.reducer;

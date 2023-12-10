@@ -14,7 +14,8 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
 
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
-    if (!token) {
+
+    if (!token) {  // throw errors, if there is no token
         toast.error("Missing Token!");
         throw new Error("Missing Token");
     }
@@ -25,11 +26,10 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
             "auth-token": token
         }
     })
-        .then(response => {
-            console.log("res", response);
+        .then(response => {  // after successfull api call, return the data
             return response.data;
         })
-        .catch(err => {
+        .catch(err => {  // if we encounter any errors
             toast.error(err?.response?.data?.message || "Failed!!");
             throw err;
         })
