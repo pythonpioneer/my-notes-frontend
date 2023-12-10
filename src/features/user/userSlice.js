@@ -16,7 +16,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        loginUser: (state, action) => {  // if there is authentication token in the local storage then logged in the user
+        loginUser: (state) => {  // if there is authentication token in the local storage then logged in the user
             state.isLoggedIn = Boolean(localStorage?.getItem('auth-token'));
         },
         logoutUser: (state) => {  // now, remove the auth token from the local storage
@@ -36,9 +36,10 @@ const userSlice = createSlice({
             })
             .addCase(signInUser.fulfilled, (state, action) => {  // after successfull logged in 
                 state.isLoading = false;
+                state.hasErrors = false;
                 userSlice.caseReducers.loginUser(state, action);  // login the user
             })
-            .addCase(signInUser.rejected, (state, action) => {  // if logging in failed
+            .addCase(signInUser.rejected, (state, action) => {  // if logging in failed, handle error later
                 state.isLoading = false;
                 state.hasErrors = true;
             })

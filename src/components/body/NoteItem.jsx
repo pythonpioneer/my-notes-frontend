@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 
 
 export default function NoteItem(props) {
@@ -12,8 +12,7 @@ export default function NoteItem(props) {
                     <Grid item lg={12} className="">
                         <p className="card-text" style={{ fontSize: '0.8em', color: '#A9A9A9' }}>{props.desc}</p>
 
-                        <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>date</p>
-                        {props.datetime && <i className="fa-solid fa-trash" style={{ fontSize: "1.2em", float: 'right' }}></i>}
+                        <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>{props.datetime}</p>
                         {props.tag && <div className="text-center d-inline-block mx-5" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{props.tag}</div>}
                     </Grid>
 

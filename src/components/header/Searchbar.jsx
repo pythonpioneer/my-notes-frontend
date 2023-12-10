@@ -8,6 +8,7 @@ import LogInIcon from '../icons/LogInIcon';
 import LogOutIcon from '../icons/LogOutIcon';
 import SearchIcon from '../icons/SearchIcon';
 import { logoutUser } from '../../features/user/userSlice';
+import { removeNotes } from '../../features/notes/noteSlice';
 
 
 export default function Searchbar() {
@@ -25,9 +26,15 @@ export default function Searchbar() {
         setOpenEditor(true);
     }
 
+    // to logout the user
+    const signOutUser = () => {
+        dispatch(logoutUser());
+        dispatch(removeNotes());
+    }
+
     return (
         <>
-            <nav className="navbar navbar-light mt-3 mb-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
+            <nav className="navbar navbar-light mt-3 mb-3 sticky-top" style={{ marginLeft: '1%', marginRight: '1%', backgroundColor: 'white', height: '60px' }}>
                 <FilterIcon />
 
                 <div>
@@ -42,7 +49,7 @@ export default function Searchbar() {
                     <SearchIcon />
                     <AddIcon onclick={displayEditor} />
                     {isLoggedIn
-                        ? <LogOutIcon onClick={() => { dispatch(logoutUser()) }} />
+                        ? <LogOutIcon onClick={signOutUser} />
                         : <LogInIcon onClick={() => { navigate('/login') }} />
                     }
                 </div>

@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { Grid } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
+import { getCurrentDate } from '../../utility';
 
 
 // styling for modal structure
@@ -29,10 +30,10 @@ export default function Addnote(props) {
 
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
-    const getFormFieldData = () => {
-        console.log(getTitle.current.value, getDesc.current.value, getTag.current.value);
+    // const getFormFieldData = () => {
+    //     console.log(getTitle.current.value, getDesc.current.value, getTag.current.value);
 
-    };
+    // };
 
     return (
         <>
@@ -52,7 +53,7 @@ export default function Addnote(props) {
                         </Grid>
 
                         {/* date */}
-                        <span style={{ marginLeft: '13px', marginRight: '2%', ...{ fontSize: "0.8em", fontFamily: "Georgia" } }}>{'date'}</span>
+                        <span style={{ marginLeft: '13px', marginRight: '2%', ...{ fontSize: "0.8em", fontFamily: "Georgia" } }}>{getCurrentDate(Date.now())}</span>
 
                         {/* tag */}
                         <Grid item lg={12} md={12} sm={12} xs={12} style={{ height: '200%' }}>
