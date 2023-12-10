@@ -1,6 +1,7 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
 import { signInUser } from '../../services/user';
+import { toast } from "react-toastify";
 
 
 // initial state of the user app
@@ -21,6 +22,7 @@ const userSlice = createSlice({
         logoutUser: (state) => {  // now, remove the auth token from the local storage
             
             if (localStorage?.getItem('auth-token')) {
+                toast.success("User Logged Out!!");  // notify the user
                 localStorage.clear('auth-token');
                 state.isLoggedIn = false;
             }
