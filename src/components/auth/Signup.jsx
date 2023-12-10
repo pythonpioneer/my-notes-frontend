@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import {toast} from "react-toastify";
 import { registrationSchema } from './schema/';
 import { InfoIcon } from "../icons/InfoIcon";
+import { signUpUser } from "../../services/user";
+import { useDispatch } from "react-redux";
 
 
 // styling for modal structure
@@ -19,6 +21,7 @@ export default function Signup() {
 	// state variables
 	const [openEditor, ] = useState(true); // for modal
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	// using formik for form validation
 	const { errors, touched, handleBlur, ...formik } = useFormik({
@@ -29,9 +32,14 @@ export default function Signup() {
 			confirmPassword: "",
 		},
 		validationSchema: registrationSchema,
-		onSubmit: (values) => {
+		onSubmit: (values) => {  // form submission
 
-			console.log(values);
+			dispatch(signUpUser(values))
+				.then(status => {   // after executing the sign up action
+
+					// if user created successfully
+					if (status.type === 'signUpUser/fulfilled') navigate('/');
+				});
 		},
 	});
 

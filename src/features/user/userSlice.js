@@ -1,6 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
-import { signInUser } from '../../services/user';
+import { signInUser, signUpUser } from '../../services/user';
 import { toast } from "react-toastify";
 
 
@@ -30,6 +30,7 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            // to login the user
             .addCase(signInUser.pending, (state) => {  // during api calls
                 state.isLoading = true;
             })
@@ -38,6 +39,19 @@ const userSlice = createSlice({
                 userSlice.caseReducers.loginUser(state, action);  // login the user
             })
             .addCase(signInUser.rejected, (state, action) => {  // if logging in failed
+                state.isLoading = false;
+                state.hasErrors = true;
+            })
+
+            // to register a new user
+            .addCase(signUpUser.pending, (state) => {  
+                state.isLoading = true;
+            })
+            .addCase(signUpUser.fulfilled, (state, action) => { 
+                state.isLoading = false;
+                userSlice.caseReducers.loginUser(state, action);  
+            })
+            .addCase(signUpUser.rejected, (state, action) => { 
                 state.isLoading = false;
                 state.hasErrors = true;
             })
