@@ -16,7 +16,7 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
     const token = localStorage.getItem('auth-token');
     if (!token) {
         toast.error("Missing Token!");
-        throw err;
+        throw new Error("Missing Token");
     }
 
     // now, call the api to fetch all notes
