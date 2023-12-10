@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Addnote from '../body/Addnote';
 import AddIcon from '../icons/AddIcon';
 import FilterIcon from '../icons/FilterIcon';
-import LogIcon from '../icons/LogIcon';
+import LogInIcon from '../icons/LogInIcon';
+import LogOutIcon from '../icons/LogOutIcon';
 import SearchIcon from '../icons/SearchIcon';
+import { logoutUser } from '../../features/user/userSlice';
 
 
 export default function Searchbar() {
 
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const displayEditor = () => {  // to open the modal
+    // access the user login status
+    const { isLoggedIn } = useSelector(state => state.user)
+
+    // to open the modal
+    const displayEditor = () => {
         setOpenEditor(true);
     }
 
@@ -32,8 +40,11 @@ export default function Searchbar() {
                     {setOpenEditor && <Addnote openEditor={openEditor} setOpenEditor={setOpenEditor} />}
 
                     <SearchIcon />
-                    <AddIcon onClick={displayEditor} />
-                    <LogIcon token={null} onClick={() => { navigate('/login') }}/>
+                    <AddIcon onclick={displayEditor} />
+                    {isLoggedIn
+                        ? <LogOutIcon onClick={() => { dispatch(logoutUser()) }} />
+                        : <LogInIcon onClick={() => { navigate('/login') }} />
+                    }
                 </div>
             </nav>
         </>

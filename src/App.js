@@ -12,41 +12,25 @@ import { loginUser } from './features/user/userSlice';
 
 function App() {
 
-  const dispatch = useDispatch();  // to perform actions
+	const dispatch = useDispatch();  // to perform actions
 
-  useEffect(()=> {
-    dispatch(loginUser());
-    console.log("in effect login")
-  }, [dispatch]);
-  
+	// to check that the user is logged in or not and change the global state of login status
+	useEffect(() => {
+		dispatch(loginUser());
+	}, [dispatch]);
 
+	return (
+		<>
+			<Navbar />
+			<Searchbar />
 
-
-  return (
-    <>
-
-      <Navbar />
-      <Searchbar />
-
-      <Routes>
-        <Route exact path="/" element={<Notebox />} />
-        <Route exact path={"/signup"} element={<Signup />} />
-        <Route exact path="/login" element={<Login />} />
-      </Routes>
-
-      {/* 
-      <Routes>
-        <Route exact path={"/signup"} element={<Signup  />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/" element={
-          <FetchNoteProvider>
-            <Notebox />
-          </FetchNoteProvider>
-        } />
-      </Routes> */}
-    </>
-  );
-  // eslint-disable-next-line
+			<Routes>
+				<Route exact path={"/"} element={<Notebox />} />
+				<Route exact path={"/signup"} element={<Signup />} />
+				<Route exact path={"/login"} element={<Login />} />
+			</Routes>      
+		</>
+	);
 }
 
 export default App;
