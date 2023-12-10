@@ -1,11 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Grid, Box, Modal, Typography } from "@mui/material";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import {toast} from "react-toastify";
 import { registrationSchema } from './schema/';
 import { InfoIcon } from "../icons/InfoIcon";
+import { signUpUser } from "../../services/user";
+import { useDispatch } from "react-redux";
+
 
 // styling for modal structure
 const style = {
@@ -14,46 +16,12 @@ const style = {
 	boxShadow: 24,
 };
 
-// to make request to api, we need host
-const host = process.env.REACT_APP_HOST;
 
 export default function Signup() {
 	// state variables
-	const [openEditor, setOpenEditor] = useState(true); // for modal
-
-	// to store data from all form fields
-	const getName = useRef(null);
-	const getEmail = useRef(null);
-	const getPassword = useRef(null);
-	const getConfirmPassword = useRef(null);
+	const [openEditor, ] = useState(true); // for modal
 	const navigate = useNavigate();
-
-	// to register user
-	const registerUser = (name, email, password) => {
-		// to make the api call
-		axios
-			.post(
-				`${host}/api/v1/auth/createuser`,
-				JSON.stringify({ name: name, email: email, password: password }),
-				{
-					headers: {
-						"Content-Type": "application/json",
-					},
-				}
-			)
-			.then((response) => {
-				// now save the auth-token and redirect
-				// console.log(response.data['auth-token'])
-				localStorage.setItem("auth-token", response.data["auth-token"]);
-				navigate("/login");
-        toast.success("User Registered Successfully");
-			})
-			.catch((err) => {
-				toast.error("invalid Credential");
-				navigate("/signup");
-				console.log(err);
-			});
-	};
+	const dispatch = useDispatch();
 
 	// using formik for form validation
 	const { errors, touched, handleBlur, ...formik } = useFormik({
@@ -64,10 +32,14 @@ export default function Signup() {
 			confirmPassword: "",
 		},
 		validationSchema: registrationSchema,
-		onSubmit: (values) => {
+		onSubmit: (values) => {  // form submission
 
-			registerUser(values.name, values.email, values.password);
-			navigate('/login');
+			dispatch(signUpUser(values))
+				.then(status => {   // after executing the sign up action
+
+					// if user created successfully
+					if (status.type === 'signUpUser/fulfilled') navigate('/');
+				});
 		},
 	});
 
@@ -129,7 +101,6 @@ export default function Signup() {
 										onChange={formik.handleChange}
 										onBlur={handleBlur}
 										defaultValue={formik.values.name}
-										ref={getName}
 										id="name"
 										className="name-field"
 										style={{
@@ -155,7 +126,6 @@ export default function Signup() {
 									onChange={formik.handleChange}
 									onBlur={handleBlur}
 									defaultValue={formik.values.email}
-									ref={getEmail}
 									id="email"
 									className="email-field"
 									style={{
@@ -181,7 +151,6 @@ export default function Signup() {
 								onChange={formik.handleChange}
 								onBlur={handleBlur}
 								defaultValue={formik.values.password}
-								ref={getPassword}
 								id="password"
 								className="password-field"
 								type="password"
@@ -208,7 +177,6 @@ export default function Signup() {
 							onChange={formik.handleChange}
 							onBlur={handleBlur}
 							defaultValue={formik.values.confirmPassword}
-							ref={getConfirmPassword}
 							id="confirmPassword"
 							className="password-field"
 							type="password"

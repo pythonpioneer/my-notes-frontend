@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Grid, Box, Modal, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -20,10 +20,6 @@ export default function Login(props) {
 
     // state variables
     const [openEditor, ] = useState(true); // for modal
-
-    // to store data from all form fields
-    const getEmail = useRef(null);
-    const getPassword = useRef(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -45,7 +41,7 @@ export default function Login(props) {
             }))
                 .then(status => {  // after executing the signin action
 
-                    // if user created successfully
+                    // if user logged in successfully
                     if (status.type === 'signInUser/fulfilled') navigate('/');
                 });
         }
@@ -102,7 +98,6 @@ export default function Login(props) {
                             >
                                 <Grid item xs={10} style={{ position: "relative", display: "inline-block", width: "100%" }}>
                                     <input
-                                        ref={getEmail}
                                         id="email"
                                         name="email"
                                         type="email"
@@ -141,7 +136,6 @@ export default function Login(props) {
                             >
                                 <Grid item xs={10} style={{ position: "relative", display: "inline-block", width: "100%" }}>
                                     <input
-                                        ref={getPassword}
                                         id="password"
                                         name="password"
                                         type="password"
