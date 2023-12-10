@@ -22,5 +22,30 @@ export function getCurrentDate(timestamp) {
     const formattedMinutes = minutes.toString().padStart(2, '0');
 
     return `${day}, ${dayOfMonth} ${month} ${formattedHours}:${formattedMinutes} ${ampm}`;
-
 }
+
+/**
+* validate the add note and edit note forms with the validation rules
+* validation rule: 
+* 1 <= title.length <= 100
+* 1 <= tag.length <= 20
+* 1 <= desc.length <= 1000
+*/
+export const validateForm = ({ title, desc, tag }) => {
+
+    return new Promise((resolve, reject) => {  // returning a promise after validation
+        
+        // now check that all fields follow the vallidation rules
+        if (title.length < 1) reject('Invalid Title!');
+        if (title.length > 100) reject("Title can't exceed 100 Characters.");
+
+        if (desc.length < 1) reject('Invalid Description!');
+        if (desc.length > 1000) reject("Description can't exceed 1000 Characters.");
+
+        if (tag.length < 1) reject('Invalid Category!');
+        if (tag.length > 100) reject("Category can't exceed 20 Characters.");
+        
+        // if no field failed validation
+        resolve("All fields are valid");
+    });
+};
