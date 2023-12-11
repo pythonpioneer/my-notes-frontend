@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Grid, Box, Modal, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import {toast} from "react-toastify";
 import { registrationSchema } from './schema/';
 import { InfoIcon } from "../icons/InfoIcon";
 import { signUpUser } from "../../services/user";

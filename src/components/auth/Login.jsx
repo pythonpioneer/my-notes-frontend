@@ -19,7 +19,7 @@ const style = {
 export default function Login(props) {
 
     // state variables
-    const [openEditor, setOpenEditor] = useState(true); // for modal
+    const [openEditor, ] = useState(true); // for modal
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
