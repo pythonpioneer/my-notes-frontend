@@ -26,7 +26,7 @@ export default function Notebox() {
 
 			{/* if user is logged in and have notes */}
 			{notes.length > 0 && notes.map((note, index) => {
-				return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} />
+				return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
 			})}
 		</>
 	)

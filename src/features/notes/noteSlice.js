@@ -1,6 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
-import { createNote, fetchNotes } from '../../services/notes';
+import { createNote, fetchNotes, updateNote } from '../../services/notes';
 
 
 // global states of the notes
@@ -15,7 +15,7 @@ const noteSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
-        removeNotes: (state) => {
+        removeNotes: (state) => {  // generally used, when user logged out
             state.notes = [];  // here we are removing all notes
         }
     },
@@ -25,6 +25,7 @@ const noteSlice = createSlice({
             // fetching notes
             .addCase(fetchNotes.pending , (state) => {
                 state.isLoading = true;
+                state.hasErrors = false;
             })
             .addCase(fetchNotes.fulfilled , (state, action) => {
                 state.isLoading = false;
@@ -39,6 +40,7 @@ const noteSlice = createSlice({
             // adding notes
             .addCase(createNote.pending , (state) => {
                 state.isLoading = true;
+                state.hasErrors = false;
             })
             .addCase(createNote.fulfilled , (state, action) => {
                 state.isLoading = false;
@@ -46,6 +48,24 @@ const noteSlice = createSlice({
                 state.notes = [action.payload.notes, ...state.notes]; 
             })
             .addCase(createNote.rejected , (state, action) => {  // we will handle errors later
+                state.isLoading = false;
+                state.hasErrors = true;
+            })
+
+            // updating notes
+            .addCase(updateNote.pending , (state) => {
+                state.isLoading = true;
+                state.hasErrors = false;
+            })
+            .addCase(updateNote.fulfilled , (state, action) => {
+                state.isLoading = false;
+                state.hasErrors = false;
+                
+                // remove the old note and add the new note
+                state.notes = state.notes.filter(note => note._id !== action.payload.notes._id);
+                state.notes = [action.payload.notes, ...state.notes];
+            })
+            .addCase(updateNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })
