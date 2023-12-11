@@ -62,3 +62,9 @@ textarea:focus, input:focus, input, textarea{
     width: 98%;
   }
 }
+
+.active {
+  border: 2px solid purple;
+  border-top: none;
+  border-radius: 20px;
+}
