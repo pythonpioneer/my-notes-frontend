@@ -16,9 +16,9 @@ export default function Footer() {
 
     return (
         <>
-            <nav className="navbar navbar-light fixed-bottom" style={{ backgroundColor: 'white', height: '70px', fontFamily: 'Georgia', fontWeight: 'bold', borderTop: '1px solid whitesmoke', cursor: 'pointer' }}>
-                <span onClick={() => { handleUpdateNote('pending'); }} className={`navbar-brand ml-3 ${noteType==='pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
-                <span onClick={() => { handleUpdateNote('completed'); }} className={`navbar-brand ${noteType==='completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>
+            <nav className="navbar navbar-light fixed-bottom" style={{ backgroundColor: 'white', height: '70px', fontFamily: 'Georgia', fontWeight: 'bold', borderTop: '1px solid whitesmoke' }}>
+                <span onClick={() => { handleUpdateNote('pending'); }} className={`cursor navbar-brand ml-3 ${noteType==='pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
+                <span onClick={() => { handleUpdateNote('completed'); }} className={`cursor navbar-brand ${noteType==='completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>
             </nav>
         </>
     )
