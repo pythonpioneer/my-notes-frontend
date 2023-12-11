@@ -10,7 +10,7 @@ const URL = process.env.REACT_APP_URL;
 const APIPATH = PATH;  // '/api/v1/'
 
 // now, create an action to fetch all the notes
-export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
+export const fetchNotes = createAsyncThunk('fetchNotes', async (noteType) => {
 
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
@@ -19,8 +19,13 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
         throw new Error("Missing Token");
     }
 
+    // now, make the api call based on note-type
+    let url = '';
+    if (noteType === 'pending' || !noteType) url = `${URL}${APIPATH}notes/get-notes`;
+    else if (noteType === 'completed') url = `${URL}${APIPATH}notes/get-notes?completed=true`;
+
     // now, call the api to fetch all notes
-    return axios.get(`${URL}${APIPATH}notes/get-notes`, {
+    return axios.get(url, {
         headers: {
             "auth-token": token
         }
