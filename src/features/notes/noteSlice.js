@@ -8,6 +8,7 @@ const initialState = {
     notes: [],  // stores all the notes data
     isLoading: false,  // loading status of user logging
     hasErrors: false,  // if we encounter any errors
+    noteType: 'pending',
 };
 
 // now, create the note slice
@@ -17,6 +18,9 @@ const noteSlice = createSlice({
     reducers: {
         removeNotes: (state) => {  // generally used, when user logged out
             state.notes = [];  // here we are removing all notes
+        },
+        updateNoteType: (state, action) => {
+            state.noteType = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -73,5 +77,5 @@ const noteSlice = createSlice({
 });
 
 // now, export all the reducers and actions
-export const { removeNotes } = noteSlice.actions;
+export const { removeNotes, updateNoteType } = noteSlice.actions;
 export default noteSlice.reducer;

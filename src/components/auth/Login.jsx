@@ -43,7 +43,7 @@ export default function Login(props) {
 
                     // if user logged in successfully
                     if (status.type === 'signInUser/fulfilled') {
-                        props.setOpenEditor(false);
+                        navigate('/');
                     }
                 });
         }

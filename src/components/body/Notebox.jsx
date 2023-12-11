@@ -8,13 +8,13 @@ import { fetchNotes } from '../../services/notes';
 export default function Notebox() {
 
 	const { isLoggedIn } = useSelector(state => state.user);  // to store the login status
-	const { notes } = useSelector(state => state.notes);
+	const { notes, noteType } = useSelector(state => state.notes);
 	const dispatch = useDispatch();
 
 	// to fetch all notes automatically
 	useEffect(() => {
-		dispatch(fetchNotes());  // fetching notes
-	}, [dispatch]);
+		dispatch(fetchNotes(noteType));  // fetching notes
+	}, [dispatch, noteType]);
 
 	return (
 		<>

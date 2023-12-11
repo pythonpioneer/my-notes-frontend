@@ -8,6 +8,7 @@ import Signup from './components/auth/Signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { loginUser } from './features/user/userSlice';
+import Footer from './components/footer/Footer';
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
 				{/* if no routes matched */}
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>      
+
+			{isLoggedIn && <Footer />}
 		</>
 	);
 }
