@@ -19,7 +19,7 @@ const style = {
 export default function Login(props) {
 
     // state variables
-    const [openEditor, ] = useState(true); // for modal
+    const [openEditor, setOpenEditor] = useState(true); // for modal
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ export default function Login(props) {
 
                     // if user logged in successfully
                     if (status.type === 'signInUser/fulfilled') {
-                        props.setOpenEditor(false);
+                        setOpenEditor(false);
                     }
                 });
         }
