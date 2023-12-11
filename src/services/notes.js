@@ -20,7 +20,7 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async () => {
     }
 
     // now, call the api to fetch all notes
-    return axios.get(`${URL}${APIPATH}notes/get-notes?page=`, {
+    return axios.get(`${URL}${APIPATH}notes/get-notes`, {
         headers: {
             "auth-token": token
         }
