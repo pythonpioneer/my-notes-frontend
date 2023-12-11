@@ -87,6 +87,12 @@ export const updateNote = createAsyncThunk('updateNote', async ({ title, desc, c
 
     // now, make the api call to update the note
     return axios.put(url, payload, requestHeaders)
-        .then()
-        .catch();
+        .then(response => {
+            toast.success(response?.data?.message || "Success!!");
+            return response.data;
+        })
+        .catch(err => {
+            toast.error(err?.response?.data?.message || 'Failed!!');
+            throw err;
+        });
 });

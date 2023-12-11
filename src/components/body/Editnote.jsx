@@ -7,7 +7,7 @@ import NextIcon from '../icons/NextIcon';
 import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { createNote } from '../../services/notes';
+import { updateNote } from '../../services/notes';
 
 
 // styling for modal structure
@@ -35,22 +35,40 @@ export default function Editnote(props) {
 
     // to access the user login status
     const { isLoggedIn } = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
-    /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
     const handleForm = async () => {
 
-        // fetch the form data
-        const formData = { title: getTitle.current.value, desc: getDesc.current.value, category: getTag.current.value };
+        // fetch the form data and note id
+        const formData = { title: getTitle.current.value, desc: getDesc.current.value, category: getTag.current.value, noteId: props.data.id };
 
-        // validate form fields
-        validateForm(formData)
-            .then(res => {  // if validation successfull
+        // now, check that, the user updated the data
+        let isUpdated = false;
 
-            })
-            .catch(err => {  // if we encounter any error
-                toast.info(err);
-            })
+        // checking that user updated fields
+        if (formData.title !== props.data.title) isUpdated = true;
+        if (formData.desc !== props.data.desc) isUpdated = true;
+        if (formData.category !== props.data.category) isUpdated = true;
+
+        // now, validate the form data if user changed something
+        if (isUpdated) {
+
+            // validate form fields
+            validateForm(formData)
+                .then(res => {  // if validation successfull, dispatch the action to update note
+                    
+                    dispatch(updateNote(formData))
+                        .then();
+                })
+                .catch(err => {  // if we encounter any error
+                    toast.info(err);
+                })
+        }
+        else {  // if noting is there to update
+            toast.info("Notes not updated");
+            handleClose();
+        }
     };
 
     return (
