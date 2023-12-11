@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import Editnote from '../body/Editnote';
-import CompleteIcon from '../icons/CompleteIcon';
 
 
 export default function NoteItem(props) {
