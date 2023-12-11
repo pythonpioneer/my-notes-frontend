@@ -59,7 +59,9 @@ export default function Editnote(props) {
                 .then(res => {  // if validation successfull, dispatch the action to update note
                     
                     dispatch(updateNote(formData))
-                        .then();
+                        .then(status => {
+                            if (status.type === 'updateNote/fulfilled') handleClose();
+                        });
                 })
                 .catch(err => {  // if we encounter any error
                     toast.info(err);
