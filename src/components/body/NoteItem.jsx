@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { completeNote } from '../../services/notes';
+import { completeNote, undoCompletedNote } from '../../services/notes';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
@@ -24,11 +24,16 @@ export default function NoteItem(props) {
         dispatch(completeNote(props.id));
     }
 
+    // to undo the completed note and mark as pending 
+    const handleUndoNote = () => {
+        dispatch(undoCompletedNote(props.id));
+    }
+
     return (
         <>
             <Grid className="mb-3 bg-light" style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
                 { props.tag && noteType === 'pending' && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
-                { noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} />}
+                { props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}
 
                 <Grid className="card-body" onClick={displayEditor}>
 

@@ -133,3 +133,34 @@ export const completeNote = createAsyncThunk('completeNote', async (noteId) => {
             throw err;
         });
 });
+
+// to mark the note as completed
+export const undoCompletedNote = createAsyncThunk('undoCompletedNote', async (noteId) => {
+
+    // fetch the auth token from local storage
+    const token = localStorage.getItem('auth-token');
+
+    if (!token) {  // throw errors, if there is no token
+        throw new Error("Missing Token");
+    }
+
+    // data to make the api call
+    const url = `${URL}${APIPATH}notes/undo-complete?note-id=${noteId}`;
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            "auth-token": token,
+        },
+    };
+
+    // now, make the api call to mark the note as completed
+    return axios.patch(url, {}, config)
+        .then(response => {
+            toast.success(response?.data?.message || "Success!!");
+            return response.data;
+        })
+        .catch(err => {
+            toast.error(err?.response?.data?.message || 'Failed!!');
+            throw err;
+        });
+});

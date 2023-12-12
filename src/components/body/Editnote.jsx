@@ -83,7 +83,7 @@ export default function Editnote(props) {
             >
                 <Box sx={Object.assign(style, {})}>
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} />
-                    {isLoggedIn && (
+                    {isLoggedIn && props.data.category && (
                         noteType === 'pending'
                             ? <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />
                             : <DeleteIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} />
