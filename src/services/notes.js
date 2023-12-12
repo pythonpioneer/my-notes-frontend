@@ -73,6 +73,7 @@ export const createNote = createAsyncThunk('createNote', async ({ title, desc, c
 
 // create an action to update the existing notes
 export const updateNote = createAsyncThunk('updateNote', async ({ title, desc, category, noteId }) => {
+
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
 
@@ -92,6 +93,37 @@ export const updateNote = createAsyncThunk('updateNote', async ({ title, desc, c
 
     // now, make the api call to update the note
     return axios.put(url, payload, requestHeaders)
+        .then(response => {
+            toast.success(response?.data?.message || "Success!!");
+            return response.data;
+        })
+        .catch(err => {
+            toast.error(err?.response?.data?.message || 'Failed!!');
+            throw err;
+        });
+});
+
+// to mark the note as completed
+export const completeNote = createAsyncThunk('completeNote', async (noteId) => {
+
+    // fetch the auth token from local storage
+    const token = localStorage.getItem('auth-token');
+
+    if (!token) {  // throw errors, if there is no token
+        throw new Error("Missing Token");
+    }
+
+    // data to make the api call
+    const url = `${URL}${APIPATH}notes/complete?note-id=${noteId}`;
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            "auth-token": token,
+        },
+    };
+
+    // now, make the api call to mark the note as completed
+    return axios.patch(url, {}, config)
         .then(response => {
             toast.success(response?.data?.message || "Success!!");
             return response.data;
