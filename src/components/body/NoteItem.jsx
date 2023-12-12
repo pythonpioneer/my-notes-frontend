@@ -1,22 +1,33 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { completeNote } from '../../services/notes';
 import Editnote from '../body/Editnote';
+import CompleteIcon from '../icons/CompleteIcon';
 
 
 export default function NoteItem(props) {
 
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
+    const dispatch = useDispatch();
 
     // to open the modal
     const displayEditor = () => {
         setOpenEditor(true);
     }
 
+    // to mark the note as completed
+    const handleCompleteNote = () => {
+        dispatch(completeNote(props.id));
+    }
+
     return (
         <>
-            <Grid className="mb-3 bg-light" style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '110px' }} onClick={ displayEditor }>
-                <Grid className="card-body">
+            <Grid className="mb-3 bg-light" style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '110px' }}>
+                { props.tag && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
+
+                <Grid className="card-body" onClick={displayEditor}>
 
                     <Grid item lg={6} className="d-inline-block mr-5" style={{ fontFamily: "Georgia", fontSize: '1em', fontStyle: 'italic', fontWeight: 'bold', marginTop: '-12px' }}>{props.title}</Grid>
                     <Grid item lg={12} className="">

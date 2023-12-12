@@ -1,6 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
-import { createNote, fetchNotes, updateNote } from '../../services/notes';
+import { completeNote, createNote, fetchNotes, updateNote } from '../../services/notes';
 
 
 // global states of the notes
@@ -70,6 +70,23 @@ const noteSlice = createSlice({
                 state.notes = [action.payload.notes, ...state.notes];
             })
             .addCase(updateNote.rejected , (state, action) => {  // we will handle errors later
+                state.isLoading = false;
+                state.hasErrors = true;
+            })
+
+            // complete notes
+            .addCase(completeNote.pending , (state) => {
+                state.isLoading = true;
+                state.hasErrors = false;
+            })
+            .addCase(completeNote.fulfilled , (state, action) => {
+                state.isLoading = false;
+                state.hasErrors = false;
+                
+                // remove the completed note
+                state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+            })
+            .addCase(completeNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })
