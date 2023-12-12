@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { completeNote } from '../../services/notes';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
@@ -11,6 +11,7 @@ export default function NoteItem(props) {
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
     const dispatch = useDispatch();
+    const { noteType } = useSelector(state => state.notes);
 
     // to open the modal
     const displayEditor = () => {
@@ -25,7 +26,7 @@ export default function NoteItem(props) {
     return (
         <>
             <Grid className="mb-3 bg-light" style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '110px' }}>
-                { props.tag && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
+                { props.tag && noteType === 'pending' && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
 
                 <Grid className="card-body" onClick={displayEditor}>
 
