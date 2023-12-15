@@ -1,6 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
-import { completeNote, createNote, fetchNotes, updateNote } from '../../services/notes';
+import { completeNote, createNote, deleteNote, fetchNotes, undoCompletedNote, updateNote } from '../../services/notes';
 
 
 // global states of the notes
@@ -87,6 +87,40 @@ const noteSlice = createSlice({
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
             })
             .addCase(completeNote.rejected , (state, action) => {  // we will handle errors later
+                state.isLoading = false;
+                state.hasErrors = true;
+            })
+
+            // undo completed notes
+            .addCase(undoCompletedNote.pending , (state) => {
+                state.isLoading = true;
+                state.hasErrors = false;
+            })
+            .addCase(undoCompletedNote.fulfilled , (state, action) => {
+                state.isLoading = false;
+                state.hasErrors = false;
+                
+                // remove the completed note
+                state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+            })
+            .addCase(undoCompletedNote.rejected , (state, action) => {  // we will handle errors later
+                state.isLoading = false;
+                state.hasErrors = true;
+            })
+
+            // delete notes
+            .addCase(deleteNote.pending , (state) => {
+                state.isLoading = true;
+                state.hasErrors = false;
+            })
+            .addCase(deleteNote.fulfilled , (state, action) => {
+                state.isLoading = false;
+                state.hasErrors = false;
+                
+                // remove the deleted note
+                state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+            })
+            .addCase(deleteNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })

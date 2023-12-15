@@ -4,10 +4,11 @@ import React, { useRef } from 'react';
 import { Grid } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
+import OptionIcon from '../icons/OptionIcon';
 import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateNote } from '../../services/notes';
+import { deleteNote, updateNote } from '../../services/notes';
 
 
 // styling for modal structure
@@ -35,6 +36,7 @@ export default function Editnote(props) {
 
     // to access the user login status
     const { isLoggedIn } = useSelector(state => state.user);
+    const { noteType } = useSelector(state => state.notes);
     const dispatch = useDispatch();
 
     // fetching data from form field
@@ -57,7 +59,7 @@ export default function Editnote(props) {
             // validate form fields
             validateForm(formData)
                 .then(res => {  // if validation successfull, dispatch the action to update note
-                    
+
                     dispatch(updateNote(formData))
                         .then(status => {
                             if (status.type === 'updateNote/fulfilled') handleClose();
@@ -73,6 +75,14 @@ export default function Editnote(props) {
         }
     };
 
+    // to delete the notes
+    const handleDeleteNote = () => {
+        dispatch(deleteNote(props?.data?.id))
+            .then(status => {
+                if (status.type === 'deleteNote/fulfilled') handleClose();
+            });
+    };
+
     return (
         <>
             <Modal
@@ -81,7 +91,11 @@ export default function Editnote(props) {
             >
                 <Box sx={Object.assign(style, {})}>
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} />
-                    {isLoggedIn && <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />}
+                    {isLoggedIn && props.data.category && (
+                        noteType === 'pending'
+                            ? <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />
+                            : <OptionIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleDeleteNote} />
+                    )}
 
                     <Grid container style={{ marginTop: '20px' }}>
 

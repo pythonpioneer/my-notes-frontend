@@ -32,6 +32,7 @@ export default function Addnote(props) {
 
     // to access the user login status
     const { isLoggedIn } = useSelector(state => state.user);
+    const { noteType } = useSelector(state => state.notes)
     const dispatch = useDispatch();
 
     // writing all states for addnote modal
@@ -68,7 +69,7 @@ export default function Addnote(props) {
             >
                 <Box sx={Object.assign(style, {})}>
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} />
-                    {isLoggedIn && <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />}
+                    {isLoggedIn && noteType === 'pending' && <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />}
 
                     <Grid container style={{ marginTop: '20px' }}>
 
