@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { Grid } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
-import DeleteIcon from '../icons/DeleteIcon';
+import OptionIcon from '../icons/OptionIcon';
 import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -86,7 +86,7 @@ export default function Editnote(props) {
                     {isLoggedIn && props.data.category && (
                         noteType === 'pending'
                             ? <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />
-                            : <DeleteIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} />
+                            : <OptionIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} />
                     )}
 
                     <Grid container style={{ marginTop: '20px' }}>
