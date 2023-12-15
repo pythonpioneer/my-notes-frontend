@@ -8,7 +8,7 @@ import OptionIcon from '../icons/OptionIcon';
 import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateNote } from '../../services/notes';
+import { deleteNote, updateNote } from '../../services/notes';
 
 
 // styling for modal structure
@@ -75,6 +75,14 @@ export default function Editnote(props) {
         }
     };
 
+    // to delete the notes
+    const handleDeleteNote = () => {
+        dispatch(deleteNote(props?.data?.id))
+            .then(status => {
+                if (status.type === 'deleteNote/fulfilled') handleClose();
+            });
+    };
+
     return (
         <>
             <Modal
@@ -86,7 +94,7 @@ export default function Editnote(props) {
                     {isLoggedIn && props.data.category && (
                         noteType === 'pending'
                             ? <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />
-                            : <OptionIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} />
+                            : <OptionIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleDeleteNote} />
                     )}
 
                     <Grid container style={{ marginTop: '20px' }}>

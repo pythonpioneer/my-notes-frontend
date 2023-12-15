@@ -164,3 +164,34 @@ export const undoCompletedNote = createAsyncThunk('undoCompletedNote', async (no
             throw err;
         });
 });
+
+// to delete the notes
+export const deleteNote = createAsyncThunk('deleteNote', async (noteId) => {
+
+    // fetch the auth token from local storage
+    const token = localStorage.getItem('auth-token');
+
+    if (!token) {  // throw errors, if there is no token
+        throw new Error("Missing Token");
+    }
+
+    // data to make the api call
+    const url = `${URL}${APIPATH}notes/delete?note-id=${noteId}`;
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            "auth-token": token,
+        },
+    };
+
+    // now, make the api call to delete the notes
+    return axios.delete(url, config)
+        .then(response => {
+            toast.success(response?.data?.message || "Success!!");
+            return response.data;
+        })
+        .catch(err => {
+            toast.error(err?.response?.data?.message || 'Failed!!');
+            throw err;
+        });
+});
