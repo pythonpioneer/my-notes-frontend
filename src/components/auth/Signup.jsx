@@ -54,12 +54,12 @@ export default function Signup() {
 					margin: "auto",
 					marginTop: "100px",
 					paddingBottom: '50px',
-					"@media (min-width:0px)": { width: "90%" },
-					"@media (min-width:691px)": { width: "35%" },
-					"@media (min-width:1091px)": { width: "25%" },
+					"@media (min-width:0px)": { width: "90%", height: "600px", marginTop: "12%" },
+                    "@media (min-width:691px)": { width: "55%", height: "600px", marginTop: "15%" },
+                    "@media (min-width:1091px)": { width: "30%", marginTop: "5%" },
 				}}
 			>
-				<Box sx={Object.assign(style, {})} className="">
+				<Box sx={Object.assign(style, {})}>
 					<form onSubmit={formik.handleSubmit} className="p-3">
 						<Grid item xs={12} mb={2}>
 							<i
