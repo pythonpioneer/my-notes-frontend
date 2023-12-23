@@ -233,6 +233,11 @@ export default function Signup() {
 								{isLoading ? <LoggingUser /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }}>Already have an account</Link>}
 							</Grid>
 
+							{/* forgot password */}
+							<Grid item xs={12} mt={2} className="d-flex justify-content-center">
+								<Link className='account' style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }} to="/forgot-password">Forgot Password</Link>
+							</Grid>
+
 						</Grid>
 					</form>
 				</Box >
