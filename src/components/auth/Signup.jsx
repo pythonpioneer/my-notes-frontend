@@ -5,7 +5,8 @@ import { useFormik } from "formik";
 import { registrationSchema } from './schema/';
 import { InfoIcon } from "../icons/InfoIcon";
 import { signUpUser } from "../../services/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LoggingUser from "../loader/spinner/LoggingUser";
 
 
 // styling for modal structure
@@ -17,10 +18,12 @@ const style = {
 
 
 export default function Signup() {
+
 	// state variables
-	const [openEditor, ] = useState(true); // for modal
+	const [openEditor,] = useState(true); // for modal
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { isLoading } = useSelector(state => state.user);
 
 	// using formik for form validation
 	const { errors, touched, handleBlur, ...formik } = useFormik({
@@ -48,16 +51,15 @@ export default function Signup() {
 				className="d-flex justify-content-center"
 				open={openEditor}
 				sx={{
-					// width: "25%",
 					margin: "auto",
 					marginTop: "100px",
 					paddingBottom: '50px',
-					"@media (min-width:0px)": { width: "90%" },
-					"@media (min-width:691px)": { width: "35%" },
-					"@media (min-width:1091px)": { width: "25%" },
+					"@media (min-width:0px)": { width: "90%", height: "600px", marginTop: "12%" },
+                    "@media (min-width:691px)": { width: "55%", height: "600px", marginTop: "15%" },
+                    "@media (min-width:1091px)": { width: "30%", marginTop: "5%" },
 				}}
 			>
-				<Box sx={Object.assign(style, {})} className="">
+				<Box sx={Object.assign(style, {})}>
 					<form onSubmit={formik.handleSubmit} className="p-3">
 						<Grid item xs={12} mb={2}>
 							<i
@@ -121,128 +123,123 @@ export default function Signup() {
 
 								{/* email */}
 								<Grid style={{ position: "relative", display: "inline-block", width: "100%" }}>
-								<input
-									onChange={formik.handleChange}
-									onBlur={handleBlur}
-									defaultValue={formik.values.email}
-									id="email"
-									className="email-field"
-									style={{
-										...{ fontFamily: "Georgia" },
-										border: "2px solid #45017A",
-										borderRadius: "5px",
-										padding: "0.7em 1em",
-										width: "100%",
-										boxShadow: "2px 2px #45017A",
-										margin: "10px 0",
-									}}
-									placeholder="Email"
-								/>
-								{errors.email && touched.email &&
-									<InfoIcon fontSize="1.2em">
-									</InfoIcon>
-								}
+									<input
+										onChange={formik.handleChange}
+										onBlur={handleBlur}
+										defaultValue={formik.values.email}
+										id="email"
+										className="email-field"
+										style={{
+											...{ fontFamily: "Georgia" },
+											border: "2px solid #45017A",
+											borderRadius: "5px",
+											padding: "0.7em 1em",
+											width: "100%",
+											boxShadow: "2px 2px #45017A",
+											margin: "10px 0",
+										}}
+										placeholder="Email"
+									/>
+									{errors.email && touched.email &&
+										<InfoIcon fontSize="1.2em">
+										</InfoIcon>
+									}
+								</Grid>
+
+								{/* password */}
+								<Grid style={{ position: "relative", display: "inline-block", width: "100%" }}>
+									<input
+										onChange={formik.handleChange}
+										onBlur={handleBlur}
+										defaultValue={formik.values.password}
+										id="password"
+										className="password-field"
+										type="password"
+										style={{
+											...{ fontFamily: "Georgia" },
+											border: "2px solid #45017A",
+											borderRadius: "5px",
+											padding: "0.7em 1em",
+											width: "100%",
+											boxShadow: "2px 2px #45017A",
+											margin: "10px 0",
+										}}
+										placeholder="Password"
+									/>
+									{errors.password && touched.password &&
+										<InfoIcon fontSize="1.2em">
+										</InfoIcon>
+									}
+								</Grid>
+
+								{/* confirm password */}
+								<Grid style={{ position: "relative", display: "inline-block", width: "100%" }}>
+									<input
+										onChange={formik.handleChange}
+										onBlur={handleBlur}
+										defaultValue={formik.values.confirmPassword}
+										id="confirmPassword"
+										className="password-field"
+										type="password"
+										style={{
+											...{ fontFamily: "Georgia" },
+											border: "2px solid #45017A",
+											borderRadius: "5px",
+											padding: "0.7em 1em",
+											width: "100%",
+											boxShadow: "2px 2px #45017A",
+											margin: "10px 0",
+										}}
+										placeholder="Confirm Password"
+									/>
+									{errors.confirmPassword && touched.confirmPassword &&
+										<InfoIcon fontSize="1.2em">
+										</InfoIcon>
+									}
+								</Grid>
 							</Grid>
 
-							{/* password */}
-							<Grid style={{ position: "relative", display: "inline-block", width: "100%" }}>
-							<input
-								onChange={formik.handleChange}
-								onBlur={handleBlur}
-								defaultValue={formik.values.password}
-								id="password"
-								className="password-field"
-								type="password"
-								style={{
-									...{ fontFamily: "Georgia" },
-									border: "2px solid #45017A",
-									borderRadius: "5px",
-									padding: "0.7em 1em",
-									width: "100%",
-									boxShadow: "2px 2px #45017A",
-									margin: "10px 0",
-								}}
-								placeholder="Password"
-							/>
-							{errors.password && touched.password &&
-								<InfoIcon fontSize="1.2em">
-								</InfoIcon>
-							}
+							{/* button */}
+							<Grid
+								item
+								xs={12}
+								mt={2}
+								className="d-flex justify-content-center"
+							>
+								<button
+									id="button-field"
+									type="submit"
+									style={{
+										backgroundColor: "#FCD71D",
+										padding: "12px 32px",
+										border: "none",
+										borderRadius: "5px",
+										color: "#45017A",
+										fontWeight: "500",
+										boxShadow: "2px 2px #45017A",
+									}}
+								>
+									Register
+								</button>
+							</Grid>
+
+							{/* login here */}
+							<Grid
+								item
+								xs={12}
+								mt={2}
+								className="d-flex justify-content-center"
+							>
+								{isLoading ? <LoggingUser /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }}>Already have an account</Link>}
+							</Grid>
+
+							{/* forgot password */}
+							<Grid item xs={12} mt={2} className="d-flex justify-content-center">
+								<Link className='account' style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }} to="/forgot-password">Forgot Password</Link>
+							</Grid>
+
 						</Grid>
-
-						{/* confirm password */}
-						<Grid style={{ position: "relative", display: "inline-block", width: "100%" }}>
-						<input
-							onChange={formik.handleChange}
-							onBlur={handleBlur}
-							defaultValue={formik.values.confirmPassword}
-							id="confirmPassword"
-							className="password-field"
-							type="password"
-							style={{
-								...{ fontFamily: "Georgia" },
-								border: "2px solid #45017A",
-								borderRadius: "5px",
-								padding: "0.7em 1em",
-								width: "100%",
-								boxShadow: "2px 2px #45017A",
-								margin: "10px 0",
-							}}
-							placeholder="Confirm Password"
-						/>
-						{errors.confirmPassword && touched.confirmPassword &&
-							<InfoIcon fontSize="1.2em">
-							</InfoIcon>
-						}
-					</Grid>
-				</Grid>
-
-				{/* button */}
-				<Grid
-					item
-					xs={12}
-					mt={2}
-					className="d-flex justify-content-center"
-				>
-					<button
-						id="button-field"
-						type="submit"
-						style={{
-							backgroundColor: "#FCD71D",
-							padding: "12px 32px",
-							border: "none",
-							borderRadius: "5px",
-							color: "#45017A",
-							fontWeight: "500",
-							boxShadow: "2px 2px #45017A",
-						}}
-					>
-						Register
-					</button>
-				</Grid>
-
-				{/* login here */}
-				<Grid
-					item
-					xs={12}
-					mt={2}
-					className="d-flex justify-content-center"
-				>
-					<Link
-						className="account"
-						to="/login"
-						style={{
-							color: "#A735FF",
-							cursor: "pointer",
-							margin: "auto",
-						}}
-					>
-						Already have an account
-					</Link>
-				</Grid>
-
-			</Grid>
-		</form>
+					</form>
 				</Box >
 			</Modal >
 		</>

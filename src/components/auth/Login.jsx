@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from './schema';
 import { InfoIcon } from '../icons/InfoIcon';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signInUser } from '../../services/user';
+import LoggingUser from "../loader/spinner/LoggingUser";
 
 
 // styling for modal structure
@@ -22,6 +23,7 @@ export default function Login(props) {
     const [openEditor, ] = useState(true); // for modal
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { isLoading } = useSelector(state => state.user);
 
     // fields to be validated
     const initialValues = {
@@ -190,13 +192,7 @@ export default function Login(props) {
                                     </button>
                                 </Grid>
                                 <Grid item mt={2}>
-                                    <Link
-                                        className=""
-                                        to="/signup"
-                                        style={{ color: "#A735FF", cursor: "pointer" }}
-                                    >
-                                        Register Here
-                                    </Link>
+                                    {isLoading ? <LoggingUser /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }}>Register Here</Link>}
                                 </Grid>
                                 {/* onClick={handleClose} */}
                             </Grid>

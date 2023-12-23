@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { completeNote, undoCompletedNote } from '../../services/notes';
+import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
@@ -41,7 +42,7 @@ export default function NoteItem(props) {
                     <Grid item lg={12} className="">
                         <p className="card-text" style={{ fontSize: '0.8em', color: '#A9A9A9' }}>{props.desc}</p>
 
-                        <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>{props.datetime}</p>
+                        <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>{getCurrentDate(props.datetime)}</p>
                         {props.tag && <div className="text-center d-inline-block mx-5" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{props.tag}</div>}
                     </Grid>
                 
