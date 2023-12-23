@@ -20,6 +20,11 @@ i.spin:hover {
   animation: spin 1.5s infinite linear;
 }
 
+/* to roatate always */
+i.spin-force { 
+  animation: spin 1.5s infinite linear;
+}
+
 @keyframes spin {
   0%{transform: translate(0px, 0px) rotate(0deg);}
   100%{transform: translate(0px, 0px) rotate(-360deg);}

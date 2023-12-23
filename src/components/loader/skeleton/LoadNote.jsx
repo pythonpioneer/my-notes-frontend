@@ -17,13 +17,3 @@ export default function LoadNote() {
         </Grid>
     )
 }
-
-
-{/* <div className="mb-3 bg-light" style={{ marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
-            <Skeleton style={{ float: 'right', width: '22px', height: '22px', marginTop: '15px', marginRight: '15px', borderRadius: '50%', }} /> 
-            <Skeleton style={{ width: '80px', marginLeft: '20px', height: '14px' }} />  
-            <Skeleton style={{ width: '50px', marginLeft: '20px', height: '10px' }} /> 
-
-            <Skeleton style={{ width: '10px', marginLeft: '20px', height: '12px', marginTop: '12px' }} />  
-            <Skeleton style={{ borderRadius: '10px', float: 'right', width: '55px', height: '24px', marginBottom: '123px', marginRight: '70px' }} />  
-        </div> */}
