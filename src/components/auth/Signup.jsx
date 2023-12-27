@@ -114,7 +114,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Name"
+										placeholder={`${errors.name && touched.name ? 'Enter Your Name' : 'Name'}`}
 									/>
 									{errors.name && touched.name &&
 										<InfoIcon fontSize="1.2em">
@@ -140,7 +140,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Email"
+										placeholder={`${errors.email && touched.email ? 'Missing Email' : 'Email'}`}
 									/>
 									{errors.email && touched.email &&
 										<InfoIcon fontSize="1.2em">
@@ -168,7 +168,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Password"
+										placeholder={`${errors.password && touched.password ? 'Enter Your Password' : 'Password'}`}
 									/>
 									{errors.password && touched.password &&
 										<InfoIcon fontSize="1.2em">
@@ -196,7 +196,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Confirm Password"
+										placeholder={`${errors.confirmPassword && touched.confirmPassword ? 'Re-enter Your Password' : 'Confirm Password'}`}
 									/>
 									{errors.confirmPassword && touched.confirmPassword &&
 										<InfoIcon fontSize="1.2em">

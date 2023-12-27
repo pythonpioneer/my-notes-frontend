@@ -106,6 +106,7 @@ export default function Login(props) {
                                         name="email"
                                         type="email"
                                         autoComplete="email"
+                                        className={errors.email && touched.email && 'error-placeholder'}
                                         style={{
                                             ...{
                                                 fontFamily: "Georgia",
@@ -116,7 +117,7 @@ export default function Login(props) {
                                             width: '100%',
                                             boxShadow: "2px 2px #FCD71D",
                                         }}
-                                        placeholder="Enter mail"
+                                        placeholder={`${errors.email && touched.email ? 'Enter Your Email' : 'Email'}`}
                                         onChange={formik.handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={formik.values.email}
@@ -142,7 +143,8 @@ export default function Login(props) {
                                     <input
                                         id="password"
                                         name="password"
-                                        autoComplete="password"
+                                        autoComplete="new-password"
+                                        className={errors.password && touched.password && 'error-placeholder'}
                                         type="password"
                                         style={{
                                             ...{ fontFamily: "Georgia" },
@@ -152,7 +154,7 @@ export default function Login(props) {
                                             width: '100%',
                                             boxShadow: "2px 2px #FCD71D",
                                         }}
-                                        placeholder="Enter password"
+                                        placeholder={`${errors.password && touched.password ? 'Enter Your Password' : 'Password'}`}
                                         onChange={formik.handleChange}
                                         onBlur={handleBlur}
                                         defaultValue={formik.values.password}
