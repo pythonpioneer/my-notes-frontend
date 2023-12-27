@@ -36,7 +36,7 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async (noteType) => {
         .catch(err => {  // if we encounter any errors
             toast.error(err?.response?.data?.message || "Failed!!");
             throw err;
-        })
+        });
 });
 
 // creating an action to add notes
@@ -192,6 +192,37 @@ export const deleteNote = createAsyncThunk('deleteNote', async (noteId) => {
         })
         .catch(err => {
             toast.error(err?.response?.data?.message || 'Failed!!');
+            throw err;
+        });
+});
+
+// to fetch more notes as pagination
+export const fetchMoreNotes = createAsyncThunk('fetchMoreNotes', async ({noteType, page}) => {
+
+    // fetch the auth token from local storage
+    const token = localStorage.getItem('auth-token');
+
+    if (!token) {  // throw errors, if there is no token
+        throw new Error("Missing Token");
+    }
+
+    // now, make the api call based on note-type
+    let url = '';
+    if (noteType === 'pending' || !noteType) url = `${URL}${APIPATH}notes/get-notes?page=${page}`;
+    else if (noteType === 'completed') url = `${URL}${APIPATH}notes/get-notes?completed=true&page=${page}`;
+
+    // now, call the api to fetch all notes
+    return axios.get(url, {
+        headers: {
+            "auth-token": token
+        }
+    })
+        .then(response => {  // after successfull api call, return the data
+            return response.data;
+        })
+        .catch(err => {  // if we encounter any errors
+            toast.error(err?.response?.data?.message || "Failed!!");
+
             throw err;
         });
 });
