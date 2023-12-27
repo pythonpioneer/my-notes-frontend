@@ -142,6 +142,7 @@ export default function Login(props) {
                                     <input
                                         id="password"
                                         name="password"
+                                        autoComplete="password"
                                         type="password"
                                         style={{
                                             ...{ fontFamily: "Georgia" },

@@ -78,3 +78,8 @@ textarea:focus, input:focus, input, textarea{
   border-radius: 20px;
   cursor: none;
 }
+
+/* Use the class for styling and placeholder color */
+.error-placeholder::placeholder {
+  color: red; /* Replace with your desired color */
+}
