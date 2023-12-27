@@ -83,3 +83,24 @@ textarea:focus, input:focus, input, textarea{
 .error-placeholder::placeholder {
   color: red; /* Replace with your desired color */
 }
+
+/* Define a keyframe animation for a wave-like shaking effect */
+@keyframes shake-wave {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(10deg);
+  }
+  75% {
+    transform: translateX(-5px) rotate(-10deg);
+  }
+}
+
+/* Apply the animation to the icon */
+.shake-me {
+  animation: shake-wave 0.2s ease-in-out infinite; /* Adjust the duration and easing as needed */
+}
