@@ -103,7 +103,8 @@ export default function Signup() {
 										onBlur={handleBlur}
 										defaultValue={formik.values.name}
 										id="name"
-										className="name-field"
+										autoComplete="name"
+										className={(errors.name && touched.name) ? "name-field error-placeholder" : "name-field"}
 										style={{
 											...{ fontFamily: "Georgia" },
 											border: "2px solid #45017A",
@@ -113,7 +114,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Name"
+										placeholder={`${errors.name && touched.name ? 'Enter Your Name' : 'Name'}`}
 									/>
 									{errors.name && touched.name &&
 										<InfoIcon fontSize="1.2em">
@@ -128,7 +129,8 @@ export default function Signup() {
 										onBlur={handleBlur}
 										defaultValue={formik.values.email}
 										id="email"
-										className="email-field"
+										autoComplete="email"
+										className={(errors.email && touched.email) ? "email-field error-placeholder" : "email-field"}
 										style={{
 											...{ fontFamily: "Georgia" },
 											border: "2px solid #45017A",
@@ -138,7 +140,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Email"
+										placeholder={`${errors.email && touched.email ? 'Missing Email' : 'Email'}`}
 									/>
 									{errors.email && touched.email &&
 										<InfoIcon fontSize="1.2em">
@@ -153,7 +155,9 @@ export default function Signup() {
 										onBlur={handleBlur}
 										defaultValue={formik.values.password}
 										id="password"
-										className="password-field"
+										name="password"
+										autoComplete="new-password"
+										className={`password-field ${errors.password && touched.password ? 'error-placeholder' : ''}`}
 										type="password"
 										style={{
 											...{ fontFamily: "Georgia" },
@@ -164,7 +168,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Password"
+										placeholder={`${errors.password && touched.password ? 'Enter Your Password' : 'Password'}`}
 									/>
 									{errors.password && touched.password &&
 										<InfoIcon fontSize="1.2em">
@@ -179,7 +183,9 @@ export default function Signup() {
 										onBlur={handleBlur}
 										defaultValue={formik.values.confirmPassword}
 										id="confirmPassword"
-										className="password-field"
+										name='confirmPassword'
+										autoComplete="new-password"
+										className={`password-field ${errors.confirmPassword && touched.confirmPassword ? 'error-placeholder' : ''}`}
 										type="password"
 										style={{
 											...{ fontFamily: "Georgia" },
@@ -190,7 +196,7 @@ export default function Signup() {
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
 										}}
-										placeholder="Confirm Password"
+										placeholder={`${errors.confirmPassword && touched.confirmPassword ? 'Re-enter Your Password' : 'Confirm Password'}`}
 									/>
 									{errors.confirmPassword && touched.confirmPassword &&
 										<InfoIcon fontSize="1.2em">
@@ -233,9 +239,9 @@ export default function Signup() {
 								{isLoading ? <LoggingUser /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }}>Already have an account</Link>}
 							</Grid>
 
-							{/* forgot password */}
+							{/* to contribute */}
 							<Grid item xs={12} mt={2} className="d-flex justify-content-center">
-								<Link className='account' style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }} to="/forgot-password">Forgot Password</Link>
+								<a className='account' style={{ color: "#262626", cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
 							</Grid>
 
 						</Grid>

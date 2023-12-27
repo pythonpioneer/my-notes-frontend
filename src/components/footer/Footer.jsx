@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateNoteType } from '../../features/notes/noteSlice';
+import { setCurrPage, updateNoteType } from '../../features/notes/noteSlice';
 
 
 export default function Footer() {
@@ -12,6 +12,7 @@ export default function Footer() {
     // to update the note type as pending or completed
     const handleUpdateNote = (type) => {
         dispatch(updateNoteType(type));
+        dispatch(setCurrPage(2));
     };
 
     return (
