@@ -244,8 +244,8 @@ export default function Signup() {
 
 							{/* to contribute */}
 							<Grid item xs={12} mt={2} className="d-flex justify-content-center">
-								{!errors.confirmPassword 
-									? <a className='account' style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
+								{!(errors.confirmPassword || errors.password || errors.email || errors.name)
+									? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
 									: <div style={{ color: 'red' }}>Missing Fields!</div>
 								}
 							</Grid>

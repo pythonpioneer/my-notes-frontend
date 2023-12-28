@@ -20,7 +20,7 @@ const style = {
 export default function Login(props) {
 
     // state variables
-    const [openEditor, ] = useState(true); // for modal
+    const [openEditor,] = useState(true); // for modal
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, themeStatus } = useSelector(state => state.user);
@@ -38,8 +38,8 @@ export default function Login(props) {
 
         onSubmit: async (values) => {  // form submission
             dispatch(signInUser({
-                email: values.email, 
-                password: values.password 
+                email: values.email,
+                password: values.password
             }))
                 .then(status => {  // after executing the signin action
 
@@ -199,7 +199,14 @@ export default function Login(props) {
                                 <Grid item mt={2}>
                                     {isLoading ? <LoggingUser /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }}>Register Here</Link>}
                                 </Grid>
-                                {/* onClick={handleClose} */}
+
+                                {/* to contribute */}
+                                <Grid item xs={12} mt={2} className="d-flex justify-content-center">
+                                    {!(errors.password || errors.email)
+                                        ? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
+                                        : <div style={{ color: 'red' }}>Missing Fields!</div>
+                                    }
+                                </Grid>
                             </Grid>
 
                             {/* <Link className='account' to="/forgot-password">Forgot Password</Link> */}
