@@ -23,7 +23,7 @@ export default function Signup() {
 	const [openEditor,] = useState(true); // for modal
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { isLoading } = useSelector(state => state.user);
+	const { isLoading, themeStatus } = useSelector(state => state.user);
 
 	// using formik for form validation
 	const { errors, touched, handleBlur, ...formik } = useFormik({
@@ -54,16 +54,16 @@ export default function Signup() {
 					margin: "auto",
 					marginTop: "100px",
 					paddingBottom: '50px',
-					"@media (min-width:0px)": { width: "90%", height: "600px", marginTop: "12%" },
+					"@media (min-width:0px)": { width: "90%", height: "600px", marginTop: "16%" },
                     "@media (min-width:691px)": { width: "55%", height: "600px", marginTop: "15%" },
                     "@media (min-width:1091px)": { width: "30%", marginTop: "5%" },
 				}}
 			>
-				<Box sx={Object.assign(style, {})}>
+				<Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })}>
 					<form onSubmit={formik.handleSubmit} className="p-3">
 						<Grid item xs={12} mb={2}>
 							<i
-								style={{ float: "right", color: "#3F3D56" }}
+								style={{ float: "right", color: (themeStatus === 'dark') ? '#888' : "#3F3D56" }}
 								className="fa-solid fa-circle-xmark fa-lg"
 								onClick={() => {
 									navigate("/");
@@ -82,8 +82,7 @@ export default function Signup() {
 										fontSize: "32px",
 										fontFamily: "Roboto",
 										fontWeight: "bold",
-										color: "#3F3D56",
-										// margin: 'auto'/
+										color: (themeStatus === 'dark') ? '#888' : "#3F3D56",
 									}}
 								>
 									Register Here
@@ -113,6 +112,7 @@ export default function Signup() {
 											width: "100%",
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
+											color: (themeStatus === 'dark' ? 'whitesmoke' : ''),
 										}}
 										placeholder={`${errors.name && touched.name ? 'Enter Your Name' : 'Name'}`}
 									/>
@@ -139,6 +139,7 @@ export default function Signup() {
 											width: "100%",
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
+											color: (themeStatus === 'dark' ? 'whitesmoke' : ''),
 										}}
 										placeholder={`${errors.email && touched.email ? 'Missing Email' : 'Email'}`}
 									/>
@@ -167,6 +168,7 @@ export default function Signup() {
 											width: "100%",
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
+											color: (themeStatus === 'dark' ? 'whitesmoke' : ''),
 										}}
 										placeholder={`${errors.password && touched.password ? 'Enter Your Password' : 'Password'}`}
 									/>
@@ -195,6 +197,7 @@ export default function Signup() {
 											width: "100%",
 											boxShadow: "2px 2px #45017A",
 											margin: "10px 0",
+											color: (themeStatus === 'dark' ? 'whitesmoke' : ''),
 										}}
 										placeholder={`${errors.confirmPassword && touched.confirmPassword ? 'Re-enter Your Password' : 'Confirm Password'}`}
 									/>
@@ -241,7 +244,7 @@ export default function Signup() {
 
 							{/* to contribute */}
 							<Grid item xs={12} mt={2} className="d-flex justify-content-center">
-								<a className='account' style={{ color: "#262626", cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
+								<a className='account' style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
 							</Grid>
 
 						</Grid>
