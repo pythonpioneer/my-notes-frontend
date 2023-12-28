@@ -31,6 +31,10 @@ const userSlice = createSlice({
         toggleThemeStatus: (state, action) => {  // to change the theme of the app, record this in local storage for browsers.
             state.themeStatus = action.payload;
             localStorage.setItem('note-app-theme', action.payload);
+
+            // change the body color as per themes
+            if (action.payload === 'dark') document.body.style.backgroundColor = '#262626';
+            else document.body.style.backgroundColor = 'white';
         }
     },
     extraReducers: (builder) => {
