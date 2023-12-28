@@ -125,7 +125,12 @@ textarea:focus, input:focus, input, textarea{
   color: black;
   background-color: white;
 }
-
 .placeholder-color {
   color: #888;
+}
+
+/* to change the toast color */
+.toast-color {
+  background-color: #232323;
+  color: whitesmoke;
 }
