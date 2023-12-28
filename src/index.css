@@ -134,3 +134,10 @@ textarea:focus, input:focus, input, textarea{
   background-color: #232323;
   color: whitesmoke;
 }
+
+/* to handle long notes/texts */
+.beautify-notes {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
