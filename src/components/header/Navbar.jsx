@@ -21,13 +21,12 @@ export default function Navbar() {
         else {  // change theme to dark
             dispatch(toggleThemeStatus('dark'));
         }
-        console.log('theme', themeStatus)
     };
 
     return (
         <>
-            <nav className="navbar navbar-light">
-                <span className="navbar-brand mt-3" style={{ fontSize: "2em", fontFamily: "Georgia", fontWeight: 'bold', marginLeft: '1%'  }}>Notes</span>
+            <nav className={`navbar navbar-light note-${themeStatus}`}>
+                <span className={`note-${themeStatus} navbar mt-3`} style={{ fontSize: "2em", fontFamily: "Georgia", fontWeight: 'bold' }}>Notes</span>
                 <ToggleIcon onClick={handleToggleTheme} theme={themeStatus} />
             </nav>
         </>

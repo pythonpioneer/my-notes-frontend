@@ -104,3 +104,13 @@ textarea:focus, input:focus, input, textarea{
 .shake-me {
   animation: shake-wave 0.2s ease-in-out infinite; /* Adjust the duration and easing as needed */
 }
+
+/* theme for the app */
+.note-dark {
+  background-color: #262626;
+  color: whitesmoke;
+}
+.note-light {
+  background-color: white;
+}
+
