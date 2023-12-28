@@ -1,5 +1,6 @@
 // importing all requirements
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { completeNote, createNote, deleteNote, fetchNotes, undoCompletedNote, updateNote, fetchMoreNotes } from '../../services/notes';
 
 
@@ -11,6 +12,7 @@ const initialState = {
     totalNotes: 0,
     noteType: 'pending',
     currPage: 2,
+    sortOrder: 'descending',  // descending or ascending order
 };
 
 // now, create the note slice
@@ -29,6 +31,31 @@ const noteSlice = createSlice({
         },
         setCurrPage: (state, action) => {  // to maintain the page for pagination
             state.currPage = action.payload;
+        },
+        toggleSortOrder: (state, action) => {  // here, we will toggle the sort order as user clicks
+            if (state.sortOrder === 'descending') state.sortOrder = 'ascending';
+            else state.sortOrder = 'descending';
+        },
+        sortNotes: (state, action) => {  // sort the notes based on note sorting order
+
+            toast.info('Sorting...');
+
+            // to sort the notes
+            const descOrder = (firstNote, secondNote) => new Date(secondNote.updatedAt) - new Date(firstNote.updatedAt);
+            const ascOrder = (firstNote, secondNote) => new Date(firstNote.updatedAt) - new Date(secondNote.updatedAt);
+
+            // sort the icon as per descending and ascending orders
+            if (state.sortOrder === 'descending') {
+                state.notes = state.notes.sort(descOrder);
+                toast.success('Notes Sorted!!, Newest on Top.');
+            }
+            else {
+                state.notes = state.notes.sort(ascOrder);
+                toast.success('Notes Sorted!!, Oldest on Top.');
+            }
+        },
+        resetSortOrder: (state) => {
+            state.sortOrder = 'descending';
         }
     },
     extraReducers: (builder) => {
@@ -148,5 +175,5 @@ const noteSlice = createSlice({
 });
 
 // now, export all the reducers and actions
-export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage } = noteSlice.actions;
+export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder } = noteSlice.actions;
 export default noteSlice.reducer;
