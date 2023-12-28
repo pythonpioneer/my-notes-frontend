@@ -59,7 +59,7 @@ export default function Notebox() {
 					dataLength={notes?.length}
 					next={fetchMoreData}
 					hasMore={notes?.length < totalNotes}
-					loader={<LoadMore />}
+					loader={<LoadMore theme={themeStatus} />}
 				>
 					{!isLoading && notes.map((note, ) => {
 						return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />

@@ -15,7 +15,7 @@ import NoConnection from './components/icons/Connection';
 function App() {
 
 	const dispatch = useDispatch();  // to perform actions
-	const { isLoggedIn } = useSelector(state => state.user);
+	const { isLoggedIn, themeStatus } = useSelector(state => state.user);
 	const [isOnline, setIsOnline] = useState(navigator.onLine);
 
 	// to check that the user is logged in or not and change the global state of login status
@@ -51,7 +51,7 @@ function App() {
 	}, [dispatch]);
 
 	if (!isOnline) {
-		return <NoConnection />
+		return <NoConnection theme={themeStatus} />
 	}
 
 	return (
