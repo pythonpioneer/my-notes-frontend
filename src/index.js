@@ -11,6 +11,11 @@ import store from './store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// fetch theme from browser local storage
+const theme = localStorage.getItem('note-app-theme');
+
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -26,6 +31,7 @@ root.render(
           pauseOnFocusLoss={false}
           closeOnClick
           draggable
+          toastClassName={theme === 'dark' && 'toast-color'}
         />
       </Provider>
     </BrowserRouter>
