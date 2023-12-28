@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Addnote from '../body/Addnote';
 import AddIcon from '../icons/AddIcon';
-import FilterIcon from '../icons/FilterIcon';
+import SortIcon from '../icons/SortIcon';
 import LogInIcon from '../icons/LogInIcon';
 import LogOutIcon from '../icons/LogOutIcon';
 import SearchIcon from '../icons/SearchIcon';
 import { logoutUser } from '../../features/user/userSlice';
-import { removeNotes } from '../../features/notes/noteSlice';
+import { removeNotes, sortNotes, toggleSortOrder } from '../../features/notes/noteSlice';
 
 
 export default function Searchbar() {
@@ -32,10 +32,16 @@ export default function Searchbar() {
         dispatch(removeNotes());
     }
 
+    // to sort notes by time
+    const handleSortNotes = () => {
+        dispatch(toggleSortOrder());
+        dispatch(sortNotes());
+    };
+
     return (
         <>
             <nav className={`navbar note-${themeStatus} mt-1 mb-3 sticky-top`} style={{ marginLeft: '1%', marginRight: '1%', height: '70px' }}>
-                <FilterIcon />
+                <SortIcon onClick={handleSortNotes} />
 
                 <div>
                     {/* only visible when clicked on search icon */}
