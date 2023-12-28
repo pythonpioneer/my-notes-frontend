@@ -26,7 +26,7 @@ export default function Navbar() {
     return (
         <>
             <nav className={`navbar navbar-light note-${themeStatus}`}>
-                <span className={`note-${themeStatus} navbar mt-3`} style={{ fontSize: "2em", fontFamily: "Georgia", fontWeight: 'bold' }}>Notes</span>
+                <span className={`note-${themeStatus} mt-3`} style={{ fontSize: "2em", fontFamily: "Georgia", fontWeight: 'bold', marginLeft: '1%' }}>Notes</span>
                 <ToggleIcon onClick={handleToggleTheme} theme={themeStatus} />
             </nav>
         </>
