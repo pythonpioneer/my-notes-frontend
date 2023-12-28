@@ -7,7 +7,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { loginUser } from './features/user/userSlice';
+import { loginUser, toggleThemeStatus } from './features/user/userSlice';
 import Footer from './components/footer/Footer';
 import NoConnection from './components/icons/Connection';
 
@@ -15,12 +15,23 @@ import NoConnection from './components/icons/Connection';
 function App() {
 
 	const dispatch = useDispatch();  // to perform actions
-	const { isLoggedIn } = useSelector(state => state.user);
+	const { isLoggedIn, themeStatus } = useSelector(state => state.user);
 	const [isOnline, setIsOnline] = useState(navigator.onLine);
 
 	// to check that the user is logged in or not and change the global state of login status
 	useEffect(() => {
-		dispatch(loginUser());
+		dispatch(loginUser());  // login status of the user
+
+		// theme for the user
+		const theme = localStorage.getItem('note-app-theme');
+
+		// check that the user have any theme for the app
+		if (theme && (theme === 'dark' || theme === 'light')) {
+			dispatch(toggleThemeStatus(theme));
+		}
+		else {  // if there is no theme for the browser
+			dispatch(toggleThemeStatus('light'));
+		}
 
 		// Event listener to update online status
 		const handleOnlineStatusChange = () => {
@@ -40,7 +51,7 @@ function App() {
 	}, [dispatch]);
 
 	if (!isOnline) {
-		return <NoConnection />
+		return <NoConnection theme={themeStatus} />
 	}
 
 	return (

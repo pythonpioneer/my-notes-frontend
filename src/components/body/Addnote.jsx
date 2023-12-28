@@ -31,7 +31,7 @@ export default function Addnote(props) {
     const getDesc = useRef(null);
 
     // to access the user login status
-    const { isLoggedIn } = useSelector(state => state.user);
+    const { isLoggedIn, themeStatus } = useSelector(state => state.user);
     const { noteType } = useSelector(state => state.notes)
     const dispatch = useDispatch();
 
@@ -67,28 +67,28 @@ export default function Addnote(props) {
                 open={props.openEditor}
                 onClose={handleClose}
             >
-                <Box sx={Object.assign(style, {})}>
-                    <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} />
-                    {isLoggedIn && noteType === 'pending' && <NextIcon style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />}
+                <Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })}>
+                    <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} theme={themeStatus} onClick={handleClose} />
+                    {isLoggedIn && noteType === 'pending' && <NextIcon theme={themeStatus} style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />}
 
                     <Grid container style={{ marginTop: '20px' }}>
 
                         {/* title */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{ height: '200%' }}>
-                            <textarea ref={getTitle} id="title-field" style={{ width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', marginLeft: '10px', marginRight: '2%', border: 'none', ...{ fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold' } }} placeholder="Title"></textarea>
+                            <textarea ref={getTitle} id="title-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', marginLeft: '10px', marginRight: '2%', border: 'none', ...{ fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold' } }} placeholder="Title"></textarea>
                         </Grid>
 
                         {/* date */}
-                        <span style={{ marginLeft: '13px', marginRight: '2%', ...{ fontSize: "0.8em", fontFamily: "Georgia" } }}>{getCurrentDate(Date.now())}</span>
+                        <span className='placeholder-color' style={{ marginLeft: '13px', marginRight: '2%', ...{ fontSize: "0.8em", fontFamily: "Georgia" } }}>{getCurrentDate(Date.now())}</span>
 
                         {/* tag */}
                         <Grid item lg={12} md={12} sm={12} xs={12} style={{ height: '200%' }}>
-                            <input ref={getTag} id="tag-field" style={{ height: '2em', ...{ marginLeft: '10px' }, borderBottom: '1px solid gray', ...{ fontSize: "1.1em", fontFamily: "Georgia", fontStyle: 'italic', fontWeight: '600' } }} placeholder="Category" />
+                            <input ref={getTag} id="tag-field" className={`form-${themeStatus}`} style={{ height: '2em', ...{ marginLeft: '10px' }, borderBottom: '1px solid gray', ...{ fontSize: "1.1em", fontFamily: "Georgia", fontStyle: 'italic', fontWeight: '600' } }} placeholder="Category" />
                         </Grid>
 
                         {/* desc */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' id="textarea-desc">
-                            <textarea ref={getDesc} id="desc-field" style={{ width: '100%', height: '400px', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '10px', marginRight: '2%', ...{ fontSize: "1.1em", fontFamily: "Georgia" } }} placeholder="Desc"></textarea>
+                            <textarea ref={getDesc} id="desc-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '400px', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '10px', marginRight: '2%', ...{ fontSize: "1.1em", fontFamily: "Georgia" } }} placeholder="Desc"></textarea>
                         </Grid>
                     </Grid>
                 </Box>

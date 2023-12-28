@@ -12,8 +12,9 @@ export default function NoteItem(props) {
 
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
-    const dispatch = useDispatch();
     const { noteType } = useSelector(state => state.notes);
+    const { themeStatus } = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
     // to open the modal
     const displayEditor = () => {
@@ -32,7 +33,7 @@ export default function NoteItem(props) {
 
     return (
         <>
-            <Grid className="mb-3 bg-light" style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
+            <Grid className={`mb-3 ${themeStatus === 'dark' ? 'dark-note' : 'bg-light'}`} style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
                 { props.tag && noteType === 'pending' && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
                 { props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}
 

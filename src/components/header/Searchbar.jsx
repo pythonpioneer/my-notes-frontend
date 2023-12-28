@@ -19,7 +19,7 @@ export default function Searchbar() {
     const navigate = useNavigate();
 
     // access the user login status
-    const { isLoggedIn } = useSelector(state => state.user)
+    const { isLoggedIn, themeStatus } = useSelector(state => state.user)
 
     // to open the modal
     const displayEditor = () => {
@@ -34,7 +34,7 @@ export default function Searchbar() {
 
     return (
         <>
-            <nav className="navbar navbar-light mt-1 mb-3 sticky-top" style={{ marginLeft: '1%', marginRight: '1%', backgroundColor: 'white', height: '70px' }}>
+            <nav className={`navbar note-${themeStatus} mt-1 mb-3 sticky-top`} style={{ marginLeft: '1%', marginRight: '1%', height: '70px' }}>
                 <FilterIcon />
 
                 <div>

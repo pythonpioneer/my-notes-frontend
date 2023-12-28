@@ -20,10 +20,10 @@ const style = {
 export default function Login(props) {
 
     // state variables
-    const [openEditor, ] = useState(true); // for modal
+    const [openEditor,] = useState(true); // for modal
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isLoading } = useSelector(state => state.user);
+    const { isLoading, themeStatus } = useSelector(state => state.user);
 
     // fields to be validated
     const initialValues = {
@@ -38,8 +38,8 @@ export default function Login(props) {
 
         onSubmit: async (values) => {  // form submission
             dispatch(signInUser({
-                email: values.email, 
-                password: values.password 
+                email: values.email,
+                password: values.password
             }))
                 .then(status => {  // after executing the signin action
 
@@ -65,11 +65,11 @@ export default function Login(props) {
                 }}
                 open={openEditor}
             >
-                <Box sx={Object.assign(style, {})} className="box-register box-login">
+                <Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })} className="box-register box-login">
                     <form className="p-3" onSubmit={formik.handleSubmit}>
                         <Grid item xs={12} mb={2}>
                             <i
-                                style={{ float: "right", color: "#3F3D56" }}
+                                style={{ float: "right", color: (themeStatus === 'dark') ? '#888' : "#3F3D56" }}
                                 className="fa-solid fa-circle-xmark fa-lg"
                                 onClick={() => { navigate('/') }}
                             ></i>
@@ -86,7 +86,7 @@ export default function Login(props) {
                                         fontSize: "32px",
                                         fontFamily: "Roboto",
                                         fontWeight: "bold",
-                                        color: "#3F3D56",
+                                        color: (themeStatus === 'dark') ? '#888' : "#3F3D56",
                                     }}
                                 >
                                     Login To Notes
@@ -116,6 +116,7 @@ export default function Login(props) {
                                             padding: "0.7em 1em",
                                             width: '100%',
                                             boxShadow: "2px 2px #FCD71D",
+                                            color: (themeStatus === 'dark' ? 'whitesmoke' : ''),
                                         }}
                                         placeholder={`${errors.email && touched.email ? 'Enter Your Email' : 'Email'}`}
                                         onChange={formik.handleChange}
@@ -153,6 +154,7 @@ export default function Login(props) {
                                             padding: "0.7em 1em",
                                             width: '100%',
                                             boxShadow: "2px 2px #FCD71D",
+                                            color: (themeStatus === 'dark' ? 'whitesmoke' : ''),
                                         }}
                                         placeholder={`${errors.password && touched.password ? 'Enter Your Password' : 'Password'}`}
                                         onChange={formik.handleChange}
@@ -197,7 +199,14 @@ export default function Login(props) {
                                 <Grid item mt={2}>
                                     {isLoading ? <LoggingUser /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }}>Register Here</Link>}
                                 </Grid>
-                                {/* onClick={handleClose} */}
+
+                                {/* to contribute */}
+                                <Grid item xs={12} mt={2} className="d-flex justify-content-center">
+                                    {!(errors.password || errors.email)
+                                        ? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
+                                        : <div style={{ color: 'red' }}>Missing Fields!</div>
+                                    }
+                                </Grid>
                             </Grid>
 
                             {/* <Link className='account' to="/forgot-password">Forgot Password</Link> */}

@@ -9,6 +9,7 @@ const initialState = {
     isLoggedIn: false,  // login status of the user
     isLoading: false,  // loading status of user logging
     hasErrors: false,  // if we encounter any errors
+    themeStatus: '',  // we will set the theme after confirming that the browser don't have theme status saved
 };
 
 // now create the user slice
@@ -23,10 +24,18 @@ const userSlice = createSlice({
             
             if (localStorage?.getItem('auth-token')) {
                 toast.success("User Logged Out!!");  // notify the user
-                localStorage.clear('auth-token');
+                localStorage.clear('auth-token', 'note-app-theme');
                 state.isLoggedIn = false;
             }
         },
+        toggleThemeStatus: (state, action) => {  // to change the theme of the app, record this in local storage for browsers.
+            state.themeStatus = action.payload;
+            localStorage.setItem('note-app-theme', action.payload);
+
+            // change the body color as per themes
+            if (action.payload === 'dark') document.body.style.backgroundColor = '#262626';
+            else document.body.style.backgroundColor = 'white';
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -60,5 +69,5 @@ const userSlice = createSlice({
 });
 
 // now export the reducers and actions
-export const { loginUser, logoutUser } = userSlice.actions;
+export const { loginUser, logoutUser, toggleThemeStatus } = userSlice.actions;
 export default userSlice.reducer;

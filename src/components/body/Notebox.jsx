@@ -11,7 +11,7 @@ import { setCurrPage, setTotalNotes } from '../../features/notes/noteSlice';
 
 export default function Notebox() {
 
-	const { isLoggedIn } = useSelector(state => state.user);  // to store the login status
+	const { isLoggedIn, themeStatus } = useSelector(state => state.user);  // to store the login status
 	const { notes, noteType, isLoading, totalNotes, currPage } = useSelector(state => state.notes);
 	const dispatch = useDispatch();
 
@@ -37,8 +37,8 @@ export default function Notebox() {
 		<>
 			{/* if data is fetching from server */}
 			{isLoading && (notes?.length > 0
-				? Array(notes.length).fill(null).map((_, index) => <LoadNote key={index} />)
-				: Array(7).fill(null).map((_, index) => <LoadNote key={index} />)
+				? Array(notes.length).fill(null).map((_, index) => <LoadNote key={index} theme={themeStatus} />)
+				: Array(7).fill(null).map((_, index) => <LoadNote key={index} theme={themeStatus} />)
 			)}
 
 			{/* if user is not logged in  */}
@@ -59,7 +59,7 @@ export default function Notebox() {
 					dataLength={notes?.length}
 					next={fetchMoreData}
 					hasMore={notes?.length < totalNotes}
-					loader={<LoadMore />}
+					loader={<LoadMore theme={themeStatus} />}
 				>
 					{!isLoading && notes.map((note, ) => {
 						return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
