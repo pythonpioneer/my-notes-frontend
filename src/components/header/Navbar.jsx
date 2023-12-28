@@ -17,9 +17,15 @@ export default function Navbar() {
         // toggle the theme
         if (themeStatus === 'dark') {  // change theme to light
             dispatch(toggleThemeStatus('light'));
+
+            // now change the them of the app body
+            document.body.style.backgroundColor = 'white'
         }
         else {  // change theme to dark
             dispatch(toggleThemeStatus('dark'));
+
+            // now change the them of the app body
+            document.body.style.backgroundColor = '#262626'
         }
     };
 
