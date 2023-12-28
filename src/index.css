@@ -117,4 +117,15 @@ textarea:focus, input:focus, input, textarea{
   background-color: #343434;
   color: whitesmoke;
 }
+.form-dark {
+  color: whitesmoke;
+  background-color: #181818;
+}
+.form-light {
+  color: black;
+  background-color: white;
+}
 
+.placeholder-color {
+  color: #888;
+}

@@ -7,8 +7,6 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 // to display a loader like a note skeleton
 export default function LoadNote({ theme }) {
-
-    console.log(theme)
     return (
         <Grid className={`mb-3 ${theme === 'dark' ? 'dark-note' : 'bg-light'}`} style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
             <Skeleton width={22} height={22} style={{ float: 'right', marginRight: '15px', marginTop: '15px', borderRadius: '50%', backgroundColor: (theme === 'dark' ? '#262626' : '') }}/>
