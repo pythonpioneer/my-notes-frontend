@@ -113,4 +113,8 @@ textarea:focus, input:focus, input, textarea{
 .note-light {
   background-color: white;
 }
+.dark-note {
+  background-color: #343434;
+  color: whitesmoke;
+}
 
