@@ -12,20 +12,20 @@ import { setCurrPage, setTotalNotes } from '../../features/notes/noteSlice';
 export default function Notebox() {
 
 	const { isLoggedIn, themeStatus } = useSelector(state => state.user);  // to store the login status
-	const { notes, noteType, isLoading, totalNotes, currPage } = useSelector(state => state.notes);
+	const { notes, noteType, isLoading, totalNotes, currPage, searchText } = useSelector(state => state.notes);
 	const dispatch = useDispatch();
 
 	// to fetch all notes automatically
 	useEffect(() => {
-		dispatch(fetchNotes(noteType))  // fetching notes
+		dispatch(fetchNotes({ noteType, searchText }))  // fetching notes
 			.then(data => {
 				dispatch(setTotalNotes(data?.payload?.totalResults));  // here we set the total results
 			})
-	}, [dispatch, noteType]);
+	}, [dispatch, noteType, searchText]);
 
 	// to implement pagination and to call fetchMoreUsers
 	const fetchMoreData = () => {
-		dispatch(fetchMoreNotes({ noteType, page: currPage }))
+		dispatch(fetchMoreNotes({ noteType, page: currPage, searchText }))
 			.then(data => {
 
 				// only update the page if the currPage fetched the total number of allowed notes, which is 10 in this case.
@@ -47,11 +47,6 @@ export default function Notebox() {
 			{/* if user is logged in and don't have any notes after fetching notes from server */}
 			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem title={"Info"} desc={"Reload Your page to fetch more notes!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
 			{isLoggedIn && !isLoading && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'Congratulate!! No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
-
-			{/* if user is logged in and have notes */}
-			{/* {!isLoading && notes?.length > 0 && notes.map((note, index) => {
-				return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
-			})} */}
 
 			{/* paginate to fetch more notes */}
 			{notes?.length > 0 &&

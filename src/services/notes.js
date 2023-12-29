@@ -10,7 +10,7 @@ const URL = process.env.REACT_APP_URL;
 const APIPATH = PATH;  // '/api/v1/'
 
 // now, create an action to fetch all the notes
-export const fetchNotes = createAsyncThunk('fetchNotes', async (noteType) => {
+export const fetchNotes = createAsyncThunk('fetchNotes', async ({ noteType, searchText }) => {
 
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
@@ -21,8 +21,8 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async (noteType) => {
 
     // now, make the api call based on note-type
     let url = '';
-    if (noteType === 'pending' || !noteType) url = `${URL}${APIPATH}notes/get-notes`;
-    else if (noteType === 'completed') url = `${URL}${APIPATH}notes/get-notes?completed=true`;
+    if (noteType === 'pending' || !noteType) url = `${URL}${APIPATH}notes/get-notes?search=${searchText}`;
+    else if (noteType === 'completed') url = `${URL}${APIPATH}notes/get-notes?completed=true&search=${searchText}`;
 
     // now, call the api to fetch all notes
     return axios.get(url, {
@@ -197,7 +197,7 @@ export const deleteNote = createAsyncThunk('deleteNote', async (noteId) => {
 });
 
 // to fetch more notes as pagination
-export const fetchMoreNotes = createAsyncThunk('fetchMoreNotes', async ({noteType, page}) => {
+export const fetchMoreNotes = createAsyncThunk('fetchMoreNotes', async ({ noteType, page, searchText }) => {
 
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
@@ -208,8 +208,8 @@ export const fetchMoreNotes = createAsyncThunk('fetchMoreNotes', async ({noteTyp
 
     // now, make the api call based on note-type
     let url = '';
-    if (noteType === 'pending' || !noteType) url = `${URL}${APIPATH}notes/get-notes?page=${page}`;
-    else if (noteType === 'completed') url = `${URL}${APIPATH}notes/get-notes?completed=true&page=${page}`;
+    if (noteType === 'pending' || !noteType) url = `${URL}${APIPATH}notes/get-notes?page=${page}&search=${searchText}`;
+    else if (noteType === 'completed') url = `${URL}${APIPATH}notes/get-notes?completed=true&page=${page}&search=${searchText}`;
 
     // now, call the api to fetch all notes
     return axios.get(url, {
@@ -222,7 +222,6 @@ export const fetchMoreNotes = createAsyncThunk('fetchMoreNotes', async ({noteTyp
         })
         .catch(err => {  // if we encounter any errors
             toast.error(err?.response?.data?.message || "Failed!!");
-
             throw err;
         });
 });
