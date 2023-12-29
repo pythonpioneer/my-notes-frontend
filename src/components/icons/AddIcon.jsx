@@ -3,9 +3,9 @@ import React from 'react';
 
 export default function AddIcon(props) {
 
-  return (
-    <>
-      <i className="fa-solid fa-plus mr-4" onClick={props.onclick}></i>
-    </>
-  )
+    return (
+        <>
+            <i className="fa-solid fa-xmark mr-4 rotate-me-back" onClick={props.onclick}></i>
+        </>
+    )
 }
