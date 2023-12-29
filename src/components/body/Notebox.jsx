@@ -34,7 +34,7 @@ export default function Notebox() {
 			});
 
 		return () => {  // cancel the api extra api calls
-			cancelTokenSource.cancel('Cancel');
+			cancelTokenSource.cancel();
 		};
 	}, [dispatch, noteType, searchText]);
 
@@ -56,12 +56,15 @@ export default function Notebox() {
 				: Array(7).fill(null).map((_, index) => <LoadNote key={index} theme={themeStatus} />)
 			)}
 
+			{/* if we found nothing after searching */}
+			{!notes && searchText.length > 0 && <NoteItem title={"Info"} desc={"Ah, Oh!!, No Notes Found!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
+
 			{/* if user is not logged in  */}
 			{!isLoggedIn && !isLoading && <NoteItem title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is logged in and don't have any notes after fetching notes from server */}
 			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem title={"Info"} desc={"Reload Your page to fetch more notes!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
-			{isLoggedIn && !isLoading && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'Congratulate!! No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'Congratulate!! No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* paginate to fetch more notes */}
 			{notes?.length > 0 &&

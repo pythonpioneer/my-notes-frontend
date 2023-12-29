@@ -76,7 +76,6 @@ const noteSlice = createSlice({
                 state.notes = action.payload.notes;
             })
             .addCase(fetchNotes.rejected , (state, action) => {  // we will handle errors later
-                state.isLoading = false;
                 state.hasErrors = true;
             })
 
@@ -91,7 +90,6 @@ const noteSlice = createSlice({
                 state.notes = [action.payload.notes, ...state.notes]; 
             })
             .addCase(createNote.rejected , (state, action) => {  // we will handle errors later
-                state.isLoading = false;
                 state.hasErrors = true;
             })
 
