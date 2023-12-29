@@ -7,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import LoadNote from '../loader/skeleton/LoadNote';
 import LoadMore from '../loader/spinner/LoadMore';
 import { setCurrPage, setTotalNotes } from '../../features/notes/noteSlice';
+import axios from 'axios';
 
 
 export default function Notebox() {
@@ -17,10 +18,24 @@ export default function Notebox() {
 
 	// to fetch all notes automatically
 	useEffect(() => {
-		dispatch(fetchNotes({ noteType, searchText }))  // fetching notes
+
+		// Create a cancel token source
+		const cancelTokenSource = axios.CancelToken.source();
+
+		dispatch(fetchNotes({ noteType, searchText, cancelTokenSource }))  // fetching notes
 			.then(data => {
 				dispatch(setTotalNotes(data?.payload?.totalResults));  // here we set the total results
 			})
+			.catch(err => {
+
+				if (!axios.isCancel(err)) {  // Handle other errors
+					console.error(err);
+				}
+			});
+
+		return () => {  // cancel the api extra api calls
+			cancelTokenSource.cancel('Cancel');
+		};
 	}, [dispatch, noteType, searchText]);
 
 	// to implement pagination and to call fetchMoreUsers
@@ -30,7 +45,7 @@ export default function Notebox() {
 
 				// only update the page if the currPage fetched the total number of allowed notes, which is 10 in this case.
 				if (data.payload.notes.length === 10) dispatch(setCurrPage(currPage + 1));
-			})
+			});
 	};
 
 	return (
@@ -56,10 +71,10 @@ export default function Notebox() {
 					hasMore={notes?.length < totalNotes}
 					loader={<LoadMore theme={themeStatus} />}
 				>
-					{!isLoading && notes.map((note, ) => {
+					{!isLoading && notes.map((note,) => {
 						return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
 					})}
-			</InfiniteScroll>}
+				</InfiniteScroll>}
 		</>
 	)
 }

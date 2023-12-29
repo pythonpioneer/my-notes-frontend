@@ -10,7 +10,7 @@ const URL = process.env.REACT_APP_URL;
 const APIPATH = PATH;  // '/api/v1/'
 
 // now, create an action to fetch all the notes
-export const fetchNotes = createAsyncThunk('fetchNotes', async ({ noteType, searchText }) => {
+export const fetchNotes = createAsyncThunk('fetchNotes', async ({ noteType, searchText, cancelTokenSource }) => {
 
     // fetch the auth token from local storage
     const token = localStorage.getItem('auth-token');
@@ -28,13 +28,13 @@ export const fetchNotes = createAsyncThunk('fetchNotes', async ({ noteType, sear
     return axios.get(url, {
         headers: {
             "auth-token": token
-        }
+        }, 
+        cancelToken: cancelTokenSource.token,
     })
         .then(response => {  // after successfull api call, return the data
             return response.data;
         })
         .catch(err => {  // if we encounter any errors
-            toast.error(err?.response?.data?.message || "Failed!!");
             throw err;
         });
 });

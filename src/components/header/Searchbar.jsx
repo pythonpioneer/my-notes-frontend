@@ -25,8 +25,7 @@ export default function Searchbar() {
 
     // to fetch the search text
     const fetchSearchText = () => {
-        dispatch(setSearchText(searchRef.current.value));
-        console.log(searchRef.current.value)
+        dispatch(setSearchText(searchRef.current?.value));
     }
 
     // access the user login status
@@ -42,7 +41,7 @@ export default function Searchbar() {
         setOpenSearchBar(!openSearchBar);
 
         // clear the searchText
-        if (searchRef.current.value?.length > 0) dispatch(setSearchText(''));
+        if (searchRef.current?.value?.length > 0) dispatch(setSearchText(''));
     }
 
     // to logout the user
