@@ -8,7 +8,7 @@ import LogInIcon from '../icons/LogInIcon';
 import LogOutIcon from '../icons/LogOutIcon';
 import SearchIcon from '../icons/SearchIcon';
 import { logoutUser } from '../../features/user/userSlice';
-import { removeNotes, sortNotes, toggleSortOrder } from '../../features/notes/noteSlice';
+import { removeNotes, setSearchText, sortNotes, toggleSortOrder } from '../../features/notes/noteSlice';
 import CrossIcon from '../icons/CrossIcon';
 
 
@@ -25,7 +25,8 @@ export default function Searchbar() {
 
     // to fetch the search text
     const fetchSearchText = () => {
-        console.log(searchRef.current.value);
+        dispatch(setSearchText(searchRef.current.value));
+        console.log(searchRef.current.value)
     }
 
     // access the user login status
@@ -39,6 +40,9 @@ export default function Searchbar() {
     // to open search bar
     const handleSearchBar = () => {
         setOpenSearchBar(!openSearchBar);
+
+        // clear the searchText
+        if (searchRef.current.value?.length > 0) dispatch(setSearchText(''));
     }
 
     // to logout the user

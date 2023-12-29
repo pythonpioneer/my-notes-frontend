@@ -13,6 +13,7 @@ const initialState = {
     noteType: 'pending',
     currPage: 2,
     sortOrder: 'descending',  // descending or ascending order
+    searchText: '',  // to store the search text
 };
 
 // now, create the note slice
@@ -56,7 +57,10 @@ const noteSlice = createSlice({
         },
         resetSortOrder: (state) => {
             state.sortOrder = 'descending';
-        }
+        },
+        setSearchText: (state, action) => {  // the method is used to hande search text and can clear search text
+            state.searchText = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -175,5 +179,5 @@ const noteSlice = createSlice({
 });
 
 // now, export all the reducers and actions
-export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder } = noteSlice.actions;
+export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText } = noteSlice.actions;
 export default noteSlice.reducer;
