@@ -24,7 +24,7 @@ root.render(
         <ToastContainer
           role="alert"
           position="bottom-right"
-          autoClose={2000}
+          autoClose={1300}
           hideProgressBar={false}
           newestOnTop={true}
           pauseOnHover={false}

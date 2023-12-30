@@ -43,8 +43,11 @@ const noteSlice = createSlice({
             const descOrder = (firstNote, secondNote) => new Date(secondNote.updatedAt) - new Date(firstNote.updatedAt);
             const ascOrder = (firstNote, secondNote) => new Date(firstNote.updatedAt) - new Date(secondNote.updatedAt);
 
+            // check that there is notes to sort
+            if (state?.notes?.length === 0) toast.info('Nothing to Sort!');
+
             // sort the icon as per descending and ascending orders
-            if (state.sortOrder === 'descending') {
+            else if (state.sortOrder === 'descending') {
                 state.notes = state.notes.sort(descOrder);
                 toast.success('Notes Sorted!!, Newest on Top.');
             }
@@ -85,7 +88,11 @@ const noteSlice = createSlice({
             .addCase(createNote.fulfilled , (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
-                state.notes = [action.payload.notes, ...state.notes]; 
+                
+                // if user takes first note
+                console.log(state.notes, 'note')
+                if (!state.notes) state.notes = [action.payload.notes];
+                else state.notes = [action.payload.notes, ...state?.notes]; 
             })
             .addCase(createNote.rejected , (state, action) => {  // we will handle errors later
                 state.hasErrors = true;

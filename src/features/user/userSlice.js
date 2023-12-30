@@ -23,7 +23,7 @@ const userSlice = createSlice({
         logoutUser: (state) => {  // now, remove the auth token from the local storage
             
             if (localStorage?.getItem('auth-token')) {
-                toast.success("User Logged Out!!");  // notify the user
+                toast.success("Bye, Bye!!");  // notify the user
                 localStorage.clear('auth-token', 'note-app-theme');
                 state.isLoggedIn = false;
             }

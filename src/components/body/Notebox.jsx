@@ -51,7 +51,7 @@ export default function Notebox() {
 	return (
 		<>
 			{/* if data is fetching from server */}
-			{isLoading && (notes?.length > 0
+			{isLoading && isLoggedIn && (notes?.length > 0
 				? Array(notes.length).fill(null).map((_, index) => <LoadNote key={index} theme={themeStatus} />)
 				: Array(7).fill(null).map((_, index) => <LoadNote key={index} theme={themeStatus} />)
 			)}
@@ -60,11 +60,11 @@ export default function Notebox() {
 			{!notes && searchText.length > 0 && <NoteItem title={"Info"} desc={"Ah, Oh!!, No Notes Found!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is not logged in  */}
-			{!isLoggedIn && !isLoading && <NoteItem title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{!isLoggedIn && <NoteItem title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is logged in and don't have any notes after fetching notes from server */}
 			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem title={"Info"} desc={"Reload Your page to fetch more notes!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
-			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'Congratulate!! No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* paginate to fetch more notes */}
 			{notes?.length > 0 &&
