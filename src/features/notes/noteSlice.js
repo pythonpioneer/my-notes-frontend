@@ -38,9 +38,7 @@ const noteSlice = createSlice({
             else state.sortOrder = 'descending';
         },
         sortNotes: (state, action) => {  // sort the notes based on note sorting order
-
-            toast.info('Sorting...');
-
+            
             // to sort the notes
             const descOrder = (firstNote, secondNote) => new Date(secondNote.updatedAt) - new Date(firstNote.updatedAt);
             const ascOrder = (firstNote, secondNote) => new Date(firstNote.updatedAt) - new Date(secondNote.updatedAt);
