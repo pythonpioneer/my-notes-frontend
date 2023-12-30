@@ -8,6 +8,8 @@ import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { createNote } from '../../services/notes';
+import LoadingBar from 'react-top-loading-bar';
+import { useState } from 'react';
 
 
 // styling for modal structure
@@ -38,9 +40,15 @@ export default function Addnote(props) {
     // writing all states for addnote modal
     const handleClose = () => props.setOpenEditor(false);
 
+    // to handle the loading while adding note
+    const [progress, setProgress] = useState(-1);
+
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
     const handleForm = async () => {
+
+        // set the progress to 0 to display loader
+        setProgress(20);
 
         // fetch the form data
         const formData = { title: getTitle.current.value, desc: getDesc.current.value, category: getTag.current.value };
@@ -49,16 +57,25 @@ export default function Addnote(props) {
         validateForm(formData)
             .then(res => {  // if validation successfull
 
+                setProgress(75);  // after validating form
+
                 dispatch(createNote(formData))
                     .then(status => {  // if note created successfully
+                        setProgress(100);
                         
                         // close the add note editor
-                        if (status.type === 'createNote/fulfilled') handleClose();
+                        if (status.type === 'createNote/fulfilled') {
+                            
+                            setTimeout(() => {  // to close it after some seconds
+                                handleClose();
+                            }, 400);
+                        }
                     });
             })
             .catch(err => {  // if we encounter any error
                 toast.info(err);
-            })
+                setProgress(-1);
+            });
     };
 
     return (
@@ -68,8 +85,9 @@ export default function Addnote(props) {
                 onClose={handleClose}
             >
                 <Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })}>
+                <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} />
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} theme={themeStatus} onClick={handleClose} />
-                    {isLoggedIn && noteType === 'pending' && <NextIcon theme={themeStatus} style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />}
+                    {isLoggedIn && noteType === 'pending' && ( progress <= 0 && <NextIcon theme={themeStatus} style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />)}
 
                     <Grid container style={{ marginTop: '20px' }}>
 
