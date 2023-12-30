@@ -10,7 +10,7 @@ const initialState = {
     isLoading: false,  // loading status of user logging
     hasErrors: false,  // if we encounter any errors
     totalNotes: 0,
-    noteType: 'pending',
+    noteType: 'pending',  // pending or completed
     currPage: 2,
     sortOrder: 'descending',  // descending or ascending order
     searchText: '',  // to store the search text
@@ -137,6 +137,7 @@ const noteSlice = createSlice({
                 
                 // remove the completed note
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+                state.totalNotes -= 1;  // remove the deleted note from total notes
             })
             .addCase(undoCompletedNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;
@@ -154,6 +155,7 @@ const noteSlice = createSlice({
                 
                 // remove the deleted note
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+                state.totalNotes -= 1;  // remove the deleted note from total notes
             })
             .addCase(deleteNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;

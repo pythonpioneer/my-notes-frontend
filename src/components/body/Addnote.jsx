@@ -75,7 +75,7 @@ export default function Addnote(props) {
 
                         {/* title */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{ height: '200%' }}>
-                            <textarea ref={getTitle} id="title-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', marginLeft: '10px', marginRight: '2%', border: 'none', ...{ fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold' } }} placeholder="Title"></textarea>
+                            <textarea ref={getTitle} id="title-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', marginLeft: '10px', marginRight: '2%', border: 'none', ...{ fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold' } }} placeholder="Title" defaultValue={noteType === 'completed' ? 'Info' : ''}></textarea>
                         </Grid>
 
                         {/* date */}
@@ -88,7 +88,7 @@ export default function Addnote(props) {
 
                         {/* desc */}
                         <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' id="textarea-desc">
-                            <textarea ref={getDesc} id="desc-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '400px', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '10px', marginRight: '2%', ...{ fontSize: "1.1em", fontFamily: "Georgia" } }} placeholder="Desc"></textarea>
+                            <textarea ref={getDesc} id="desc-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '400px', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '10px', marginRight: '2%', ...{ fontSize: "1.1em", fontFamily: "Georgia" } }} placeholder="Desc" defaultValue={noteType === 'completed' ? `Move to Pending Section!!\nCan't add note in Completed Section.` : ''}></textarea>
                         </Grid>
                     </Grid>
                 </Box>

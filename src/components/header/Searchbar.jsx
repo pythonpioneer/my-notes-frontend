@@ -29,7 +29,7 @@ export default function Searchbar() {
     }
 
     // access the user login status
-    const { isLoggedIn, themeStatus } = useSelector(state => state.user)
+    const { isLoggedIn, themeStatus } = useSelector(state => state.user);
 
     // to open the modal
     const displayEditor = () => {
