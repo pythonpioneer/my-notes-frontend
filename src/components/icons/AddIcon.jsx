@@ -8,8 +8,8 @@ export default function AddIcon({ onClick }) {
     return (
         <>
             <i className="fa-solid fa-xmark mr-4 rotate-me-back" onClick={() => {
-                onClick();
                 playClickAudio(audio, .03);
+                onClick();
             }}></i>
         </>
     )

@@ -8,8 +8,8 @@ export default function LogInIcon({ onClick }) {
     return (
         <>
             <i className="fa-solid fa-arrow-right-to-bracket" onClick={() => {
-                onClick();
                 playClickAudio(audio);
+                onClick();
             }}></i>
         </>
     )

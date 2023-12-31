@@ -8,8 +8,8 @@ export default function CompleteIcon({ style, onClick }) {
 		<>
 			<i className="fa-solid fa-circle-check"
 				style={style} onClick={() => {
-					onClick();
 					playClickAudio(audio);
+					onClick();
 				}}
 			></i>
 		</>

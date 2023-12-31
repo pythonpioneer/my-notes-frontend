@@ -7,8 +7,8 @@ export default function SearchIcon({ onClick }) {
 	return (
 		<>
 			<i className="fa-solid fa-magnifying-glass mr-4" onClick={() => {
-				onClick();
 				playClickAudio(audio, .05);
+				onClick();
 			}}></i>
 		</>
 	)

@@ -7,8 +7,8 @@ export default function LogOutIcon({ onClick }) {
 	return (
 		<>
 			<i className="fa-solid fa-right-from-bracket" onClick={() => {
-				onClick();
 				playClickAudio(audio);
+				onClick();
 			}}></i>
 		</>
 	)
