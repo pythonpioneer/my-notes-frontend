@@ -44,7 +44,7 @@ const noteSlice = createSlice({
             const ascOrder = (firstNote, secondNote) => new Date(firstNote.updatedAt) - new Date(secondNote.updatedAt);
 
             // check that there is notes to sort
-            if (state?.notes?.length === 0) toast.info('Nothing to Sort!');
+            if (state?.notes?.length <= 1) toast.info('Nothing to Sort!');
 
             // sort the icon as per descending and ascending orders
             else if (state.sortOrder === 'descending') {

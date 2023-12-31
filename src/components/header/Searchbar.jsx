@@ -85,7 +85,7 @@ export default function Searchbar() {
                     {openEditor && <Addnote openEditor={openEditor} setOpenEditor={setOpenEditor} />}
 
                     {/* input search bar */}
-                    {openSearchBar && <input ref={searchRef} onChange={fetchSearchText} id="search" name="search" className="mr-4 pl-3 pr-3" type="search" placeholder="Search" aria-label="Search" style={{ borderRadius: '30px', outline: `2px solid ${themeStatus === 'dark' ? 'whitesmoke' : 'black'}`, width: '160px', fontFamily: 'Georgia', color: `${themeStatus === 'dark' && 'whitesmoke'}`, fontWeight: 'bold' }} />}
+                    {openSearchBar && <input ref={searchRef} onChange={fetchSearchText} id="search" name="search" className="mr-4 pl-3 pr-3" type="search" placeholder="Search" aria-label="Search" style={{ borderRadius: '30px', outline: `2px solid ${themeStatus === 'dark' ? 'whitesmoke' : 'black'}`, width: '160px', fontFamily: 'Georgia', color: `${themeStatus === 'dark' ? 'whitesmoke' : 'black'}`, fontWeight: 'bold' }} />}
 
                     {openSearchBar ? <CrossIcon onClick={handleSearchBar} /> : <SearchIcon onClick={handleSearchBar} />}
                     {!openSearchBar && <AddIcon onClick={displayEditor} />}

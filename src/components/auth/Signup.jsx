@@ -7,6 +7,10 @@ import { InfoIcon } from "../icons/InfoIcon";
 import { signUpUser } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux";
 import LoggingUser from "../loader/spinner/LoggingUser";
+import audio from '../../assets/media/classic.wav';
+import audioClose from '../../assets/media/close.wav';
+import audioSubmit from '../../assets/media/submit.wav';
+import { playClickAudio } from '../../utility/audio';
 
 
 // styling for modal structure
@@ -40,7 +44,10 @@ export default function Signup() {
 				.then(status => {   // after executing the sign up action
 
 					// if user created successfully
-					if (status.type === 'signUpUser/fulfilled') navigate('/');
+					if (status.type === 'signUpUser/fulfilled') {
+						playClickAudio(audioSubmit);
+						navigate('/');
+					}
 				});
 		},
 	});
@@ -67,6 +74,7 @@ export default function Signup() {
 								className="fa-solid fa-circle-xmark fa-lg"
 								onClick={() => {
 									navigate("/");
+									playClickAudio(audio);
 								}}
 							></i>
 						</Grid>
@@ -227,6 +235,7 @@ export default function Signup() {
 										fontWeight: "500",
 										boxShadow: "2px 2px #45017A",
 									}}
+									onClick={() => {playClickAudio(audioClose);}}
 								>
 									Register
 								</button>

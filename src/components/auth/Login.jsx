@@ -7,6 +7,10 @@ import { InfoIcon } from '../icons/InfoIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInUser } from '../../services/user';
 import LoggingUser from "../loader/spinner/LoggingUser";
+import audio from '../../assets/media/classic.wav';
+import audioClose from '../../assets/media/close.wav';
+import audioSubmit from '../../assets/media/submit.wav';
+import { playClickAudio } from '../../utility/audio';
 
 
 // styling for modal structure
@@ -46,6 +50,7 @@ export default function Login(props) {
                     // if user logged in successfully
                     if (status.type === 'signInUser/fulfilled') {
                         navigate('/');
+                        playClickAudio(audioSubmit);
                     }
                 });
         }
@@ -71,7 +76,7 @@ export default function Login(props) {
                             <i
                                 style={{ float: "right", color: (themeStatus === 'dark') ? '#888' : "#3F3D56" }}
                                 className="fa-solid fa-circle-xmark fa-lg"
-                                onClick={() => { navigate('/') }}
+                                onClick={() => { navigate('/'); playClickAudio(audio); }}
                             ></i>
                         </Grid>
                         <Grid container gap={3} >
@@ -192,6 +197,7 @@ export default function Login(props) {
                                             fontWeight: "500",
                                             boxShadow: "2px 2px #45017A",
                                         }}
+                                        onClick={() => {playClickAudio(audioClose);}}
                                     >
                                         Login
                                     </button>
