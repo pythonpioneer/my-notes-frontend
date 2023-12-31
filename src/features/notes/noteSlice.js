@@ -127,6 +127,7 @@ const noteSlice = createSlice({
                 
                 // remove the completed note
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+                state.totalNotes -= 1;  // remove the deleted note from total notes
             })
             .addCase(completeNote.rejected , (state, action) => {  // we will handle errors later
                 state.isLoading = false;

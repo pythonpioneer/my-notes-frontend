@@ -197,7 +197,7 @@ export default function Login(props) {
                                     </button>
                                 </Grid>
                                 <Grid item mt={2}>
-                                    {isLoading ? <LoggingUser /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }}>Register Here</Link>}
+                                    {isLoading ? <LoggingUser theme={themeStatus} /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }}>Register Here</Link>}
                                 </Grid>
 
                                 {/* to contribute */}

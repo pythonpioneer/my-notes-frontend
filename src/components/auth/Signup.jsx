@@ -239,7 +239,7 @@ export default function Signup() {
 								mt={2}
 								className="d-flex justify-content-center"
 							>
-								{isLoading ? <LoggingUser /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }}>Already have an account</Link>}
+								{isLoading ? <LoggingUser theme={themeStatus} /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }}>Already have an account</Link>}
 							</Grid>
 
 							{/* to contribute */}

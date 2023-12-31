@@ -37,6 +37,9 @@ export default function Addnote(props) {
     const { noteType } = useSelector(state => state.notes)
     const dispatch = useDispatch();
 
+    // a progress array to display progress at different position
+    const progressPositions = [50, 60, 70, 80, 90, 40, 65, 75, 45, 85];
+
     // writing all states for addnote modal
     const handleClose = () => props.setOpenEditor(false);
 
@@ -57,7 +60,7 @@ export default function Addnote(props) {
         validateForm(formData)
             .then(res => {  // if validation successfull
 
-                setProgress(75);  // after validating form
+                setProgress(progressPositions[Math.floor(Math.random()*10)]);  // after validating form, set a random progress positions
 
                 dispatch(createNote(formData))
                     .then(status => {  // if note created successfully
