@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetSortOrder, setCurrPage, updateNoteType } from '../../features/notes/noteSlice';
+import audio from '../../assets/media/close.wav';
+import { playClickAudio } from '../../utility/audio';
 
 
 export default function Footer() {
@@ -19,8 +21,8 @@ export default function Footer() {
     return (
         <>
             <nav className={`navbar fixed-bottom note-${themeStatus}`} style={{ height: '70px', fontFamily: 'Georgia', fontWeight: 'bold', borderTop: `1px solid ${themeStatus === 'dark' ? '#343434' : 'whitesmoke'}` }}>
-                <span onClick={() => { handleUpdateNote('pending'); dispatch(resetSortOrder()); }} className={`cursor navbar-brand ml-3 ${noteType==='pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
-                <span onClick={() => { handleUpdateNote('completed'); dispatch(resetSortOrder()); }} className={`cursor navbar-brand ${noteType==='completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>
+                <span onClick={() => { handleUpdateNote('pending'); dispatch(resetSortOrder()); playClickAudio(audio); }} className={`cursor navbar-brand ml-3 ${noteType==='pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
+                <span onClick={() => { handleUpdateNote('completed'); dispatch(resetSortOrder()); playClickAudio(audio); }} className={`cursor navbar-brand ${noteType==='completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>
             </nav>
         </>
     )

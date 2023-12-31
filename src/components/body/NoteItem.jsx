@@ -6,6 +6,8 @@ import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
+import audio from '../../assets/media/close.wav';
+import { playClickAudio } from '../../utility/audio';
 
 
 export default function NoteItem(props) {
@@ -18,6 +20,7 @@ export default function NoteItem(props) {
 
     // to open the modal
     const displayEditor = () => {
+        playClickAudio(audio);
         setOpenEditor(true);
     }
 
