@@ -10,6 +10,8 @@ import { toast } from 'react-toastify';
 import { createNote } from '../../services/notes';
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
+import audioSubmit from '../../assets/media/submit.wav';
+import { playClickAudio } from '../../utility/audio';
 
 
 // styling for modal structure
@@ -64,6 +66,8 @@ export default function Addnote(props) {
 
                 dispatch(createNote(formData))
                     .then(status => {  // if note created successfully
+
+                        playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
                         setProgress(100);
                         
                         // close the add note editor

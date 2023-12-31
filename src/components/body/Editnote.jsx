@@ -9,6 +9,8 @@ import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { deleteNote, updateNote } from '../../services/notes';
+import audioSubmit from '../../assets/media/submit.wav';
+import { playClickAudio } from '../../utility/audio';
 
 
 // styling for modal structure
@@ -62,7 +64,10 @@ export default function Editnote(props) {
 
                     dispatch(updateNote(formData))
                         .then(status => {
-                            if (status.type === 'updateNote/fulfilled') handleClose();
+                            if (status.type === 'updateNote/fulfilled') {
+                                handleClose();
+                                playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
+                            }
                         });
                 })
                 .catch(err => {  // if we encounter any error

@@ -156,7 +156,7 @@ textarea:focus, input:focus, input, textarea{
   100%{ transform: rotate(-45deg); }
 }
 .rotate-me {
-  animation: rotate-me 1s linear forwards;
+  animation: rotate-me 1.4s linear forwards;
 }
 .rotate-me-back {
   animation: rotate-me-back 1s linear forwards;

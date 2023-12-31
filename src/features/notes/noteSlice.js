@@ -90,7 +90,6 @@ const noteSlice = createSlice({
                 state.hasErrors = false;
                 
                 // if user takes first note
-                console.log(state.notes, 'note')
                 if (!state.notes) state.notes = [action.payload.notes];
                 else state.notes = [action.payload.notes, ...state?.notes]; 
             })
