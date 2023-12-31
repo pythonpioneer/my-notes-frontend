@@ -24,7 +24,7 @@ const style = {
     boxShadow: 24,
     marginLeft: '1%',
     marginRight: '1%',
-    marginTop: '65px',
+    marginTop: '9vh',
 };
 
 export default function Addnote(props) {

@@ -3,7 +3,7 @@ import { Howl, Howler } from 'howler';
 
 
 // to play various click sounds
-export const playClickAudio = (audio, volume=.02) => {
+export const playClickAudio = (audio, volume=.1) => {
 
     // Create the Howl instance with the audio source
     const sound = new Howl({

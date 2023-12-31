@@ -10,13 +10,27 @@ import SearchIcon from '../icons/SearchIcon';
 import { logoutUser } from '../../features/user/userSlice';
 import { removeNotes, setSearchText, sortNotes, toggleSortOrder } from '../../features/notes/noteSlice';
 import CrossIcon from '../icons/CrossIcon';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import audio from '../../assets/media/close.wav';
+import { playClickAudio } from '../../utility/audio';
 
+
+// styling for modal structure
+const style = {
+    maxWidth: '600px', // Set a maximum width if desired
+    margin: 'auto', // Center the modal horizontally
+    padding: '20px',
+    marginTop: '25vh',
+    borderRadius: '23px'
+};
 
 export default function Searchbar() {
 
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
     const [openSearchBar, setOpenSearchBar] = useState(false);
+    const [logEditor, setLogEditor] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -44,9 +58,15 @@ export default function Searchbar() {
         if (searchRef.current?.value?.length > 0) dispatch(setSearchText(''));
     }
 
+    // to handle the logout process
+    const handleSignOutUser = () => {
+        setLogEditor(true);
+    }
+
     // to logout the user
     const signOutUser = () => {
         dispatch(logoutUser());
+        setLogEditor(false);
         dispatch(removeNotes());
     }
 
@@ -71,10 +91,48 @@ export default function Searchbar() {
                     {!openSearchBar && <AddIcon onClick={displayEditor} />}
 
                     {isLoggedIn
-                        ? <LogOutIcon onClick={signOutUser} />
+                        ? <LogOutIcon onClick={handleSignOutUser} />
                         : <LogInIcon onClick={() => { navigate('/login') }} />
                     }
                 </div>
+
+                {/* if user want to logout then display a modal and ask user to confirm or cancel */}
+                <Modal
+                    open={logEditor}
+                    onClose={() => { setLogEditor(false); }}
+                >
+                    <Box
+                        sx={{
+                            ...style,
+                            backgroundColor: (themeStatus === 'dark') ? '#181818' : 'background.paper',
+                            '@media (max-width: 400px)': {
+                                width: '98%',
+                                height: '110px',
+                                marginTop: '28vh'
+                            },
+                            '@media (min-width: 401px) and  (max-width: 600px)': {
+                                width: '90%',
+                                height: '110px',
+                            },
+                            '@media (min-width: 601px) and (max-width: 1000px)': {
+                                width: '52%',
+                                height: '110px'
+                            },
+                            '@media (min-width: 1001px)': {
+                                width: '42%',
+                                height: '110px'
+                            },
+                        }}
+                    >
+                        <div style={{ color: (themeStatus === 'dark') ? 'whitesmoke' : 'black', alignItems: 'center', justifyContent: 'center', display: 'flex', fontFamily: 'Georgia', fontSize: '16px', fontWeight: 'bold' }}>
+                            Would you like to log out? Confirm!!
+                        </div>
+                        <div className='mt-4'>
+                            <span onClick={() => {playClickAudio(audio); setLogEditor(false);}} className={`active form-${themeStatus}`} style={{ float: 'left', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Cancel</span>
+                            <span onClick={() => {playClickAudio(audio); signOutUser();}} className={`active form-${themeStatus}`} style={{ float: 'right', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Confirm</span>
+                        </div>
+                    </Box>
+                </Modal>
             </nav>
         </>
     )
