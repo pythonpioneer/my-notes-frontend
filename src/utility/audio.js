@@ -8,10 +8,10 @@ export const playClickAudio = (audio, volume=.05) => {
     // Create the Howl instance with the audio source
     const sound = new Howl({
         src: [audio],
-        html5: true,
         volume: volume,
         preload: true,
     });
+    console.log(Howler.ctx);
 
     // Ensure that the AudioContext is resumed within a user gesture
     if (Howler.ctx.state === 'suspended') {

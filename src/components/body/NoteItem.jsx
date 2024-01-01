@@ -43,9 +43,6 @@ export default function NoteItem(props) {
                     onTouchStart={() => {
                         playClickAudio(audio);
                     }}
-                    onMouseDown={() => {
-                        playClickAudio(audio);
-                    }}
                     onClick={displayEditor}
                 >
 
