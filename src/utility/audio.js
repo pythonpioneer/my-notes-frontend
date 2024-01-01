@@ -9,7 +9,8 @@ export const playClickAudio = (audio, volume=.1) => {
     const sound = new Howl({
         src: [audio],
         html5: true,
-        volume: volume
+        volume: volume,
+        preload: true,
     });
 
     // Ensure that the AudioContext is resumed within a user gesture
