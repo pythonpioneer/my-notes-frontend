@@ -9,7 +9,7 @@ import { getCurrentDate, validateForm } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { deleteNote, updateNote } from '../../services/notes';
-import audioSubmit from '../../assets/media/submit.wav';
+import audioSubmit from '../../assets/media/submit.mp3';
 import { playClickAudio } from '../../utility/audio';
 
 

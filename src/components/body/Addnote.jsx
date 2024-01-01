@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { createNote } from '../../services/notes';
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
-import audioSubmit from '../../assets/media/submit.wav';
+import audioSubmit from '../../assets/media/submit.mp3';
 import { playClickAudio } from '../../utility/audio';
 
 

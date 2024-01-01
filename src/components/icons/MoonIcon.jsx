@@ -7,7 +7,14 @@ import { playClickAudio } from '../../utility/audio';
 export default function MoonIcon() {
     return (
         <>
-            <i className="fa-solid fa-cloud-moon"  onClick={() => { playClickAudio(audio); }}></i>
+            <i className="fa-solid fa-cloud-moon"
+                onTouchStart={() => {
+					playClickAudio(audio);
+				}}
+				onMouseDown={() => {
+					playClickAudio(audio);
+				}}
+            ></i>
         </>
     )
 }

@@ -12,7 +12,7 @@ import { removeNotes, setSearchText, sortNotes, toggleSortOrder } from '../../fe
 import CrossIcon from '../icons/CrossIcon';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import audio from '../../assets/media/close.wav';
+import audio from '../../assets/media/close.mp3';
 import { playClickAudio } from '../../utility/audio';
 
 

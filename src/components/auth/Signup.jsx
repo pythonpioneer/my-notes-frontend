@@ -7,9 +7,9 @@ import { InfoIcon } from "../icons/InfoIcon";
 import { signUpUser } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux";
 import LoggingUser from "../loader/spinner/LoggingUser";
-import audio from '../../assets/media/classic.wav';
-import audioClose from '../../assets/media/close.wav';
-import audioSubmit from '../../assets/media/submit.wav';
+import audio from '../../assets/media/modern.mp3';
+import audioClose from '../../assets/media/close.mp3';
+import audioSubmit from '../../assets/media/submit.mp3';
 import { playClickAudio } from '../../utility/audio';
 
 

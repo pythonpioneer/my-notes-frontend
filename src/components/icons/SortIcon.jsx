@@ -1,5 +1,5 @@
 import React from 'react';
-import audio from '../../assets/media/classic.wav';
+import audio from '../../assets/media/modern.mp3';
 import { playClickAudio } from '../../utility/audio';
 
 

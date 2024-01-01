@@ -6,7 +6,7 @@ import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
-import audio from '../../assets/media/close.wav';
+import audio from '../../assets/media/close.mp3';
 import { playClickAudio } from '../../utility/audio';
 
 
