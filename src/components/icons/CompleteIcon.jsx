@@ -10,7 +10,7 @@ export default function CompleteIcon({ style, onClick }) {
 				style={style} onClick={() => {
 					onClick();
 				}}
-				onTouchEnd={() => {
+				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
 			></i>

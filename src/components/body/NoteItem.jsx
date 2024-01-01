@@ -40,7 +40,7 @@ export default function NoteItem(props) {
                 {props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}
 
                 <Grid className="card-body"
-                    onTouchEnd={() => {
+                    onTouchStart={() => {
                         playClickAudio(audio);
                     }}
                     onClick={displayEditor}

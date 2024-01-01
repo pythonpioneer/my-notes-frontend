@@ -7,7 +7,7 @@ export default function BackIcon(props) {
 	return (
 		<>
 			<i onClick={props.onClick}
-				onTouchEnd={() => {
+				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
 				className={`spin fa-solid fa-chevron-left ${props.theme === 'dark' ? 'placeholder-color' : ''}`}

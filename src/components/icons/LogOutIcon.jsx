@@ -8,7 +8,7 @@ export default function LogOutIcon({ onClick }) {
 		<>
 			<i className="fa-solid fa-right-from-bracket" 
 				onClick={onClick}
-				onTouchEnd={() => {
+				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
 			></i>

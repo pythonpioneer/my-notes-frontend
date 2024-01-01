@@ -9,7 +9,7 @@ export default function RevertIcon({ style, onClick }) {
             <i className="fa-solid fa-arrows-rotate" 
                 style={style} 
                 onClick={onClick}
-                onTouchEnd={() => {
+                onTouchStart={() => {
 					playClickAudio(audio);
 				}}
 			></i>

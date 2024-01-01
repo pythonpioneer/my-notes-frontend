@@ -81,7 +81,7 @@ export default function Login(props) {
                                 onClick={() => {
                                     navigate('/');
                                 }}
-                                onTouchEnd={() => {
+                                onTouchStart={() => {
                                     playClickAudio(audio);
                                 }}
                             ></i>
@@ -204,7 +204,7 @@ export default function Login(props) {
                                             fontWeight: "500",
                                             boxShadow: "2px 2px #45017A",
                                         }}
-                                        onTouchEnd={() => {
+                                        onTouchStart={() => {
                                             playClickAudio(audioClose);
                                         }}
                                     >
@@ -212,13 +212,13 @@ export default function Login(props) {
                                     </button>
                                 </Grid>
                                 <Grid item mt={2}>
-                                    {isLoading ? <LoggingUser theme={themeStatus} /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }} onTouchEnd={() => {playClickAudio(audioClose);}}>Register Here</Link>}
+                                    {isLoading ? <LoggingUser theme={themeStatus} /> : <Link to="/signup" style={{ color: "#A735FF", cursor: "pointer" }} onTouchStart={() => {playClickAudio(audioClose);}}>Register Here</Link>}
                                 </Grid>
 
                                 {/* to contribute */}
                                 <Grid item xs={12} mt={2} className="d-flex justify-content-center">
                                     {!(errors.password || errors.email)
-                                        ? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend' onTouchEnd={() => {playClickAudio(audioClose);}}>Contribute @pythonpioneer</a>
+                                        ? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend' onTouchStart={() => {playClickAudio(audioClose);}}>Contribute @pythonpioneer</a>
                                         : <div style={{ color: 'red' }}>Missing Fields!</div>
                                     }
                                 </Grid>

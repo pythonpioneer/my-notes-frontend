@@ -8,7 +8,7 @@ export default function SearchIcon({ onClick }) {
 		<>
 			<i className="fa-solid fa-magnifying-glass mr-4" 
 				onClick={onClick}
-				onTouchEnd={() => {
+				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
 			></i>

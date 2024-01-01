@@ -9,7 +9,7 @@ export default function AddIcon({ onClick }) {
         <>
             <i className="fa-solid fa-xmark mr-4 rotate-me-back" 
                 onClick={onClick}
-                onTouchEnd={() => {
+                onTouchStart={() => {
 					playClickAudio(audio);
 				}}
             ></i>
