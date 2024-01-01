@@ -7,7 +7,7 @@ export default function OptionIcon({ style, onClick, theme }) {
     return (
         <>
             <div className="dropdown show" style={style}>
-                <i className={`fa-solid fa-ellipsis-vertical ${theme === 'dark' ? 'placeholder-color' : ''}`} id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onTouchStart={() => { playClickAudio(audio); }}></i>
+                <i className={`fa-solid fa-ellipsis-vertical ${theme === 'dark' ? 'placeholder-color' : ''}`} id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onTouchStart={() => { playClickAudio(audio); }} style={{ width: '20px', display: 'flex', paddingLeft: '12px' }}></i>
                 <div className={`${theme === 'dark' ? 'dark-note' : ''} dropdown-menu`} style={{ marginRight: '1vw' }} aria-labelledby="dropdownMenuLink">
                     <span className={`${theme === 'dark' ? 'dark-note' : ''} dropdown-item`}
                         onClick={onClick}
