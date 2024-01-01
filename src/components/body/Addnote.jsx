@@ -68,7 +68,9 @@ export default function Addnote(props) {
                     .then(status => {  // if note created successfully
 
                         playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
-                        setProgress(100);
+                        setTimeout(() => {
+                            setProgress(100);
+                        }, 0);
                         
                         // close the add note editor
                         if (status.type === 'createNote/fulfilled') {

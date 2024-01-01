@@ -46,11 +46,13 @@ export default function Login(props) {
                 password: values.password
             }))
                 .then(status => {  // after executing the signin action
+                    playClickAudio(audioSubmit);
 
                     // if user logged in successfully
                     if (status.type === 'signInUser/fulfilled') {
-                        navigate('/');
-                        playClickAudio(audioSubmit);
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 0);
                     }
                 });
         }
@@ -76,7 +78,15 @@ export default function Login(props) {
                             <i
                                 style={{ float: "right", color: (themeStatus === 'dark') ? '#888' : "#3F3D56" }}
                                 className="fa-solid fa-circle-xmark fa-lg"
-                                onClick={() => { navigate('/'); playClickAudio(audio); }}
+                                onClick={() => { 
+                                    navigate('/'); 
+                                }}
+                                onTouchStart={() => {
+                                    playClickAudio(audio);
+                                }}
+                                onMouseDown={() => {
+                                    playClickAudio(audio);
+                                }}
                             ></i>
                         </Grid>
                         <Grid container gap={3} >
@@ -197,7 +207,12 @@ export default function Login(props) {
                                             fontWeight: "500",
                                             boxShadow: "2px 2px #45017A",
                                         }}
-                                        onClick={() => {playClickAudio(audioClose);}}
+                                        onTouchStart={() => {
+                                            playClickAudio(audioClose);
+                                        }}
+                                        onMouseDown={() => {
+                                            playClickAudio(audioClose);
+                                        }}
                                     >
                                         Login
                                     </button>

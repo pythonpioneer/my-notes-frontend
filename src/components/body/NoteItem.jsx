@@ -20,7 +20,6 @@ export default function NoteItem(props) {
 
     // to open the modal
     const displayEditor = () => {
-        playClickAudio(audio);
         setOpenEditor(true);
     }
 
@@ -37,19 +36,27 @@ export default function NoteItem(props) {
     return (
         <>
             <Grid className={`mb-3 ${themeStatus === 'dark' ? 'dark-note' : 'bg-light'}`} style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
-                { props.tag && noteType === 'pending' && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
-                { props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}
+                {props.tag && noteType === 'pending' && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
+                {props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}
 
-                <Grid className="card-body" onClick={displayEditor}>
+                <Grid className="card-body"
+                    onTouchStart={() => {
+                        playClickAudio(audio);
+                    }}
+                    onMouseDown={() => {
+                        playClickAudio(audio);
+                    }}
+                    onClick={displayEditor}
+                >
 
                     <Grid item lg={6} className="mr-5 beautify-notes" style={{ fontFamily: "Georgia", fontSize: '1em', fontStyle: 'italic', fontWeight: 'bold' }}>{props.title}</Grid>
                     <Grid item lg={12} className="">
                         <p className="card-text beautify-notes" style={{ fontSize: '0.8em', color: '#A9A9A9' }}>{props.desc}</p>
 
                         <p className="card-text d-inline-block" style={{ fontSize: '0.8em', color: '#A9A9A9', marginBottom: '-3px' }}>{getCurrentDate(props.datetime)}</p>
-                        {props.tag && <div className="text-center d-inline-block mx-5 beautify-notes" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{ props.tag.length > 8 ? props.tag.slice(0, 8) + '...' : props.tag}</div>}
+                        {props.tag && <div className="text-center d-inline-block mx-5 beautify-notes" style={{ paddingLeft: '10px', paddingRight: '10px', borderStyle: 'solid', borderRadius: '10px', color: 'white', backgroundColor: '#4B0082', marginBottom: '-3px', float: 'right' }}>{props.tag.length > 8 ? props.tag.slice(0, 8) + '...' : props.tag}</div>}
                     </Grid>
-                
+
                 </Grid>
             </Grid>
             {openEditor && <Editnote openEditor={openEditor} setOpenEditor={setOpenEditor} data={{ title: props.title, desc: props.desc, category: props.tag, id: props.id, datetime: props.datetime }} />}

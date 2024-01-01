@@ -61,12 +61,15 @@ export default function Editnote(props) {
             // validate form fields
             validateForm(formData)
                 .then(res => {  // if validation successfull, dispatch the action to update note
+                    playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
 
                     dispatch(updateNote(formData))
                         .then(status => {
+                            
                             if (status.type === 'updateNote/fulfilled') {
-                                handleClose();
-                                playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
+                                setTimeout(() => {
+                                    handleClose();
+                                }, 0);
                             }
                         });
                 })

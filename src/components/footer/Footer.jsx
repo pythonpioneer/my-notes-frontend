@@ -32,6 +32,7 @@ export default function Footer() {
                     onMouseDown={() => {
                         playClickAudio(audio);
                     }} className={`cursor navbar-brand ml-3 ${noteType === 'pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
+                
                 <span
                     onClick={() => {
                         handleUpdateNote('completed');

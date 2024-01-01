@@ -92,7 +92,7 @@ export default function Searchbar() {
 
                     {isLoggedIn
                         ? <LogOutIcon onClick={handleSignOutUser} />
-                        : <LogInIcon onClick={() => { navigate('/login') }} />
+                        : <LogInIcon onClick={() => { navigate('/login'); }} />
                     }
                 </div>
 
@@ -128,8 +128,8 @@ export default function Searchbar() {
                             Would you like to log out? Confirm!!
                         </div>
                         <div className='mt-4'>
-                            <span onClick={() => {playClickAudio(audio); setLogEditor(false);}} className={`active form-${themeStatus}`} style={{ float: 'left', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Cancel</span>
-                            <span onClick={() => {playClickAudio(audio); signOutUser();}} className={`active form-${themeStatus}`} style={{ float: 'right', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Confirm</span>
+                            <span onTouchStart={() => { playClickAudio(audio); }} onMouseDown={() => { playClickAudio(audio); }} onClick={() => {setLogEditor(false);}} className={`active form-${themeStatus}`} style={{ float: 'left', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Cancel</span>
+                            <span onTouchStart={() => { playClickAudio(audio); }} onMouseDown={() => { playClickAudio(audio); }} onClick={() => {signOutUser();}} className={`active form-${themeStatus}`} style={{ float: 'right', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Confirm</span>
                         </div>
                     </Box>
                 </Modal>
