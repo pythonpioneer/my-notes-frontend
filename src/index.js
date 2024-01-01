@@ -17,25 +17,25 @@ const theme = localStorage.getItem('note-app-theme');
 
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-        <ToastContainer
-          role="alert"
-          position="bottom-right"
-          autoClose={1300}
-          hideProgressBar={false}
-          newestOnTop={true}
-          pauseOnHover={false}
-          pauseOnFocusLoss={false}
-          closeOnClick
-          draggable
-          toastClassName={theme === 'dark' && 'toast-color'}
-        />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+	<React.StrictMode>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+				<ToastContainer
+					role="alert"
+					position="bottom-right"
+					autoClose={1300}
+					hideProgressBar={false}
+					newestOnTop={true}
+					pauseOnHover={false}
+					pauseOnFocusLoss={false}
+					closeOnClick
+					draggable
+					toastClassName={theme === 'dark' && 'toast-color'}
+				/>
+			</Provider>
+		</BrowserRouter>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

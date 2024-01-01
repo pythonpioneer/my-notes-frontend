@@ -8,7 +8,7 @@ export default function CrossIcon({ onClick }) {
         <>
             <i className="fa-solid fa-plus mr-4 rotate-me" 
                 onClick={onClick}
-                onTouchStart={() => {
+                onTouchEnd={() => {
 					playClickAudio(audio);
 				}}
             ></i>

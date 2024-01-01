@@ -8,7 +8,7 @@ export default function MoonIcon() {
     return (
         <>
             <i className="fa-solid fa-cloud-moon"
-                onTouchStart={() => {
+                onTouchEnd={() => {
 					playClickAudio(audio);
 				}}
             ></i>

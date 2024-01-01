@@ -7,7 +7,7 @@ import { playClickAudio } from '../../utility/audio';
 export default function SunIcon() {
     return (
         <>
-            <i className="fa-solid fa-sun" style={{ color: "#ffaa00" }} onTouchStart={() => { playClickAudio(audio); }}></i>
+            <i className="fa-solid fa-sun" style={{ color: "#ffaa00" }} onTouchEnd={() => { playClickAudio(audio); }}></i>
         </>
     )
 }

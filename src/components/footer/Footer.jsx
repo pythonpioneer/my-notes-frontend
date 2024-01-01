@@ -26,7 +26,7 @@ export default function Footer() {
                         handleUpdateNote('pending');
                         dispatch(resetSortOrder());
                     }}
-                    onTouchStart={() => {
+                    onTouchEnd={() => {
                         playClickAudio(audio);
                     }}
                     className={`cursor navbar-brand ml-3 ${noteType === 'pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
@@ -36,7 +36,7 @@ export default function Footer() {
                         handleUpdateNote('completed');
                         dispatch(resetSortOrder());
                     }}
-                    onTouchStart={() => {
+                    onTouchEnd={() => {
                         playClickAudio(audio);
                     }}
                     className={`cursor navbar-brand ${noteType === 'completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>

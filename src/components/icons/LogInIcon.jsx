@@ -9,7 +9,7 @@ export default function LogInIcon({ onClick }) {
         <>
             <i className="fa-solid fa-arrow-right-to-bracket" 
                 onClick={onClick}
-                onTouchStart={() => {
+                onTouchEnd={() => {
 					playClickAudio(audio);
 				}}  
             ></i>

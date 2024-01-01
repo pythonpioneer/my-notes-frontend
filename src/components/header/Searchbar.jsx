@@ -128,8 +128,8 @@ export default function Searchbar() {
                             Would you like to log out? Confirm!!
                         </div>
                         <div className='mt-4'>
-                            <span onTouchStart={() => { playClickAudio(audio); }} onClick={() => {setLogEditor(false);}} className={`active form-${themeStatus}`} style={{ float: 'left', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Cancel</span>
-                            <span onTouchStart={() => { playClickAudio(audio); }} onClick={() => {signOutUser();}} className={`active form-${themeStatus}`} style={{ float: 'right', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Confirm</span>
+                            <span onTouchEnd={() => { playClickAudio(audio); }} onClick={() => {setLogEditor(false);}} className={`active form-${themeStatus}`} style={{ float: 'left', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Cancel</span>
+                            <span onTouchEnd={() => { playClickAudio(audio); }} onClick={() => {signOutUser();}} className={`active form-${themeStatus}`} style={{ float: 'right', width: '90px', justifyContent: 'center', display: 'flex', cursor: 'pointer' }}>Confirm</span>
                         </div>
                     </Box>
                 </Modal>
