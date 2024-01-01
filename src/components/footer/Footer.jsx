@@ -29,9 +29,7 @@ export default function Footer() {
                     onTouchStart={() => {
                         playClickAudio(audio);
                     }}
-                    onMouseDown={() => {
-                        playClickAudio(audio);
-                    }} className={`cursor navbar-brand ml-3 ${noteType === 'pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
+                    className={`cursor navbar-brand ml-3 ${noteType === 'pending' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'left', width: '100px', textAlign: 'center' }}>Pending</span>
                 
                 <span
                     onClick={() => {
@@ -41,9 +39,7 @@ export default function Footer() {
                     onTouchStart={() => {
                         playClickAudio(audio);
                     }}
-                    onMouseDown={() => {
-                        playClickAudio(audio);
-                    }} className={`cursor navbar-brand ${noteType === 'completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>
+                    className={`cursor navbar-brand ${noteType === 'completed' ? 'active' : ''}`} style={{ fontSize: '15px', float: 'right', width: '100px', textAlign: 'center' }}>Completed</span>
             </nav>
         </>
     )
