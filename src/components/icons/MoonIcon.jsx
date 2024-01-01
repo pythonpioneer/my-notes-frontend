@@ -11,9 +11,6 @@ export default function MoonIcon() {
                 onTouchStart={() => {
 					playClickAudio(audio);
 				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}
             ></i>
         </>
     )

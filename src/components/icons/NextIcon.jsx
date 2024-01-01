@@ -11,9 +11,6 @@ export default function NextIcon(props) {
 				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}
 			></i>
 		</>
 	)

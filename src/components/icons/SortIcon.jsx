@@ -6,10 +6,7 @@ import { playClickAudio } from '../../utility/audio';
 export default function SortIcon({ onClick }) {
 	return (
 		<>
-			<i className="fa-solid fa-right-left fa-rotate-90" onClick={() => {
-				playClickAudio(audio);
-				onClick();
-			}}></i>
+			<i className="fa-solid fa-right-left fa-rotate-90" onClick={onClick} onTouchStart={() => { playClickAudio(audio); }}></i>
 		</>
 	)
 }

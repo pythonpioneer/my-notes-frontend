@@ -11,10 +11,7 @@ export default function LogInIcon({ onClick }) {
                 onClick={onClick}
                 onTouchStart={() => {
 					playClickAudio(audio);
-				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}    
+				}}  
             ></i>
         </>
     )

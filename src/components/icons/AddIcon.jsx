@@ -12,9 +12,6 @@ export default function AddIcon({ onClick }) {
                 onTouchStart={() => {
 					playClickAudio(audio);
 				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}
             ></i>
         </>
     )

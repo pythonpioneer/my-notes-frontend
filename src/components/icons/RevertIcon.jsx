@@ -12,9 +12,6 @@ export default function RevertIcon({ style, onClick }) {
                 onTouchStart={() => {
 					playClickAudio(audio);
 				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}
 			></i>
         </>
     )

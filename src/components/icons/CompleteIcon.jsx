@@ -13,9 +13,6 @@ export default function CompleteIcon({ style, onClick }) {
 				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}
 			></i>
 		</>
 	)

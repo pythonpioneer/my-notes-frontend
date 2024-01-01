@@ -11,9 +11,6 @@ export default function SearchIcon({ onClick }) {
 				onTouchStart={() => {
 					playClickAudio(audio);
 				}}
-				onMouseDown={() => {
-					playClickAudio(audio);
-				}}
 			></i>
 		</>
 	)
