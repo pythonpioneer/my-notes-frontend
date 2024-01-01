@@ -46,7 +46,9 @@ export default function Signup() {
 					// if user created successfully
 					if (status.type === 'signUpUser/fulfilled') {
 						playClickAudio(audioSubmit);
-						navigate('/');
+						setTimeout(() => {
+							navigate('/');
+						}, 0);
 					}
 				});
 		},
@@ -235,7 +237,7 @@ export default function Signup() {
 										fontWeight: "500",
 										boxShadow: "2px 2px #45017A",
 									}}
-									onClick={() => {playClickAudio(audioClose);}}
+									onTouchStart={() => {playClickAudio(audioClose);}} onMouseDown={() => {playClickAudio(audioClose);}}
 								>
 									Register
 								</button>
@@ -248,13 +250,13 @@ export default function Signup() {
 								mt={2}
 								className="d-flex justify-content-center"
 							>
-								{isLoading ? <LoggingUser theme={themeStatus} /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }}>Already have an account</Link>}
+								{isLoading ? <LoggingUser theme={themeStatus} /> : <Link className="account" to="/login" style={{ color: "#A735FF", cursor: "pointer", margin: "auto" }} onTouchStart={() => {playClickAudio(audioClose);}} onMouseDown={() => {playClickAudio(audioClose);}}>Already have an account</Link>}
 							</Grid>
 
 							{/* to contribute */}
 							<Grid item xs={12} mt={2} className="d-flex justify-content-center">
 								{!(errors.confirmPassword || errors.password || errors.email || errors.name)
-									? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend'>Contribute @pythonpioneer</a>
+									? <a className='account' target="_blank" rel="noreferrer" style={{ color: (themeStatus === 'dark' ? 'whitesmoke' : '#262626'), cursor: "pointer", margin: "auto" }} href='https://github.com/pythonpioneer/my-notes-frontend' onTouchStart={() => {playClickAudio(audioClose);}} onMouseDown={() => {playClickAudio(audioClose);}}>Contribute @pythonpioneer</a>
 									: <div style={{ color: 'red' }}>Missing Fields!</div>
 								}
 							</Grid>
