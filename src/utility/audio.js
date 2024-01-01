@@ -3,7 +3,7 @@ import { Howl, Howler } from 'howler';
 
 
 // to play various click sounds
-export const playClickAudio = (audio, volume=.05) => {
+export const playClickAudio = (audio, volume=.2) => {
 
     // Create the Howl instance with the audio source
     const sound = new Howl({
@@ -11,7 +11,6 @@ export const playClickAudio = (audio, volume=.05) => {
         volume: volume,
         preload: true,
     });
-    console.log(Howler.ctx);
 
     // Ensure that the AudioContext is resumed within a user gesture
     if (Howler.ctx.state === 'suspended') {
