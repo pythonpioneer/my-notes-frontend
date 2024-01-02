@@ -6,8 +6,6 @@ import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
-import audio from '../../assets/media/close.mp3';
-import { playClickAudio } from '../../utility/audio';
 
 
 export default function NoteItem(props) {
@@ -40,9 +38,6 @@ export default function NoteItem(props) {
                 {props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}
 
                 <Grid className="card-body"
-                    onTouchEnd={() => {
-                        playClickAudio(audio);
-                    }}
                     onClick={displayEditor}
                 >
 
