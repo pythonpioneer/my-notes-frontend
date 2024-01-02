@@ -1,6 +1,6 @@
-# My-Notes
+# My-Notes [![Netlify Status](https://api.netlify.com/api/v1/badges/8911e08a-5634-461f-9327-de4a05b939a2/deploy-status)](https://app.netlify.com/sites/notes-pythonpioneer/deploys)
 
-This note app helps you to make notes of things you want to do or any inspirational quotes that you want to note before you forget. You can personalize the app note using tag options. You can sort your notes based on time or based on tags and many more sorting options.
+Introducing our note-taking app to capture your to-dos and inspirational quotes before they slip out of your mind. With this app, you can effortlessly create and organize notes, making it easy to retrieve them later on any device. Utilize the search function to find notes based on title, description, tags, and by all. Additionally, sort your notes seamlessly by the newest or oldest entry, ensuring a streamlined and efficient experience. Never let a brilliant idea or important task slip away – stay organized with our intuitive note app.
 
 ## License
 
@@ -35,15 +35,9 @@ Before you start contributing to this project, please review the [LICENSE](https
   npm install
   ```
 
-- Create a `.env.local file`
+- Create a `.env` file and copy the content of `.env.sample` into this
   
-      touch .env.local
-
-- Create a environment variable for backend host network (or your backend-host-network)
-  
-      REACT_APP_HOST=http://localhost:3100
-
-    > copy this line and paste it inside `.env.local`
+      touch .env
 
 - After installation, To start the app
 
