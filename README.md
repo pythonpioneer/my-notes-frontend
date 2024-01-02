@@ -2,6 +2,13 @@
 
 Introducing our note-taking app to capture your to-dos and inspirational quotes before they slip out of your mind. With this app, you can effortlessly create and organize notes, making it easy to retrieve them later on any device. Utilize the search function to find notes based on title, description, tags, and by all. Additionally, sort your notes seamlessly by the newest or oldest entry, ensuring a streamlined and efficient experience. Never let a brilliant idea or important task slip away – stay organized with our intuitive note app.
 
+```
+Here is a dummy login user login information
+
+email: hrk@gmail.com
+password: hrk123@
+```
+
 ## License
 
 Before you start contributing to this project, please review the [LICENSE](https://github.com/pythonpioneer/my-notes-frontend/blob/master/LICENSE) file to understand the licensing terms. By contributing to this project, you agree to abide by its terms.
@@ -75,7 +82,6 @@ Before you start contributing to this project, please review the [LICENSE](https
   **Note:** If the app didn't run with the given command then please explore nodemon for your machine.
   
 - It will open your browser(http://localhost:3100)
-
 
 ## Note
 
