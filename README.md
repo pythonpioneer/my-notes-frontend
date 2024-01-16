@@ -3,7 +3,7 @@
 Introducing our note-taking app to capture your to-dos and inspirational quotes before they slip out of your mind. With this app, you can effortlessly create and organize notes, making it easy to retrieve them later on any device. Utilize the search function to find notes based on title, description, tags, and by all. Additionally, sort your notes seamlessly by the newest or oldest entry, ensuring a streamlined and efficient experience. Never let a brilliant idea or important task slip away – stay organized with our intuitive note app.
 
 ```
-Here is a dummy login user login information
+Here is a dummy user login information
 
 email: hrk@gmail.com
 password: hrk123@
