@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Grid } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { createNote } from '../../services/notes';
 import LoadingBar from 'react-top-loading-bar';
-import { useState } from 'react';
 import audioSubmit from '../../assets/media/submit.mp3';
 import { playClickAudio } from '../../utility/audio';
 
