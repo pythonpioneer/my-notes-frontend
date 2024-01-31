@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Grid } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { deleteNote, updateNote } from '../../services/notes';
 import audioSubmit from '../../assets/media/submit.mp3';
 import { playClickAudio } from '../../utility/audio';
+import LoadingBar from 'react-top-loading-bar';
 
 
 // styling for modal structure
@@ -35,6 +36,9 @@ export default function Editnote(props) {
 
     // writing all states for addnote modal
     const handleClose = () => props.setOpenEditor(false);
+        
+    // to handle the loading while adding note
+    const [progress, setProgress] = useState(-1);
 
     // to access the user login status
     const { isLoggedIn, themeStatus } = useSelector(state => state.user);
@@ -57,21 +61,16 @@ export default function Editnote(props) {
 
         // now, validate the form data if user changed something
         if (isUpdated) {
+            setProgress(100);
 
             // validate form fields
             validateForm(formData)
-                .then(res => {  // if validation successfull, dispatch the action to update note
+                .then(async (res) => {  // if validation successfull, dispatch the action to update note
                     playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
 
-                    dispatch(updateNote(formData))
-                        .then(status => {
-                            
-                            if (status.type === 'updateNote/fulfilled') {
-                                setTimeout(() => {
-                                    handleClose();
-                                }, 0);
-                            }
-                        });
+                    setTimeout(() => {  // the code was stopping the loader from displaying
+                        dispatch(updateNote(formData));
+                    }, 290);  
                 })
                 .catch(err => {  // if we encounter any error
                     toast.info(err);
@@ -98,6 +97,7 @@ export default function Editnote(props) {
                 onClose={handleClose}
             >
                 <Box sx={Object.assign(style, { backgroundColor: (themeStatus === 'dark' ? '#181818' : 'background.paper') })}>
+                    <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} />
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} theme={themeStatus} />
                     {isLoggedIn && props.data.category && (
                         noteType === 'pending'
