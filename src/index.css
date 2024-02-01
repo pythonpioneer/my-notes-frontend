@@ -161,3 +161,7 @@ textarea:focus, input:focus, input, textarea{
 .rotate-me-back {
   animation: rotate-me-back 1s linear forwards;
 }
+.highlight:hover {
+  border: 2px solid;
+  box-shadow: 0 0 10px rgba(73, 62, 2, 0.728); /* Box shadow for highlighting */
+}
