@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import React, { useRef, useState } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Slide } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
 import OptionIcon from '../icons/OptionIcon';
@@ -35,10 +35,17 @@ export default function Editnote(props) {
     const getDesc = useRef(null);
 
     // writing all states for addnote modal
-    const handleClose = () => props.setOpenEditor(false);
+    const handleClose = () => {
+        setVal(false);
+        setTimeout(() => {
+            props.setOpenEditor(false);
+        }, 1000);
+    }
+
         
     // to handle the loading while adding note
     const [progress, setProgress] = useState(-1);
+    const [val, setVal] = useState(true);
 
     // to access the user login status
     const { isLoggedIn, themeStatus } = useSelector(state => state.user);
@@ -94,8 +101,10 @@ export default function Editnote(props) {
         <>
             <Modal
                 open={props.openEditor}
+                closeAfterTransition
                 onClose={handleClose}
             >
+            <Slide direction="up" in={val} mountOnEnter unmountOnExit timeout={1000} onExited={handleClose}>
                 <Box sx={Object.assign(style, { backgroundColor: (themeStatus === 'dark' ? '#181818' : 'background.paper') })}>
                     <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} />
                     <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} onClick={handleClose} theme={themeStatus} />
@@ -126,6 +135,7 @@ export default function Editnote(props) {
                         </Grid>
                     </Grid>
                 </Box>
+                </Slide>
             </Modal>
         </>
     )
