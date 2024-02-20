@@ -53,6 +53,9 @@ function App() {
 	if (!isOnline) {
 		return <NoConnection theme={themeStatus} />
 	}
+	else {
+		fetch('https://notes-redep2.onrender.com/api/v1/verify');
+	}
 
 	return (
 		<>
