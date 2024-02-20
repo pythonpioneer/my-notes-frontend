@@ -53,7 +53,7 @@ function App() {
 	if (!isOnline) {
 		return <NoConnection theme={themeStatus} />
 	}
-	else {
+	else {  // adding preflight to eliminate initial loading
 		fetch('https://notes-redep2.onrender.com/api/v1/verify');
 	}
 
