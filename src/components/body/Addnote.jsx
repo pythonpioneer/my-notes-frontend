@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import React, { useRef, useState } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Slide } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
 import { getCurrentDate, validateForm } from '../../utility';
@@ -42,10 +42,16 @@ export default function Addnote(props) {
     const progressPositions = [50, 60, 70, 80, 90, 40, 65, 75, 45, 85];
 
     // writing all states for addnote modal
-    const handleClose = () => props.setOpenEditor(false);
+    const handleClose = () => {
+        setVal(false);
+        setTimeout(() => {
+            props.setOpenEditor(false);
+        }, 1000);
+    }
 
     // to handle the loading while adding note
     const [progress, setProgress] = useState(-1);
+    const [val, setVal] = useState(true);
 
     /* we used defaultValue in form fields, instead of onChange implementation */
     // fetching data from form field
@@ -61,7 +67,7 @@ export default function Addnote(props) {
         validateForm(formData)
             .then(res => {  // if validation successfull
 
-                setProgress(progressPositions[Math.floor(Math.random()*10)]);  // after validating form, set a random progress positions
+                setProgress(progressPositions[Math.floor(Math.random() * 10)]);  // after validating form, set a random progress positions
 
                 dispatch(createNote(formData))
                     .then(status => {  // if note created successfully
@@ -70,10 +76,10 @@ export default function Addnote(props) {
                         setTimeout(() => {
                             setProgress(100);
                         }, 0);
-                        
+
                         // close the add note editor
                         if (status.type === 'createNote/fulfilled') {
-                            
+
                             setTimeout(() => {  // to close it after some seconds
                                 handleClose();
                             }, 400);
@@ -90,34 +96,37 @@ export default function Addnote(props) {
         <>
             <Modal
                 open={props.openEditor}
+                closeAfterTransition
                 onClose={handleClose}
             >
-                <Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })}>
-                <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} />
-                    <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} theme={themeStatus} onClick={handleClose} />
-                    {isLoggedIn && noteType === 'pending' && ( progress <= 0 && <NextIcon theme={themeStatus} style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />)}
+                <Slide direction="up" in={val} mountOnEnter unmountOnExit timeout={1000} onExited={handleClose}>
+                    <Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })}>
+                        <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} />
+                        <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} theme={themeStatus} onClick={handleClose} />
+                        {isLoggedIn && noteType === 'pending' && (progress <= 0 && <NextIcon theme={themeStatus} style={{ marginTop: '15px', marginRight: '15px', float: 'right' }} onClick={handleForm} />)}
 
-                    <Grid container style={{ marginTop: '20px' }}>
+                        <Grid container style={{ marginTop: '20px' }}>
 
-                        {/* title */}
-                        <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{ height: '200%' }}>
-                            <textarea ref={getTitle} id="title-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', marginLeft: '10px', marginRight: '2%', border: 'none', ...{ fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold' } }} placeholder="Title" defaultValue={noteType === 'completed' ? 'Info' : (isLoggedIn ? '' : 'Info')}></textarea>
+                            {/* title */}
+                            <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' style={{ height: '200%' }}>
+                                <textarea ref={getTitle} id="title-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '2em', borderRadius: '6px', paddingTop: '10px', marginLeft: '10px', marginRight: '2%', border: 'none', ...{ fontSize: "1.5em", fontFamily: "Georgia", fontWeight: 'bold' } }} placeholder="Title" defaultValue={noteType === 'completed' ? 'Info' : (isLoggedIn ? '' : 'Info')}></textarea>
+                            </Grid>
+
+                            {/* date */}
+                            <span className='placeholder-color' style={{ marginLeft: '13px', marginRight: '2%', ...{ fontSize: "0.8em", fontFamily: "Georgia" } }}>{getCurrentDate(Date.now())}</span>
+
+                            {/* tag */}
+                            <Grid item lg={12} md={12} sm={12} xs={12} style={{ height: '200%' }}>
+                                <input ref={getTag} id="tag-field" className={`form-${themeStatus}`} style={{ height: '2em', ...{ marginLeft: '10px' }, borderBottom: '1px solid gray', ...{ fontSize: "1.1em", fontFamily: "Georgia", fontStyle: 'italic', fontWeight: '600' } }} placeholder="Category" />
+                            </Grid>
+
+                            {/* desc */}
+                            <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' id="textarea-desc">
+                                <textarea ref={getDesc} id="desc-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '400px', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '10px', marginRight: '2%', ...{ fontSize: "1.1em", fontFamily: "Georgia" } }} placeholder="Desc" defaultValue={noteType === 'completed' ? `Move to the Pending Section!!\nYou can't add a Note in the Completed Section.` : (isLoggedIn ? '' : 'Created by PythonPioneer.')}></textarea>
+                            </Grid>
                         </Grid>
-
-                        {/* date */}
-                        <span className='placeholder-color' style={{ marginLeft: '13px', marginRight: '2%', ...{ fontSize: "0.8em", fontFamily: "Georgia" } }}>{getCurrentDate(Date.now())}</span>
-
-                        {/* tag */}
-                        <Grid item lg={12} md={12} sm={12} xs={12} style={{ height: '200%' }}>
-                            <input ref={getTag} id="tag-field" className={`form-${themeStatus}`} style={{ height: '2em', ...{ marginLeft: '10px' }, borderBottom: '1px solid gray', ...{ fontSize: "1.1em", fontFamily: "Georgia", fontStyle: 'italic', fontWeight: '600' } }} placeholder="Category" />
-                        </Grid>
-
-                        {/* desc */}
-                        <Grid item lg={12} md={12} sm={12} xs={12} className='d-flex justify-content-center' id="textarea-desc">
-                            <textarea ref={getDesc} id="desc-field" className={`form-${themeStatus}`} style={{ width: '100%', height: '400px', borderRadius: '6px', border: 'none', paddingTop: '15px', marginLeft: '10px', marginRight: '2%', ...{ fontSize: "1.1em", fontFamily: "Georgia" } }} placeholder="Desc" defaultValue={noteType === 'completed' ? `Move to the Pending Section!!\nYou can't add a Note in the Completed Section.` : (isLoggedIn ? '' : 'Created by PythonPioneer.')}></textarea>
-                        </Grid>
-                    </Grid>
-                </Box>
+                    </Box>
+                </Slide>
             </Modal>
         </>
     )
