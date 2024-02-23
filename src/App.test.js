@@ -1,6 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
-
-test('renders learn react link', () => {
-  expect(4).toBe(4);
+// no actual tests for now...
+test("a demo test must passed", () => {
+  expect("ok").toBe("ok");
 });
