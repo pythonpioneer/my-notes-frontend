@@ -1,4 +1,4 @@
-# My-Notes [![Netlify Status](https://api.netlify.com/api/v1/badges/8911e08a-5634-461f-9327-de4a05b939a2/deploy-status)](https://app.netlify.com/sites/notes-pythonpioneer/deploys)
+# My-Notes [![Netlify Status](https://api.netlify.com/api/v1/badges/6d51bd15-8598-488d-b566-f90b335bd515/deploy-status)](https://app.netlify.com/sites/notes-pythonpioneer/deploys)
 
 Introducing our note-taking app to capture your to-dos and inspirational quotes before they slip out of your mind. With this app, you can effortlessly create and organize notes, making it easy to retrieve them later on any device. Utilize the search function to find notes based on title, description, tags, and by all. Additionally, sort your notes seamlessly by the newest or oldest entry, ensuring a streamlined and efficient experience. Never let a brilliant idea or important task slip away – stay organized with our intuitive note app.
 
