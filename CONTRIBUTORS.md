@@ -23,7 +23,7 @@ We would like to express our gratitude to the following individuals who have con
 
 | <img src="https://avatars.githubusercontent.com/u/110678882?v=4" width="200" height="200"> | <img src="https://avatars.githubusercontent.com/u/71951269?v=4" width="200" height="200"> |
 |---|---|
-| [garima-bee](https://github.com/garima-bee) | [Ehsan](https://github.com/Ehsan-Yari) |
+| [garima-virmani](https://github.com/garima-virmani) | [Ehsan](https://github.com/Ehsan-Yari) |
 | She contributed to resolve issue<br> [(PR#26)](https://github.com/pythonpioneer/my-notes-frontend/pull/26) [(issue#22)](https://github.com/pythonpioneer/my-notes-frontend/issues/22) | He contributed to resolve the issue <br> [(issue#36)](https://github.com/pythonpioneer/my-notes-frontend/issues/36) | 
 
 *If you've contributed to this project and your name is missing from this list, please [let us know](mailto:kumarhritiksinha@gmail.com), and we'll be happy to add you!*
