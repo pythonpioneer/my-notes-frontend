@@ -75,7 +75,10 @@ export default function Editnote(props) {
                 .then(async (res) => {  // if validation successfull, dispatch the action to update note
                     playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
 
-                    dispatch(updateNote(formData));
+                    // dispatch(updateNote(formData));
+
+                    // close the modal
+                    props.setOpenEditor(false);
                 })
                 .catch(err => {  // if we encounter any error
                     toast.info(err);

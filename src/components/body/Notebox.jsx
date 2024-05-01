@@ -50,6 +50,9 @@ export default function Notebox() {
 
 	return (
 		<>
+
+			{console.log("boxx")}
+
 			{/* if data is fetching from server */}
 			{isLoading && isLoggedIn && (notes?.length > 0
 				? Array(notes.length).fill(null).map((_, index) => <LoadNote key={index} theme={themeStatus} />)
