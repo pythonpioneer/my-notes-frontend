@@ -33,6 +33,7 @@ export default function NoteItem(props) {
 
     return (
         <>
+            {console.log("noteitem: ", props.id)}
             <Grid className={`highlight mb-3 ${themeStatus === 'dark' ? 'dark-note' : 'bg-light'}`} style={{ width: '', marginLeft: '2%', marginRight: '2%', borderRadius: '10px', height: '130px' }}>
                 {props.tag && noteType === 'pending' && <CompleteIcon onClick={handleCompleteNote} style={{ float: 'right', width: '50px', height: '50px', paddingLeft: '15px', paddingTop: '15px' }} />}
                 {props.tag && noteType === 'completed' && <RevertIcon style={{ float: 'right', margin: '10px' }} onClick={handleUndoNote} />}

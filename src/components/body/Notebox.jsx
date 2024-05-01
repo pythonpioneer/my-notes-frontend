@@ -33,7 +33,7 @@ export default function Notebox() {
 				}
 			});
 
-		return () => {  // cancel the api extra api calls
+		return () => {  // cancel the extra api calls
 			cancelTokenSource.cancel();
 		};
 	}, [dispatch, noteType, searchText]);
