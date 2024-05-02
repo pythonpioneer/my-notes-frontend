@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import { Grid, Slide } from '@mui/material';
 import BackIcon from '../icons/BackIcon';
 import NextIcon from '../icons/NextIcon';
@@ -12,6 +12,7 @@ import { deleteNote, updateNote } from '../../services/notes';
 import audioSubmit from '../../assets/media/submit.mp3';
 import { playClickAudio } from '../../utility/audio';
 import LoadingBar from 'react-top-loading-bar';
+import { updateSingleNote } from '../../features/notes/noteSlice';
 
 
 // styling for modal structure
@@ -27,7 +28,7 @@ const style = {
     marginTop: '9vh',
 };
 
-export default function Editnote(props) {
+function Editnote(props) {
 
     // to store the form fields
     const getTitle = useRef(null);
@@ -75,9 +76,10 @@ export default function Editnote(props) {
                 .then(async (res) => {  // if validation successfull, dispatch the action to update note
                     playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
 
-                    // dispatch(updateNote(formData));
+                    dispatch(updateNote(formData));
 
                     // close the modal
+                    console.log("closing modal")
                     props.setOpenEditor(false);
                 })
                 .catch(err => {  // if we encounter any error
@@ -141,3 +143,6 @@ export default function Editnote(props) {
         </>
     )
 }
+
+
+export default memo(Editnote);

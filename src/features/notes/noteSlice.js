@@ -1,5 +1,5 @@
 // importing all requirements
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { completeNote, createNote, deleteNote, fetchNotes, undoCompletedNote, updateNote, fetchMoreNotes } from '../../services/notes';
 
@@ -62,6 +62,11 @@ const noteSlice = createSlice({
         setSearchText: (state, action) => {  // the method is used to hande search text and can clear search text
             state.searchText = action.payload;
         },
+        updateSingleNote: (state, action) => {
+            state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
+            state.notes = [action.payload, ...state.notes];
+            console.log("single note")
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -99,12 +104,12 @@ const noteSlice = createSlice({
 
             // updating notes
             .addCase(updateNote.pending , (state) => {
-                state.isLoading = true;
-                state.hasErrors = false;
+                // state.isLoading = true;
+                // state.hasErrors = false;
             })
             .addCase(updateNote.fulfilled , (state, action) => {
-                state.isLoading = false;
-                state.hasErrors = false;
+                // state.isLoading = false;
+                // state.hasErrors = false;
                 
                 // remove the old note and add the new note
                 state.notes = state.notes.filter(note => note._id !== action.payload.notes._id);
@@ -183,6 +188,16 @@ const noteSlice = createSlice({
     }
 });
 
+
+// creating a memoized selector
+export const selectAllNotes = createSelector(
+    state => state.notes.notes,
+    allNotes => {
+      console.log("selector");
+      return allNotes;
+    }
+  );
+
 // now, export all the reducers and actions
-export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText } = noteSlice.actions;
+export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText, updateSingleNote } = noteSlice.actions;
 export default noteSlice.reducer;

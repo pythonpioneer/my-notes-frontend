@@ -17,6 +17,7 @@ function App() {
 	const dispatch = useDispatch();  // to perform actions
 	const { isLoggedIn, themeStatus } = useSelector(state => state.user);
 	const [isOnline, setIsOnline] = useState(navigator.onLine);
+	// const { notes } = useSelector(state => state.notes);
 
 	// to check that the user is logged in or not and change the global state of login status
 	useEffect(() => {
@@ -56,6 +57,8 @@ function App() {
 	else {  // adding preflight to eliminate initial loading
 		fetch('https://notes-redep2.onrender.com/api/v1/verify');
 	}
+
+	console.log('app')
 
 	return (
 		<>

@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { completeNote, undoCompletedNote } from '../../services/notes';
 import { getCurrentDate } from '../../utility';
@@ -8,7 +8,7 @@ import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
 
 
-export default function NoteItem(props) {
+function NoteItem(props) {
 
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
@@ -56,3 +56,5 @@ export default function NoteItem(props) {
         </>
     )
 }
+
+export default memo(NoteItem);

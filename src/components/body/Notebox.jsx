@@ -1,23 +1,29 @@
 import NoteItem from './NoteItem';
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { getCurrentDate } from '../../utility';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMoreNotes, fetchNotes } from '../../services/notes';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import LoadNote from '../loader/skeleton/LoadNote';
 import LoadMore from '../loader/spinner/LoadMore';
-import { setCurrPage, setTotalNotes } from '../../features/notes/noteSlice';
+import { selectAllNotes, setCurrPage, setTotalNotes } from '../../features/notes/noteSlice';
 import axios from 'axios';
+import store from '../../store';
 
 
-export default function Notebox() {
+function Notebox() {
 
 	const { isLoggedIn, themeStatus } = useSelector(state => state.user);  // to store the login status
 	const { notes, noteType, isLoading, totalNotes, currPage, searchText } = useSelector(state => state.notes);
 	const dispatch = useDispatch();
 
+	const allNotes = useSelector(selectAllNotes);
+	console.log('all Notes', allNotes)
+
 	// to fetch all notes automatically
 	useEffect(() => {
+
+		console.log("box effect")
 
 		// Create a cancel token source
 		const cancelTokenSource = axios.CancelToken.source();
@@ -50,7 +56,6 @@ export default function Notebox() {
 
 	return (
 		<>
-
 			{console.log("boxx")}
 
 			{/* if data is fetching from server */}
@@ -60,14 +65,14 @@ export default function Notebox() {
 			)}
 
 			{/* if we found nothing after searching */}
-			{!notes && searchText.length > 0 && <NoteItem title={"Info"} desc={"Ah, Oh!!, No Notes Found!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{!notes && searchText.length > 0 && <NoteItem key={"info1"} title={"Info"} desc={"Ah, Oh!!, No Notes Found!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is not logged in  */}
-			{!isLoggedIn && <NoteItem title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{!isLoggedIn && <NoteItem key={"info2"} title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is logged in and don't have any notes after fetching notes from server */}
-			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem title={"Info"} desc={"Reload Your page to fetch more notes!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
-			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem key={"info3"} title={"Info"} desc={"Reload Your page to fetch more notes!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem key={"info3"} title={"Info"} desc={noteType === 'pending' ? 'No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* paginate to fetch more notes */}
 			{notes?.length > 0 &&
@@ -77,10 +82,12 @@ export default function Notebox() {
 					hasMore={notes?.length < totalNotes}
 					loader={<LoadMore theme={themeStatus} />}
 				>
-					{!isLoading && notes.map((note,) => {
-						return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
+					{!isLoading && allNotes.map((note, index) => {
+						return <NoteItem key={note._id + index} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
 					})}
 				</InfiniteScroll>}
 		</>
 	)
 }
+
+export default memo(Notebox);
