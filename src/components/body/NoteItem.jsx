@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React, { memo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { completeNote, undoCompletedNote } from '../../services/notes';
 import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
