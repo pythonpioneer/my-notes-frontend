@@ -75,7 +75,7 @@ export default function Notebox() {
 					loader={<LoadMore theme={themeStatus} />}
 				>
 					{!isLoading && notes.map((note,) => {
-						return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
+						return <NoteItem key={note._id} noteType={noteType} themeStatus={themeStatus} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
 					})}
 				</InfiniteScroll>}
 		</>

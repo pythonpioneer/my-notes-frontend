@@ -10,6 +10,8 @@ import RevertIcon from '../icons/RevertIcon';
 
 function NoteItem(props) {
 
+    console.log("item:", props.id)
+
     // fetch the notetype and theme from props
     const { noteType, themeStatus } = props;
 
