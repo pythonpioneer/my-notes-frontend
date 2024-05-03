@@ -99,12 +99,11 @@ const noteSlice = createSlice({
 
             // updating notes
             .addCase(updateNote.pending , (state) => {
-                state.isLoading = true;
-                state.hasErrors = false;
+                // removing loading state manipulation to prevent unnecessary re-rendering
+                // state.isLoading = true;
+                // state.hasErrors = false;
             })
             .addCase(updateNote.fulfilled , (state, action) => {
-                state.isLoading = false;
-                state.hasErrors = false;
                 
                 // remove the old note and add the new note
                 state.notes = state.notes.filter(note => note._id !== action.payload.notes._id);

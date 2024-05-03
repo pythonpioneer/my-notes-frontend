@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { completeNote, undoCompletedNote } from '../../services/notes';
 import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
@@ -8,12 +8,13 @@ import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
 
 
-export default function NoteItem(props) {
+function NoteItem(props) {
+
+    // fetch the notetype and theme from props
+    const { noteType, themeStatus } = props;
 
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
-    const { noteType } = useSelector(state => state.notes);
-    const { themeStatus } = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     // to open the modal
@@ -55,3 +56,7 @@ export default function NoteItem(props) {
         </>
     )
 }
+
+
+// memoise the noteitem component to prevent re-rendering when the props doesn't changed
+export default memo(NoteItem);

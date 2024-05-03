@@ -57,14 +57,14 @@ export default function Notebox() {
 			)}
 
 			{/* if we found nothing after searching */}
-			{!notes && searchText.length > 0 && <NoteItem title={"Info"} desc={"Ah, Oh!!, No Notes Found!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{!notes && searchText.length > 0 && <NoteItem title={"Info"} noteType={noteType} themeStatus={themeStatus} desc={"Ah, Oh!!, No Notes Found!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is not logged in  */}
-			{!isLoggedIn && <NoteItem title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{!isLoggedIn && <NoteItem noteType={noteType} themeStatus={themeStatus} title={"Info"} desc={"You haven't take a note yet, Login to take your First note"} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* if user is logged in and don't have any notes after fetching notes from server */}
-			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem title={"Info"} desc={"Reload Your page to fetch more notes!!"} tag={null} datetime={getCurrentDate(Date.now())} />}
-			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem title={"Info"} desc={noteType === 'pending' ? 'No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{isLoggedIn && !isLoading && notes?.length === 0 && <NoteItem noteType={noteType} themeStatus={themeStatus} title={"Info"} desc={"Reload Your page to fetch more notes or Take your First Note!!\nClick or touch the Add Icon!"} tag={null} datetime={getCurrentDate(Date.now())} />}
+			{isLoggedIn && !isLoading && (searchText.length === 0) && noteType && !notes && <NoteItem noteType={noteType} themeStatus={themeStatus} title={"Info"} desc={noteType === 'pending' ? 'No Notes are Pending!' : 'Hurry Up!! Take Your Notes!'} tag={null} datetime={getCurrentDate(Date.now())} />}
 
 			{/* paginate to fetch more notes */}
 			{notes?.length > 0 &&
@@ -75,7 +75,7 @@ export default function Notebox() {
 					loader={<LoadMore theme={themeStatus} />}
 				>
 					{!isLoading && notes.map((note,) => {
-						return <NoteItem key={note._id} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
+						return <NoteItem key={note._id} noteType={noteType} themeStatus={themeStatus} title={note?.title} desc={note?.desc} tag={note?.category || "General"} datetime={note.updatedAt} id={note._id} />
 					})}
 				</InfiniteScroll>}
 		</>

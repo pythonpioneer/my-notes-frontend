@@ -75,9 +75,12 @@ export default function Editnote(props) {
                 .then(async (res) => {  // if validation successfull, dispatch the action to update note
                     playClickAudio(audioSubmit);  // to play the sound if form successfully submitted
 
-                    setTimeout(() => {  // the code was stopping the loader from displaying
+                    // the code was stopping the loader from displaying
+                    setTimeout(() => {
                         dispatch(updateNote(formData));
+                        props.setOpenEditor(false);  // to close the editor
                     }, 290);  
+
                 })
                 .catch(err => {  // if we encounter any error
                     toast.info(err);
