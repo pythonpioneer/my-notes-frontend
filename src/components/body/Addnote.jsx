@@ -99,7 +99,7 @@ export default function Addnote(props) {
                 closeAfterTransition
                 onClose={handleClose}
             >
-                <Slide direction="up" in={val} mountOnEnter unmountOnExit timeout={500} onExited={handleClose}>
+                <Slide direction="up" in={val} mountOnEnter unmountOnExit timeout={200} onExited={handleClose}>
                     <Box sx={Object.assign(style, { backgroundColor: themeStatus === 'dark' ? '#181818' : 'background.paper' })}>
                         <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} />
                         <BackIcon style={{ marginTop: '15px', marginLeft: '15px' }} theme={themeStatus} onClick={handleClose} />
