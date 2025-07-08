@@ -147,6 +147,15 @@ export const completeNote = createAsyncThunk('completeNote', async (noteId) => {
     return axios.patch(url, {}, config)
         .then(response => {
             toast.success(response?.data?.message || "Success!!");
+
+            // fetching the user id from the token
+            const decoded = decodeToken(token);
+            const userId = decoded?.user?.id;
+
+            if (userId) {
+                socket.emit('note:complete', { userId, noteId: response.data?.noteId });
+            }
+
             return response.data;
         })
         .catch(err => {
@@ -178,6 +187,15 @@ export const undoCompletedNote = createAsyncThunk('undoCompletedNote', async (no
     return axios.patch(url, {}, config)
         .then(response => {
             toast.success(response?.data?.message || "Success!!");
+
+            // fetching the user id from the token
+            const decoded = decodeToken(token);
+            const userId = decoded?.user?.id;
+
+            if (userId) {
+                socket.emit('note:update', { userId, note: response.data?.notes });
+            }
+
             return response.data;
         })
         .catch(err => {

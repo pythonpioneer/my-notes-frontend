@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import socket from '../sockets/socket';
 import {
     noteAddedRealtime,
+    noteCompletedRealtime,
     noteDeletedRealtime,
     noteUpdatedRealtime,
 } from '../features/notes/noteSlice';
@@ -27,12 +28,14 @@ const useNotesSocket = (userId) => {
         socket.on('note:added', (note) => dispatch(noteAddedRealtime(note)));
         socket.on('note:deleted', (noteId) => dispatch(noteDeletedRealtime(noteId)));
         socket.on('note:updated', (updated) => dispatch(noteUpdatedRealtime(updated)));
+        socket.on('note:completed', (noteId) => dispatch(noteCompletedRealtime(noteId)));
 
         // 4 ▪ cleanup
         return () => {
             socket.off('note:added');
             socket.off('note:deleted');
             socket.off('note:updated');
+            socket.off('note:completed');
             socket.disconnect();   // optional: keep open if your UX benefits
         };
     }, [userId, dispatch]);

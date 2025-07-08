@@ -6,6 +6,8 @@ import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
+import useNotesSocket from '../../hooks/useNotesSocket';
+import { decodeToken } from '../../utility/token';
 
 
 function NoteItem(props) {
@@ -16,6 +18,10 @@ function NoteItem(props) {
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
     const dispatch = useDispatch();
+
+    const decoded = decodeToken(localStorage.getItem('auth-token'));
+    const userId = decoded?.user?.id;
+    useNotesSocket(userId);
 
     // to open the modal
     const displayEditor = () => {
