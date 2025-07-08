@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import socket from '../sockets/socket';
 import {
-    noteAddedInSectionRealtime,
+    noteAddedInPendingRealtime,
+    noteAddedInCompletedRealtime,
     noteAddedRealtime,
     noteCompletedRealtime,
     noteDeletedRealtime,
@@ -32,7 +33,8 @@ const useNotesSocket = (userId) => {
         socket.on('note:updated', (updated) => dispatch(noteUpdatedRealtime(updated)));
         socket.on('note:completed', (note) => dispatch(noteCompletedRealtime(note)));
         socket.on('note:undo-completed', (note) => dispatch(noteUndoCompletedRealtime(note)));
-        socket.on('note:section-added', (note) => dispatch(noteAddedInSectionRealtime(note)));
+        socket.on('note:pending-added', (note) => dispatch(noteAddedInPendingRealtime(note)));
+        socket.on('note:completed-added', (note) => dispatch(noteAddedInCompletedRealtime(note)));
         
         // cleanup
         return () => {

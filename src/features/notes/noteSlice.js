@@ -68,8 +68,8 @@ const noteSlice = createSlice({
             const newNote = action.payload;
             const idx = state.notes.findIndex(n => n._id === newNote._id);
 
-            if (idx > -1) state.notes[idx] = newNote;
-            else state.notes.unshift(newNote);
+            if (idx > -1 && state.noteType === 'pending') state.notes[idx] = newNote;
+            else if (state.noteType === 'pending') state.notes.unshift(newNote);
         },
         noteDeletedRealtime: (state, action) => {
             state.notes = state.notes.filter(n => n._id !== action.payload);
@@ -84,14 +84,22 @@ const noteSlice = createSlice({
         noteUndoCompletedRealtime: (state, action) => {
             state.notes = state.notes.filter(n => n._id !== action.payload?._id);
         },
-        noteAddedInSectionRealtime: (state, action) => {
+        noteAddedInPendingRealtime: (state, action) => {
             const note = action.payload;
-            const noteType = note.isCompleted ? 'completed' : 'pending';
+            const noteType = 'pending';
 
             if (state.noteType === noteType) {
                 state.notes = [note, ...state.notes];
             }
         },
+        noteAddedInCompletedRealtime: (state, action) => {
+            const note = action.payload;
+            const noteType = 'completed';
+
+            if (state.noteType === noteType) {
+                state.notes = [note, ...state.notes];
+            }
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -213,5 +221,5 @@ const noteSlice = createSlice({
 });
 
 // now, export all the reducers and actions
-export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText, noteAddedRealtime, noteDeletedRealtime, noteUpdatedRealtime, noteCompletedRealtime, noteUndoCompletedRealtime, noteAddedInSectionRealtime } = noteSlice.actions;
+export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText, noteAddedRealtime, noteDeletedRealtime, noteUpdatedRealtime, noteCompletedRealtime, noteUndoCompletedRealtime, noteAddedInPendingRealtime, noteAddedInCompletedRealtime } = noteSlice.actions;
 export default noteSlice.reducer;
