@@ -153,7 +153,7 @@ export const completeNote = createAsyncThunk('completeNote', async (noteId) => {
             const userId = decoded?.user?.id;
 
             if (userId) {
-                socket.emit('note:complete', { userId, noteId: response.data?.noteId });
+                socket.emit('note:complete', { userId, note: response.data?.notes });
             }
 
             return response.data;
@@ -193,7 +193,7 @@ export const undoCompletedNote = createAsyncThunk('undoCompletedNote', async (no
             const userId = decoded?.user?.id;
 
             if (userId) {
-                socket.emit('note:undo-complete', { userId, noteId: response.data?.noteId });
+                socket.emit('note:undo-complete', { userId, note: response.data?.notes });
             }
 
             return response.data;
@@ -233,7 +233,7 @@ export const deleteNote = createAsyncThunk('deleteNote', async (noteId) => {
             const userId = decoded?.user?.id;
 
             if (userId) {
-                socket.emit('note:update', { userId, noteId: response.data.notes._id });
+                socket.emit('note:delete', { userId, noteId: response.data.noteId });
             }
 
             return response.data;

@@ -79,11 +79,19 @@ const noteSlice = createSlice({
             if (idx > -1) state.notes[idx] = action.payload;
         },
         noteCompletedRealtime: (state, action) => {
-            state.notes = state.notes.filter(n => n._id !== action.payload);
+            state.notes = state.notes.filter(n =>  n._id !== action.payload?._id);
         },
         noteUndoCompletedRealtime: (state, action) => {
-            state.notes = state.notes.filter(n => n._id !== action.payload);
-        }
+            state.notes = state.notes.filter(n => n._id !== action.payload?._id);
+        },
+        noteAddedInSectionRealtime: (state, action) => {
+            const note = action.payload;
+            const noteType = note.isCompleted ? 'completed' : 'pending';
+
+            if (state.noteType === noteType) {
+                state.notes = [note, ...state.notes];
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -205,5 +213,5 @@ const noteSlice = createSlice({
 });
 
 // now, export all the reducers and actions
-export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText, noteAddedRealtime, noteDeletedRealtime, noteUpdatedRealtime, noteCompletedRealtime, noteUndoCompletedRealtime } = noteSlice.actions;
+export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText, noteAddedRealtime, noteDeletedRealtime, noteUpdatedRealtime, noteCompletedRealtime, noteUndoCompletedRealtime, noteAddedInSectionRealtime } = noteSlice.actions;
 export default noteSlice.reducer;

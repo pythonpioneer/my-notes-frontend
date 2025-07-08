@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import socket from '../sockets/socket';
 import {
+    noteAddedInSectionRealtime,
     noteAddedRealtime,
     noteCompletedRealtime,
     noteDeletedRealtime,
@@ -19,26 +20,28 @@ const useNotesSocket = (userId) => {
     useEffect(() => {
         if (!userId) return;
 
-        // 1 ▪ open connection (idempotent if already open)
+        // open connection (idempotent if already open)
         socket.connect();
 
-        // 2 ▪ join that user’s private room
+        // join that user’s private room
         socket.emit('join', userId);
 
-        // 3 ▪ wire listeners → Redux
+        // wire listeners → Redux
         socket.on('note:added', (note) => dispatch(noteAddedRealtime(note)));
         socket.on('note:deleted', (noteId) => dispatch(noteDeletedRealtime(noteId)));
         socket.on('note:updated', (updated) => dispatch(noteUpdatedRealtime(updated)));
-        socket.on('note:completed', (noteId) => dispatch(noteCompletedRealtime(noteId)));
-        socket.on('notes:undo-completed', (noteId) => dispatch(noteUndoCompletedRealtime(noteId)));
-
-        // 4 ▪ cleanup
+        socket.on('note:completed', (note) => dispatch(noteCompletedRealtime(note)));
+        socket.on('note:undo-completed', (note) => dispatch(noteUndoCompletedRealtime(note)));
+        socket.on('note:section-added', (note) => dispatch(noteAddedInSectionRealtime(note)));
+        
+        // cleanup
         return () => {
             socket.off('note:added');
             socket.off('note:deleted');
             socket.off('note:updated');
             socket.off('note:completed');
             socket.off('note:undo-completed');
+            socket.off('note:section-added');
             socket.disconnect();  // optional: keep open if your UX benefits
         };
     }, [userId, dispatch]);
