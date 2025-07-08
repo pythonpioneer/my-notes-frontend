@@ -1,13 +1,11 @@
 import { Grid } from '@mui/material';
-import React, { memo, useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { completeNote, undoCompletedNote } from '../../services/notes';
 import { getCurrentDate } from '../../utility';
 import Editnote from '../body/Editnote';
 import CompleteIcon from '../icons/CompleteIcon';
 import RevertIcon from '../icons/RevertIcon';
-import useNotesSocket from '../../hooks/useNotesSocket';
-import { decodeToken } from '../../utility/token';
 
 
 function NoteItem(props) {
@@ -18,10 +16,6 @@ function NoteItem(props) {
     // to store the modal status
     const [openEditor, setOpenEditor] = useState(false);
     const dispatch = useDispatch();
-
-    const decoded = decodeToken(localStorage.getItem('auth-token'));
-    const userId = decoded?.user?.id;
-    useNotesSocket(userId);
 
     // to open the modal
     const displayEditor = () => {
