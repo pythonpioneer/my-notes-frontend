@@ -193,7 +193,7 @@ export const undoCompletedNote = createAsyncThunk('undoCompletedNote', async (no
             const userId = decoded?.user?.id;
 
             if (userId) {
-                socket.emit('note:update', { userId, note: response.data?.notes });
+                socket.emit('note:undo-complete', { userId, noteId: response.data?.noteId });
             }
 
             return response.data;

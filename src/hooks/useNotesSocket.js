@@ -4,6 +4,7 @@ import {
     noteAddedRealtime,
     noteCompletedRealtime,
     noteDeletedRealtime,
+    noteUndoCompletedRealtime,
     noteUpdatedRealtime,
 } from '../features/notes/noteSlice';
 import { useDispatch } from 'react-redux';
@@ -29,6 +30,7 @@ const useNotesSocket = (userId) => {
         socket.on('note:deleted', (noteId) => dispatch(noteDeletedRealtime(noteId)));
         socket.on('note:updated', (updated) => dispatch(noteUpdatedRealtime(updated)));
         socket.on('note:completed', (noteId) => dispatch(noteCompletedRealtime(noteId)));
+        socket.on('notes:undo-completed', (noteId) => dispatch(noteUndoCompletedRealtime(noteId)));
 
         // 4 ▪ cleanup
         return () => {
@@ -36,7 +38,8 @@ const useNotesSocket = (userId) => {
             socket.off('note:deleted');
             socket.off('note:updated');
             socket.off('note:completed');
-            socket.disconnect();   // optional: keep open if your UX benefits
+            socket.off('note:undo-completed');
+            socket.disconnect();  // optional: keep open if your UX benefits
         };
     }, [userId, dispatch]);
 };
