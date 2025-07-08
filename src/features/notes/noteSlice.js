@@ -38,7 +38,7 @@ const noteSlice = createSlice({
             else state.sortOrder = 'descending';
         },
         sortNotes: (state, action) => {  // sort the notes based on note sorting order
-            
+
             // to sort the notes
             const descOrder = (firstNote, secondNote) => new Date(secondNote.updatedAt) - new Date(firstNote.updatedAt);
             const ascOrder = (firstNote, secondNote) => new Date(firstNote.updatedAt) - new Date(secondNote.updatedAt);
@@ -62,126 +62,142 @@ const noteSlice = createSlice({
         setSearchText: (state, action) => {  // the method is used to hande search text and can clear search text
             state.searchText = action.payload;
         },
+
+        // for real time communications
+        noteAddedRealtime: (state, action) => {
+            const newNote = action.payload;
+            const idx = state.notes.findIndex(n => n._id === newNote._id);
+
+            if (idx > -1) state.notes[idx] = newNote;
+            else state.notes.unshift(newNote);
+        },
+        noteDeletedRealtime: (state, action) => {
+            state.notes = state.notes.filter(n => n._id !== action.payload);
+        },
+        noteUpdatedRealtime: (state, action) => {
+            const idx = state.notes.findIndex(n => n._id === action.payload._id);
+            if (idx > -1) state.notes[idx] = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
 
             // fetching notes
-            .addCase(fetchNotes.pending , (state) => {
+            .addCase(fetchNotes.pending, (state) => {
                 state.isLoading = true;
                 state.hasErrors = false;
             })
-            .addCase(fetchNotes.fulfilled , (state, action) => {
+            .addCase(fetchNotes.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
                 state.notes = action.payload.notes;
             })
-            .addCase(fetchNotes.rejected , (state, action) => {  // we will handle errors later
+            .addCase(fetchNotes.rejected, (state, action) => {  // we will handle errors later
                 state.hasErrors = true;
             })
 
             // adding notes
-            .addCase(createNote.pending , (state) => {
+            .addCase(createNote.pending, (state) => {
                 state.isLoading = true;
                 state.hasErrors = false;
             })
-            .addCase(createNote.fulfilled , (state, action) => {
+            .addCase(createNote.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
-                
+
                 // if user takes first note
                 if (!state.notes) state.notes = [action.payload.notes];
-                else state.notes = [action.payload.notes, ...state?.notes]; 
+                else state.notes = [action.payload.notes, ...state?.notes];
             })
-            .addCase(createNote.rejected , (state, action) => {  // we will handle errors later
+            .addCase(createNote.rejected, (state, action) => {  // we will handle errors later
                 state.hasErrors = true;
             })
 
             // updating notes
-            .addCase(updateNote.pending , (state) => {
+            .addCase(updateNote.pending, (state) => {
                 // removing loading state manipulation to prevent unnecessary re-rendering
                 // state.isLoading = true;
                 // state.hasErrors = false;
             })
-            .addCase(updateNote.fulfilled , (state, action) => {
-                
+            .addCase(updateNote.fulfilled, (state, action) => {
+
                 // remove the old note and add the new note
                 state.notes = state.notes.filter(note => note._id !== action.payload.notes._id);
                 state.notes = [action.payload.notes, ...state.notes];
             })
-            .addCase(updateNote.rejected , (state, action) => {  // we will handle errors later
+            .addCase(updateNote.rejected, (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })
 
             // complete notes
-            .addCase(completeNote.pending , (state) => {
+            .addCase(completeNote.pending, (state) => {
                 state.isLoading = true;
                 state.hasErrors = false;
             })
-            .addCase(completeNote.fulfilled , (state, action) => {
+            .addCase(completeNote.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
-                
+
                 // remove the completed note
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
                 state.totalNotes -= 1;  // remove the deleted note from total notes
             })
-            .addCase(completeNote.rejected , (state, action) => {  // we will handle errors later
+            .addCase(completeNote.rejected, (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })
 
             // undo completed notes
-            .addCase(undoCompletedNote.pending , (state) => {
+            .addCase(undoCompletedNote.pending, (state) => {
                 state.isLoading = true;
                 state.hasErrors = false;
             })
-            .addCase(undoCompletedNote.fulfilled , (state, action) => {
+            .addCase(undoCompletedNote.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
-                
+
                 // remove the completed note
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
                 state.totalNotes -= 1;  // remove the deleted note from total notes
             })
-            .addCase(undoCompletedNote.rejected , (state, action) => {  // we will handle errors later
+            .addCase(undoCompletedNote.rejected, (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })
 
             // delete notes
-            .addCase(deleteNote.pending , (state) => {
+            .addCase(deleteNote.pending, (state) => {
                 state.isLoading = true;
                 state.hasErrors = false;
             })
-            .addCase(deleteNote.fulfilled , (state, action) => {
+            .addCase(deleteNote.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasErrors = false;
-                
+
                 // remove the deleted note
                 state.notes = state.notes.filter(note => note._id !== action.payload.noteId);
                 state.totalNotes -= 1;  // remove the deleted note from total notes
             })
-            .addCase(deleteNote.rejected , (state, action) => {  // we will handle errors later
+            .addCase(deleteNote.rejected, (state, action) => {  // we will handle errors later
                 state.isLoading = false;
                 state.hasErrors = true;
             })
 
             // fetching more notes using pagination
-            .addCase(fetchMoreNotes.pending , () => {
+            .addCase(fetchMoreNotes.pending, () => {
                 // no contents, loading handled by infinite scroll loader
             })
-            .addCase(fetchMoreNotes.fulfilled , (state, action) => {
+            .addCase(fetchMoreNotes.fulfilled, (state, action) => {
                 state.hasErrors = false;
                 state.notes = [...state.notes, ...action.payload.notes];
             })
-            .addCase(fetchMoreNotes.rejected , (state, action) => {  // we will handle errors later
+            .addCase(fetchMoreNotes.rejected, (state, action) => {  // we will handle errors later
                 state.hasErrors = true;
             })
     }
 });
 
 // now, export all the reducers and actions
-export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText } = noteSlice.actions;
+export const { removeNotes, updateNoteType, setTotalNotes, setCurrPage, sortNotes, toggleSortOrder, resetSortOrder, setSearchText, noteAddedRealtime, noteDeletedRealtime, noteUpdatedRealtime } = noteSlice.actions;
 export default noteSlice.reducer;

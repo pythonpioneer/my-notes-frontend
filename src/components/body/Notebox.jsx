@@ -8,6 +8,8 @@ import LoadNote from '../loader/skeleton/LoadNote';
 import LoadMore from '../loader/spinner/LoadMore';
 import { setCurrPage, setTotalNotes } from '../../features/notes/noteSlice';
 import axios from 'axios';
+import useNotesSocket from '../../hooks/useNotesSocket';
+import { decodeToken } from '../../utility/token';
 
 
 export default function Notebox() {
@@ -15,6 +17,11 @@ export default function Notebox() {
 	const { isLoggedIn, themeStatus } = useSelector(state => state.user);  // to store the login status
 	const { notes, noteType, isLoading, totalNotes, currPage, searchText } = useSelector(state => state.notes);
 	const dispatch = useDispatch();
+
+	const decoded = decodeToken(localStorage.getItem('auth-token'));
+	const userId = decoded?.user?.id;
+
+	useNotesSocket(isLoggedIn ? userId : null);
 
 	// to fetch all notes automatically
 	useEffect(() => {

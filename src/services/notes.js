@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { PATH } from '../constants';
 import { toast } from "react-toastify";
+import socket from '../sockets/socket';
+import { decodeToken } from '../utility/token';
 
 
 // fetch constant variables like the url and the url path
@@ -63,6 +65,16 @@ export const createNote = createAsyncThunk('createNote', async ({ title, desc, c
     return axios.post(url, payload, requestHeaders)
         .then(response => {
             toast.success(response?.data?.message || "Success!!");
+
+            // fetching the user id from the token
+            const decoded = decodeToken(token);
+            const userId = decoded?.user?.id;
+
+            // now, emit the newNote event
+            if (userId) {
+                socket.emit('note:add', { userId, note: response.data?.notes });
+            }
+
             return response.data;
         })
         .catch(err => {
@@ -95,6 +107,15 @@ export const updateNote = createAsyncThunk('updateNote', async ({ title, desc, c
     return axios.put(url, payload, requestHeaders)
         .then(response => {
             toast.success(response?.data?.message || "Success!!");
+
+            // fetching the user id from the token
+            const decoded = decodeToken(token);
+            const userId = decoded?.user?.id;
+
+            if (userId) {
+                socket.emit('note:update', { userId, note: response.data?.notes });
+            }
+
             return response.data;
         })
         .catch(err => {
@@ -188,6 +209,15 @@ export const deleteNote = createAsyncThunk('deleteNote', async (noteId) => {
     return axios.delete(url, config)
         .then(response => {
             toast.success(response?.data?.message || "Success!!");
+
+            // fetching the user id from the token
+            const decoded = decodeToken(token);
+            const userId = decoded?.user?.id;
+
+            if (userId) {
+                socket.emit('note:update', { userId, noteId: response.data.notes._id });
+            }
+
             return response.data;
         })
         .catch(err => {
